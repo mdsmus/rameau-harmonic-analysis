@@ -1,39 +1,146 @@
 \documentclass{article}
 \usepackage{icmc,amsmath}
 \usepackage{graphicx}
+\usepackage{url}
 
 \title{Rameau: A System for Automatic Harmonic Analysis}
 
-% Single address
-% To use with only one author or several with the same address
-% ---------------
 \oneauthor
-  {Author} {School \\ Department}
+  {Pedro Kröger, Alexandre Passos, Marcos Sampaio}
+  {Genos---Computer Music Research Group\\ School of Music
+   \\ Federal University of Bahia, Brazil \\
+  \url{pedro.kroger@gmail.com}, \url{alexandre.tp@gmail.com}, \url{mds_ufba@yahoo.com.br}}
 
-% Two addresses
-% --------------
-%\twoauthors
-%  {First author} {School \\ Department}
-%  {Second author} {Company \\ Address}
-
-% Three addresses
-% --------------
-%\threeauthors
-%  {First author} {School \\ Department}
-%  {Second author} {Company \\ Address}
-%  {Third author} {Company \\ Address}
+\newcommand{\nota}[1]{
+  \textbf{[nota: \textit{#1}]}
+}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-The abstract should be placed at the top left column and should contain
-about 150-200 words.
+%The abstract should be placed at the top left column and should contain
+%about 150-200 words.
+
 \end{abstract}
 
 \section{Introduction}
 \label{sec:introduction}
 
-\bibliography{rameau}
+%% introducao geral
+
+In music, harmonic analysis is the study of vertial sonorities and it
+conections. The analysit can find the root of chords, label sonorities
+with proper chords names (such as ``A minor''), and identify the
+relationship beetwen chords, usually using roman numerals.
+\nota{nao comeca sentenca com this} This is called functional
+analysis. Harmonic analysis is paramount to the understanding of tonal
+compositions. The harmonic analysis by computer is an important,
+challenging, and interesting computer music research topic. A análise
+automática é uma tarefa complexa por diversas razões; o material
+musical é composto de uma grande variedade de informações (timbre,
+notas, ritmo, dinâmica, harmonia) e pelo fato de música ser um
+processo temporal, diferentemente de imagem, por exemplo
+\cite{mouton95:numeric}. As mudanças harmônicas em uma textura coral,
+onde as notas em todas as vozes começam e terminam ao mesmo tempo, são
+óbvias. Contudo, frequentemente os acordes podem ser arpejados,
+incompletos, e intercalados com notas não-harmônicas (notas melódicas)
+aumentando consideravelmente a complexidade para a análise.
+\cite{pardo00:automated}. Also, many techniques such as pattern
+matching, hidden Markov model, neural networks, decision trees, etc.
+can be used. \nota{voz passiva}
+
+There are many practical applications for automatic music analysis,
+among them arranging, detection of possible logical mistakes in scores,
+database search, automatic accompaniment generation, and statistical
+analysis of musical styles for automated composition
+\cite{pardo02:algorithms,temperley99:modeling}.
+
+Computer-based harmonic analysis is important because it can bring new
+insights in music theory, in the same way the use of computer in
+vision and problem solving has brought new insights in these areas
+\cite{temperley99:modeling}.
+
+% porque o trabalho e importante?
+
+Up to now there is not a single framework that allows the comparison
+beetwen different algorithms and results. Pardo and Birmmingham state
+that ``no researchers have published statistical performance results
+on a system designed to analyze tonal music''
+\cite{pardo02:algorithms} before their paper. This lack of data in
+literature makes it difficult to compare different systems. Also,
+there aren't standard benchmarks to compare different algorithms and
+results. In fact, only Pardo et al. \cite{pardo00:automated} and
+Barthèlemy and Sleator \cite{barthelemy01:figured} published specific
+comparisons between theirs and other's results. Pardo compares his
+results with \cite{temperley99:modeling} while Barthèlemy compares his
+model against \cite{maxwell92:expert}, \cite{pardo99:automated} and
+\cite{temperley96:algorithm}. However, they are based on the results
+published in papers and not on results from direct implementations,
+which means that only the examples published by the authors can be
+compared.
+
+In this paper we will present rameau, a system for automatic harmonic
+analysis of Western tonal music. The main goal of this systems to
+allow an easy comparison beetwen algorithms and results. \nota{falar
+  limitacoes e escopo (harmonia tonal, corais de bach)}
+
+In this paper we present an evaluation of five algorithms using a
+corpus of 1xx Bach Chorales. \nota{quantos corais?} Section
+\ref{sec:system} describes rameau in more details, section
+\ref{sec:problems} lists the problems related to harmonic analysis,
+section \ref{sec:analysis-results} analysis the results obtained, and
+section \ref{sec:concl-future-work} xxxxxxxxx.
+
+\section{Problems}
+\label{sec:problems}
+
+* enarmonia
+
+* segmentacao
+
+* analise
+
+* contexto
+
+* notas melodicas
+
+* acordes incompletos
+
+\section{Codificacao jamary}
+\label{sec:codificacao-jamary}
+
+\section{Formato dos acordes}
+\label{sec:formato-dos-acordes}
+
+
+\section{The system}
+\label{sec:system}
+
+\nota{trocar titulo}
+
+\section{Analysis results}
+\label{sec:analysis-results}
+
+\section{Conclusions and future work}
+\label{sec:concl-future-work}
+
+% planos futuros
+
+* implement other techniques and algorithms such as hidden Markov
+chains, patter matching, etc.
+
+* aprofundar o uso de redes neurais
+
+* ampliar o corpus musical (com gabaritos)
+
+* implementar segmentacao
+
+* investigar enarmonia: pitch speller vs. entrada/saida tonal
+
+* implementar analise funcional
+
+\bibliographystyle{plain}
+\bibliography{rameau,analise-harmonica-nao-tenho}
 
 \end{document}
