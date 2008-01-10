@@ -29,7 +29,7 @@
 
 %% introducao geral
 
-In music, harmonic analysis is the study of vertial sonorities and it
+In music, harmonic analysis is the study of vertical sonorities and it
 conections. The analysit can find the root of chords, label sonorities
 with proper chords names (such as ``A minor''), and identify the
 relationship beetwen chords, usually using roman numerals.
@@ -117,6 +117,76 @@ section \ref{sec:concl-future-work} xxxxxxxxx.
 \section{The system}
 \label{sec:system}
 
+To solve this problem \nota{sim, eu sei, isso não foi escrito ainda,
+  mas eu acho que é uma boa ponte} we have designed a framework \nota{
+  minha surpresa é que rameau realmente se categoriza como framework,
+  se você olhar do ponto de vista de um algoritmo}, Rameau, that
+enables us to
+\begin{list}{\textbf{.}}{}
+\item compare results precisely and repeatably with human analysis;
+\item preserve as much information as possible from the score used as
+  input;
+\item develop new algorithms and test existing ones easilly.
+\end{list}
+
+We have, then, started building a corpus of analyzed and digitalized
+bach chorales, to use as training and test data. These chorales were
+chosen for their ease of analysis (i.e., the segmentation problem in
+them reduces to separating the sonorities), their status as canonical
+examples of tonal harmony, their number (there are 371 on the
+riemenschneider collection) and their simple structure. We analysed
+116 of them, and plan on having all properly processed soon. The
+chorales are stored in a subset of the GNU Lilypond \nota{citation
+  needed} format, from which we generate MIDI files and pictorial
+representations of their scores. Our system also generates scores
+annotated with analysys results (both by human and by computer).
+
+Internally, the score being analysed is represent as a list of notes,
+notated by pitch, octave, onset time and duration. Pitches and
+intervals are represented in two ways: standard tempered notation ($C
+= 0$, $B = 11$, intervals are the difference between the corresponding
+pitches) and a tonal notation developed in \nota{citation needed}. As
+of now no implemented algorithm makes use of enharmonic information,
+but doing so is trivial.
+
+The results of human analysis performed on the chorales are stored in
+a simple, flexible text format, designed to be as close as possible to
+usual popular notation, to represent inherent ambiguities in chords
+(it is possible, for any sonority, to specify more than one chord as a
+possibility for it) and to single out sonorities that do not
+constitute a chord, instead serving a melodic purpose on the
+piece. This information is then used as test and, when necessary,
+training sets on the many algorithms implemented in our system.
+
+Algorithms used for analysis are implemented using a very simple
+Common Lisp API. We have currently implemented a subset of the
+algorithm described in \cite{pardo02:algorithms} (ignoring, for now,
+the segmentation algorithm), a port (work-in-progress) of the
+algorithm described in \cite{temperley99:modeling}, and some
+neural networks (using the Fann \nota{citation needed} library) and
+decision trees (using code from \nota{citar Tom Mitchell, 1997,
+  Machine Learning}).
+
+The architecture is simple. First, a piece o music is parsed (our
+parser is written using Cl-Yacc and Cl-Lexer \nota{citation needed})
+into a list of notes, which is then split into a list of
+sonorities. Then, these sonorities are sent to each algorithm for
+analysis. The algorithms are expected to return a list of chords or
+melodic notes, one for each sonority, which is then compared against
+results of human analysis. The comparison and analysis results are
+then output in the desired manner.
+
+\nota{screenshots da análise ficariam bem aqui, ou talvez um diagrama
+  do processo}
+
+Rameau differs from Temperley and Sleator's Melisma
+\cite{temperley99:modeling} system in being focused on testing the
+results. To run Melisma one uses a shell script or pipes, and the
+default output of the harmonic analysis program is not suitable for
+comparison with previous results. Also, we haven't been able to
+reproduce their claimed accuracy using the information avaliable on
+the website.
+ 
 \nota{trocar titulo}
 
 \section{Analysis results}
