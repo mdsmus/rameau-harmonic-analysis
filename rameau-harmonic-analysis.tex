@@ -107,88 +107,125 @@ section \ref{sec:concl-future-work} xxxxxxxxx.
 
 * acordes incompletos
 
-\section{Codificacao jamary}
-\label{sec:codificacao-jamary}
 
-\section{Formato dos acordes}
-\label{sec:formato-dos-acordes}
-
-
-\section{The system}
+\section{The Rameau Framework}
 \label{sec:system}
 
-To solve this problem \nota{sim, eu sei, isso não foi escrito ainda,
-  mas eu acho que é uma boa ponte} we have designed a framework \nota{
-  minha surpresa é que rameau realmente se categoriza como framework,
-  se você olhar do ponto de vista de um algoritmo}, Rameau, that
-enables us to
+To properly study, understand and compare existing and newly proposed
+solutions for the automated harmonic analysis problem we have designed
+and implemented a framework , Rameau, that should enable us to
 \begin{list}{\textbf{.}}{}
-\item compare results precisely and repeatably with human analysis;
-\item preserve as much information as possible from the score used as
-  input;
-\item develop new algorithms and test existing ones easilly.
+\item compare results precisely and repeatably with human analysis of
+  a large corpus of music,
+\item allow algorithms to access as much information as possible from
+  the score used as input, and
+\item easily develop new algorithms and test existing ones.
 \end{list}
 
-We have, then, started building a corpus of analyzed and digitalized
-bach chorales, to use as training and test data. These chorales were
-chosen for their ease of analysis (i.e., the segmentation problem in
-them reduces to separating the sonorities), their status as canonical
-examples of tonal harmony, their number (there are 371 on the
-riemenschneider collection) and their simple structure. We analysed
-116 of them, and plan on having all properly processed soon. The
-chorales are stored in a subset of the GNU Lilypond \nota{citation
-  needed} format, from which we generate MIDI files and pictorial
-representations of their scores. Our system also generates scores
-annotated with analysys results (both by human and by computer).
+\subsection{Comprehensive Test Corpus}
+\label{sec:comprehensive-test-corpus}
 
-Internally, the score being analysed is represent as a list of notes,
-notated by pitch, octave, onset time and duration. Pitches and
-intervals are represented in two ways: standard tempered notation ($C
-= 0$, $B = 11$, intervals are the difference between the corresponding
-pitches) and a tonal notation developed in \nota{citation needed}. As
-of now no implemented algorithm makes use of enharmonic information,
-but doing so is trivial.
+We are building a corpus of analyzed and digitalized Bach chorales to
+use as training and test data. These chorales were chosen for their
+ease of analysis (i.e., the segmentation problem in them reduces to
+separating the sonorities), their status as canonical examples of
+tonal harmony, their number (there are 371 on the Riemenschneider
+collection) and their simple structure. We have already analyzed XXX
+of them and plan on having all properly processed soon. The chorales
+are stored in a subset of the GNU Lilypond \nota{citation needed}
+format, from which we generate MIDI files and typeset scores. Our
+system also generates scores annotated with analysis results (both by
+human and by computer).
+
+\subsection{Tonal codification}
+\label{sec:codificacao-jamary}
+
+Internally, the pitches are stored in the tonal format described in
+\cite{oliveira01:codificacao}. To summarize, ...
+
+
+\subsection{``Answer sheet'' format}
+\label{sec:formato-dos-acordes}
 
 The results of human analysis performed on the chorales are stored in
-a simple, flexible text format, designed to be as close as possible to
-usual popular notation, to represent inherent ambiguities in chords
-(it is possible, for any sonority, to specify more than one chord as a
-possibility for it) and to single out sonorities that do not
-constitute a chord, instead serving a melodic purpose on the
-piece. This information is then used as test and, when necessary,
-training sets on the many algorithms implemented in our system.
+a simple, flexible text format, designed to
+\begin{list}{\textbf{.}}{}
+\item be as close as possible to
+usual popular notation,
+\item represent inherent ambiguities in chords (it is possible, for
+  any sonority, to specify more than one chord as a possibility for
+  it), and
+\item single out sonorities that do not constitute a chord, instead
+  serving a melodic purpose on the piece.
+\end{list}
+
+The beginning of the answer sheet for Bach's ``Aus meines Herzens
+Grunde'' chorale, for example, looks like. \texttt{G G C/E (C7+/E
+  [b])}. Each chord represents one sonority. Chords in parenthesis
+represent possible interpretations of a single sonority. Notes in
+brackets are non-chord-notes, marking sonorities that do not
+constitute chords.
+
+This information is then used as test and training sets on the many
+algorithms implemented in our system.
+
+\subsection{Architecture and API}
+\label{sec:architecture-and-api}
 
 Algorithms used for analysis are implemented using a very simple
 Common Lisp API. We have currently implemented a subset of the
 algorithm described in \cite{pardo02:algorithms} (ignoring, for now,
 the segmentation algorithm), a port (work-in-progress) of the
-algorithm described in \cite{temperley99:modeling}, and some
-neural networks (using the Fann \nota{citation needed} library) and
-decision trees (using code from \nota{citar Tom Mitchell, 1997,
-  Machine Learning}).
+algorithm described in \cite{temperley99:modeling}, and some neural
+networks (using the Fann \nota{citation needed} library and approaches
+similar to those described in
+\cite{tsui02:_harmon_analy_using_neural_networ}) and decision trees
+(using code from \cite{Mitchell:1997:ML}).
 
 The architecture is simple. First, a piece o music is parsed (our
 parser is written using Cl-Yacc and Cl-Lexer \nota{citation needed})
 into a list of notes, which is then split into a list of
 sonorities. Then, these sonorities are sent to each algorithm for
 analysis. The algorithms are expected to return a list of chords or
-melodic notes, one for each sonority, which is then compared against
-results of human analysis. The comparison and analysis results are
-then output in the desired manner.
+non-chord-notes, one for each sonority, which is then compared against
+human-made answer sheets. The comparison and analysis results are
+then output as the user sees fit.
 
-\nota{screenshots da análise ficariam bem aqui, ou talvez um diagrama
+The code is publicly available in a git \nota{citation needed}
+repository at:\\
+\texttt{http://genos.mus.br/repos/rameau.git}\\
+and for visualization at\\
+\texttt{http://git.genos.mus.br/?p=rameau.git}
+
+\nota{screen shots da análise ficariam bem aqui, ou talvez um diagrama
   do processo}
 
-Rameau differs from Temperley and Sleator's Melisma
-\cite{temperley99:modeling} system in being focused on testing the
-results. To run Melisma one uses a shell script or pipes, and the
-default output of the harmonic analysis program is not suitable for
-comparison with previous results. Also, we haven't been able to
-reproduce their claimed accuracy using the information avaliable on
-the website.
- 
-\nota{trocar titulo}
+\subsection{Differences from similar software}
+\label{sec:differences-from-similar-software}
 
+Rameau differs from Temperley and Sleator's Melisma
+\cite{temperley99:modeling} system mainly by our focus on testing the
+results of many algorithms. To run Melisma one uses a shell script or
+pipes, producing by default a pretty - although hard to parse -
+output. It is not trivial to transform this output into a form
+suitable for comparison with a human-made answer sheet. For this
+reason, also, since our re-implementation of their algorithm is still
+not perfect, we haven't been able to reproduce their claimed accuracy
+using the information available on their website.
+
+Even though we couldn't find a public repository for Pardo and
+Birmingham's HarmAn \cite{pardo99:automated}, from their article the
+system seems to face most issues we found with the Melisma system. Our
+re-implementation of their algorithm is based solely on the article.
+
+Common to most other systems is the notion that in a musical piece
+every sonority is part of a chord or at least has a root. This,
+however, is not true of sonorities containing non-chord notes,
+suspensions, passing notes and some voice leading clues. It is one of
+our goals to get results as close as possible to usual human analysis,
+so we classify these sonorities as ``melodic notes'' and consider any
+attempt at labeling them as a chord or finding their root an error.
+ 
 \section{Analysis results}
 \label{sec:analysis-results}
 
@@ -211,6 +248,6 @@ chains, patter matching, etc.
 * implementar analise funcional
 
 \bibliographystyle{plain}
-\bibliography{rameau,analise-harmonica-nao-tenho}
+\bibliography{rameau,analise-harmonica-nao-tenho,bib-outras}
 
 \end{document}
