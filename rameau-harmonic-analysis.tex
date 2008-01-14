@@ -4,6 +4,7 @@
 \usepackage{url}
 \usepackage[utf8x]{inputenc}
 \usepackage[english]{babel}
+\usepackage{color}
 
 \title{Rameau: A System for Automatic Harmonic Analysis}
 
@@ -13,8 +14,11 @@
    \\ Federal University of Bahia, Brazil \\
   \url{pedro.kroger@gmail.com}, \url{alexandre.tp@gmail.com}, \url{mdsmus@gmail.com}}
 
+\newcounter{notacounter}
+
 \newcommand{\nota}[1]{
-  \textbf{[nota: \textit{#1}]}
+  \addtocounter{notacounter}{1}
+  \textcolor{red}{[nota \arabic{notacounter}: #1]}
 }
 
 
@@ -95,21 +99,32 @@ corpus of 1xx Bach Chorales. \nota{quantos corais?} Section
 section \ref{sec:analysis-results} analysis the results obtained, and
 section \ref{sec:concl-future-work} xxxxxxxxx.
 
-\section{Problems}
-\label{sec:problems}
+\section{The problem of automated harmonic analysis}
+\label{sec:problem}
 
-* enarmonia
+The problem of automated harmonic analysis might be understood by
+dividing it into four sub-problems. 
 
-* segmentacao
+The first problem has to do with the kind of input to the system. If
+the input doesn't store enharmonic information the program may have
+problems in places where enharmonic information is important. For
+example, in \cite{pardo02:algorithms} a german augmented sixth is
+wrongly classified as a dominant sevent chord. A solution for this
+problem is or to use a notation that retain enharmonic spelling or
+process the input using a pitch speller. Usually systems or ignore
+this problem (like the above mentioned citation) or develop a pitch
+speller \nota{citation needed}. To our knowledge no research dealing
+with harmonic analysis has used a notation that takes enharmonic
+differences in consideration. \nota{isso é verdade?}
 
-* analise
+The second problem is to divide a given piece into segments with
+harmonic significance. \nota{falar mais sobre segmentação}
 
-* contexto
+The third is to label each segment with a chord name. \nota{falar
+  sobre problemas de notas melodicas, acordes incompletos, contexto}
 
-* notas melodicas
-
-* acordes incompletos
-
+The last problem is to assign a tonal function to each chord.
+\nota{expandir nos problemas especificos}
 
 \section{The Rameau Framework}
 \label{sec:system}
@@ -276,7 +291,7 @@ The beginning of the answer sheet for Bach's ``Aus meines Herzens
 Grunde'' chorale, for example, looks like. \texttt{G G C/E (C7+/E
   [b])}. Each chord represents one sonority. Chords in parenthesis
 represent possible interpretations of a single sonority. Notes in
-brackets are non-chord-notes, marking sonorities that do not
+brackets are non-chord tones, marking sonorities that do not
 constitute chords.
 
 This information is then used as test and training sets on the many
@@ -300,7 +315,7 @@ parser is written using Cl-Yacc and Cl-Lexer \nota{citation needed})
 into a list of notes, which is then split into a list of
 sonorities. Then, these sonorities are sent to each algorithm for
 analysis. The algorithms are expected to return a list of chords or
-non-chord-notes, one for each sonority, which is then compared against
+non-chord tones, one for each sonority, which is then compared against
 human-made answer sheets. The comparison and analysis results are
 then output as the user sees fit.
 
@@ -333,10 +348,10 @@ re-implementation of their algorithm is based solely on the article.
 
 Common to most other systems is the notion that in a musical piece
 every sonority is part of a chord or at least has a root. This,
-however, is not true of sonorities containing non-chord notes,
+however, is not true of sonorities containing non-chord tones,
 suspensions, passing notes and some voice leading clues. It is one of
 our goals to get results as close as possible to usual human analysis,
-so we classify these sonorities as ``melodic notes'' and consider any
+so we classify these sonorities as non-chord tone and consider any
 attempt at labeling them as a chord or finding their root an error.
  
 \section{Analysis results}
