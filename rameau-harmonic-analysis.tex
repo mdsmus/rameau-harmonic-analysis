@@ -2,6 +2,8 @@
 \usepackage{icmc,amsmath}
 \usepackage{graphicx}
 \usepackage{url}
+\usepackage[utf8x]{inputenc}
+\usepackage[english]{babel}
 
 \title{Rameau: A System for Automatic Harmonic Analysis}
 
@@ -247,8 +249,8 @@ intended to simplify things, but as an example, transposition is
 something like:
 
 \begin{verbatim}
-A + B = 10 ((a div 10 + B div 10) mod 12) [pc part]
-         + ((a mod 10 + B div 10) mod 7)  [nc part]
+10 ((a div 10 + B div 10) mod 12)
+ + ((a mod 10 + B div 10) mod 7)
 \end{verbatim}
 
 To do anything more complex, like interval-class vectors, yet extra
