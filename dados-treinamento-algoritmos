@@ -1,0 +1,120 @@
+001
+
+Total context-net    :  7167  1865  79.35% (79.54 +- 8.50)
+Total simple-net     :  7719  1313  85.46% (85.79 +- 9.34)
+Total mode-net       :  6023  3009  66.69% (66.81 +- 8.79)
+Total chord-net      :  6555  2477  72.58% (73.20 +- 10.47)
+Total simple-tree    :  5791  3241  64.12% (64.78 +- 8.90)
+Total mode-tree      :  5464  3568  60.50% (61.05 +- 10.71)
+Total context-tree   :  5114  3918  56.62% (57.04 +- 7.90)
+Total chord-tree     :  3770  5262  41.74% (42.49 +- 10.53)
+
+001 002
+
+Total context-net    :  7585  1368  84.72% (85.08 +- 9.60)
+Total simple-net     :  7671  1282  85.68% (86.04 +- 9.36)
+Total mode-net       :  6854  2099  76.56% (77.03 +- 9.88)
+Total chord-net      :  7076  1877  79.03% (79.62 +- 10.32)
+Total simple-tree    :  6252  2701  69.83% (70.31 +- 9.14)
+Total mode-tree      :  5795  3158  64.73% (65.46 +- 10.40)
+Total context-tree   :  5544  3409  61.92% (62.21 +- 8.79)
+Total chord-tree     :  3940  5013  44.01% (44.68 +- 10.89)
+
+001 002 003
+
+Total context-net    :  7531  1358  84.72% (85.03 +- 8.89)
+Total simple-net     :  7709  1180  86.73% (87.24 +- 9.40)
+Total mode-net       :  6966  1923  78.37% (78.91 +- 9.52)
+Total chord-net      :  7078  1811  79.63% (80.27 +- 9.76)
+Total simple-tree    :  6345  2544  71.38% (71.90 +- 9.02)
+Total mode-tree      :  5948  2941  66.91% (67.49 +- 10.02)
+Total context-tree   :  5521  3368  62.11% (62.41 +- 8.47)
+Total chord-tree     :  4075  4814  45.84% (46.55 +- 10.56)
+
+001 002 003 004
+
+Total context-net    :  7656  1233  86.13% (86.37 +- 9.32)
+Total simple-net     :  7629  1260  85.83% (86.16 +- 9.48)
+Total mode-net       :  7088  1801  79.74% (80.27 +- 9.63)
+Total chord-net      :  6986  1903  78.59% (79.08 +- 9.77)
+Total simple-tree    :  6532  2357  73.48% (73.96 +- 8.95)
+Total mode-tree      :  6090  2799  68.51% (69.11 +- 9.91)
+Total context-tree   :  5757  3132  64.77% (65.02 +- 8.34)
+Total chord-tree     :  4175  4714  46.97% (47.66 +- 10.42)
+
+1..5
+
+Total context-net    :  7679  1210  86.39% (86.80 +- 9.02)
+Total simple-net     :  7728  1161  86.94% (87.30 +- 9.51)
+Total mode-net       :  7202  1687  81.02% (81.53 +- 9.39)
+Total chord-net      :  6916  1973  77.80% (78.43 +- 9.79)
+Total simple-tree    :  6806  2083  76.57% (77.05 +- 9.53)
+Total mode-tree      :  6484  2405  72.94% (73.52 +- 10.77)
+Total context-tree   :  6083  2806  68.43% (68.49 +- 8.72)
+Total chord-tree     :  4337  4552  48.79% (49.43 +- 10.78)
+
+1..6
+
+Total context-net    :  7431  1233  85.77% (86.13 +- 9.44)
+Total simple-net     :  7489  1175  86.44% (86.75 +- 9.74)
+Total mode-net       :  6848  1816  79.04% (79.49 +- 9.76)
+Total chord-net      :  6471  2193  74.69% (75.06 +- 9.45)
+Total simple-tree    :  6676  1988  77.05% (77.70 +- 9.39)
+Total mode-tree      :  6250  2414  72.14% (72.76 +- 10.48)
+Total context-tree   :  5915  2749  68.27% (68.47 +- 9.31)
+Total chord-tree     :  4150  4514  47.90% (48.63 +- 10.77)
+
+1..7
+
+Total context-net    :  7426  1127  86.82% (87.16 +- 9.41)
+Total simple-net     :  7404  1149  86.57% (86.91 +- 9.64)
+Total mode-net       :  6837  1716  79.94% (80.58 +- 9.55)
+Total chord-net      :  6564  1989  76.75% (77.35 +- 9.66)
+Total simple-tree    :  6796  1757  79.46% (80.09 +- 9.87)
+Total mode-tree      :  6358  2195  74.34% (75.04 +- 10.58)
+Total context-tree   :  6038  2515  70.60% (70.90 +- 9.44)
+Total chord-tree     :  4197  4356  49.07% (49.82 +- 10.94)
+
+1..8
+
+Total context-net    :  7257  1172  86.10% (86.49 +- 9.58)
+Total simple-net     :  7267  1162  86.21% (86.60 +- 9.59)
+Total mode-net       :  6673  1756  79.17% (79.96 +- 9.88)
+Total chord-net      :  6344  2085  75.26% (76.06 +- 9.68)
+Total simple-tree    :  6820  1609  80.91% (81.58 +- 9.83)
+Total mode-tree      :  6398  2031  75.90% (76.77 +- 10.44)
+Total context-tree   :  6201  2228  73.57% (73.97 +- 9.11)
+Total chord-tree     :  4168  4261  49.45% (50.24 +- 10.85)
+
+1..10
+
+Total context-net    :  7274  1099  86.87% (87.24 +- 9.95)
+Total simple-net     :  7290  1083  87.07% (87.34 +- 9.94)
+Total mode-net       :  6733  1640  80.41% (81.16 +- 9.99)
+Total chord-net      :  6350  2023  75.84% (76.50 +- 9.97)
+Total simple-tree    :  6770  1603  80.86% (81.52 +- 9.80)
+Total mode-tree      :  6331  2042  75.61% (76.46 +- 10.29)
+Total context-tree   :  6171  2202  73.70% (74.18 +- 8.97)
+Total chord-tree     :  4161  4212  49.70% (50.52 +- 11.05)
+
+1..12
+
+Total context-net    :  7211  1119  86.57% (87.10 +- 9.50)
+Total simple-net     :  7181  1149  86.21% (86.50 +- 9.80)
+Total mode-net       :  6647  1683  79.80% (80.57 +- 10.12)
+Total chord-net      :  6214  2116  74.60% (75.23 +- 9.94)
+Total simple-tree    :  6829  1501  81.98% (82.58 +- 9.66)
+Total mode-tree      :  6397  1933  76.79% (77.64 +- 10.10)
+Total context-tree   :  6165  2165  74.01% (74.31 +- 9.12)
+Total chord-tree     :  4177  4153  50.14% (50.98 +- 11.03)
+
+1..14
+
+Total context-net    :  7132  1120  86.43% (86.72 +- 9.80)
+Total simple-net     :  7132  1120  86.43% (86.83 +- 9.80)
+Total mode-net       :  6571  1681  79.63% (80.20 +- 10.13)
+Total chord-net      :  6256  1996  75.81% (76.42 +- 9.84)
+Total simple-tree    :  6767  1485  82.00% (82.52 +- 9.63)
+Total mode-tree      :  6343  1909  76.87% (77.67 +- 10.13)
+Total context-tree   :  6106  2146  73.99% (74.34 +- 9.12)
+Total chord-tree     :  4151  4101  50.30% (51.14 +- 11.17)
