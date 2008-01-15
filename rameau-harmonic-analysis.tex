@@ -54,7 +54,7 @@ onde as notas em todas as vozes começam e terminam ao mesmo tempo, são
 incompletos, e intercalados com notas não-harmônicas (notas melódicas)
 aumentando consideravelmente a complexidade para a análise.
 \cite{pardo00:automated}. Also, many techniques such as pattern
-matching, hidden Markov model, neural networks, decision trees, etc.
+matching, Hidden Markov model, neural networks, decision trees, etc.
 can be used. \nota{voz passiva}
 
 There are many practical applications for automatic music analysis,
@@ -155,7 +155,7 @@ examples of tonal harmony, their number (there are 371 on the
 Riemenschneider collection) and their simple structure. We have
 already analyzed 150 of them and plan on having all properly processed
 soon. The chorales are stored in a subset of the GNU Lilypond
-\nota{citation needed} format, from which we generate MIDI files and
+\cite{nienhuys:lilypond} format, from which we generate MIDI files and
 typeset scores. Our system also generates scores annotated with
 analysis results (both by human and by computer).
 
@@ -305,11 +305,12 @@ algorithms implemented in our system.
 
 The architecture of the Rameau framework is simple. First, a score in
 a GNU Lilypond-compatible format is parsed (our parser is written
-using Cl-Yacc and Cl-Lexer \nota{citation needed}) into a list of
-notes, which is then split into a list of sonorities. Then, these
-sonorities are sent to each algorithm for analysis. The analysis
-results and their comparison with the answer sheets are then output
-either textually or as an annotated score.
+using Cl-Yacc \cite{chroboczek:_cl_yacc_manual} and Cl-Lexer
+\cite{parker:_lexer_packag}) into a list of notes, which is then split
+into a list of sonorities. Then, these sonorities are sent to each
+algorithm for analysis. The analysis results and their comparison with
+the answer sheets are then output either textually or as an annotated
+score.
 
 The algorithms used for analysis are implemented using a very simple
 Common Lisp API. To implement one it is enough to place a lisp file in
@@ -336,11 +337,9 @@ We have currently implemented using this API
 \end{enumerate}
 
 The code is publicly available, under a GNU GPL \nota{citation needed}
-license in a git \nota{citation needed}
-repository at:\\
-\texttt{http://genos.mus.br/repos/rameau.git}\\
-and for visualization at\\
-\texttt{http://git.genos.mus.br/?p=rameau.git}
+license in a git \cite{baudis:_git_users_manual} repository
+at:\\ \texttt{http://genos.mus.br/repos/rameau.git}\\ and for
+visualization at\\ \texttt{http://git.genos.mus.br/?p=rameau.git}
 
 \subsection{Comparison with similar software}
 \label{sec:differences-from-similar-software}
@@ -376,8 +375,8 @@ attempt at labeling them as a chord or finding their root an error.
 
 % planos futuros
 
-* implement other techniques and algorithms such as hidden Markov
-chains, patter matching, etc.
+* implement other techniques and algorithms such as Hidden Markov
+Model, patter matching, etc.
 
 * aprofundar o uso de redes neurais
 
