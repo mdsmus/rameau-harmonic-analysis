@@ -151,7 +151,7 @@ separating the sonorities), their status as canonical examples of
 tonal harmony, their number (there are 371 on the Riemenschneider
 collection) and their simple structure. We have already analyzed XXX
 of them and plan on having all properly processed soon. The chorales
-are stored in a subset of the GNU Lilypond \nota{citation needed}
+are stored in a subset of the GNU Lilypond \cite{nienhuys:lilypond}
 format, from which we generate MIDI files and typeset scores. Our
 system also generates scores annotated with analysis results (both by
 human and by computer).
@@ -305,21 +305,23 @@ Common Lisp API. We have currently implemented a subset of the
 algorithm described in \cite{pardo02:algorithms} (ignoring, for now,
 the segmentation algorithm), a port (work-in-progress) of the
 algorithm described in \cite{temperley99:modeling}, and some neural
-networks (using the Fann \nota{citation needed} library and approaches
+networks (using the Fann
+\cite{nissen:_fast_artif_neural_networ_librar} library and approaches
 similar to those described in
 \cite{tsui02:_harmon_analy_using_neural_networ}) and decision trees
 (using code from \cite{Mitchell:1997:ML}).
 
 The architecture is simple. First, a piece o music is parsed (our
-parser is written using Cl-Yacc and Cl-Lexer \nota{citation needed})
-into a list of notes, which is then split into a list of
-sonorities. Then, these sonorities are sent to each algorithm for
-analysis. The algorithms are expected to return a list of chords or
-non-chord tones, one for each sonority, which is then compared against
-human-made answer sheets. The comparison and analysis results are
-then output as the user sees fit.
+parser is written using Cl-Yacc \cite{chroboczek:_cl_yacc_manual} and
+Cl-Lexer \cite{parker:_lexer_packag} into a list of notes, which is
+then split into a list of sonorities. Then, these sonorities are sent
+to each algorithm for analysis. The algorithms are expected to return
+a list of chords or non-chord tones, one for each sonority, which is
+then compared against human-made answer sheets. The comparison and
+analysis results are then output as the user sees fit.
 
-The code is publicly available in a git \nota{citation needed}
+The code is publicly available in a git
+\cite{baudis:_git_users_manual}
 repository at:\\
 \texttt{http://genos.mus.br/repos/rameau.git}\\
 and for visualization at\\
