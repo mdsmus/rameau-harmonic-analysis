@@ -370,8 +370,48 @@ our goals to get results as close as possible to usual human analysis,
 so we classify these sonorities as non-chord tone and consider any
 attempt at labeling them as a chord or finding their root an error.
  
-\section{Analysis results}
+\section{Preliminary results}
 \label{sec:analysis-results}
+
+\subsection{Training set}
+
+The effect of the training set on the algorithms can be seen in
+
+\begin{figure}
+  \includegraphics[scale=0.35,angle=270]{treinamento-corais.eps}
+  \caption{Accuracy versus amount of training data per algorithm}
+  \label{fig:treinamento-corais}
+\end{figure}
+
+\subsection{Hidden Units}
+
+The neural network's performance varies with the number of hidden
+units, roughly following a sigmoid curve.
+
+\begin{figure}
+  \includegraphics[scale=0.35,angle=270]{dados-simple-net.eps}
+  \caption{Accuracy versus number of hidden nodes in the simple-net}
+  \label{fig:simple-net}
+\end{figure}
+
+\begin{figure}
+  \includegraphics[scale=0.35,angle=270]{dados-context-net.eps}
+  \caption{Accuracy versus number of hidden nodes in the context-net}
+  \label{fig:context-net}
+\end{figure}
+
+\begin{figure}
+  \includegraphics[scale=0.35,angle=270]{dados-chord-net.eps}
+  \caption{Accuracy versus number of hidden nodes in the chord-net}
+  \label{fig:chord-net}
+\end{figure}
+
+\begin{figure}
+  \includegraphics[scale=0.35,angle=270]{dados-mode-net.eps}
+  \caption{Accuracy versus number of hidden nodes in the mode-net}
+  \label{fig:mode-net}
+\end{figure}
+
 
 \section{Conclusions and future work}
 \label{sec:concl-future-work}
