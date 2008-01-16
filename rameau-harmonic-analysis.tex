@@ -419,13 +419,16 @@ is not statistically significant.
 The performance of each neural network depends heavily on the number
 of sigmoid hidden units it uses. Too few units and the network hasn't
 got enough memory to recall all wanted patterns. Too many, and the
-network has the risk of overfitting. Overfitting can be seen as
-superstition, or the acquisition, by the neural network, of so many
-patterns that it does not generalize in any meaningful way
-\cite{white95:superstitious}. The ideal number of hidden units for a
-problem has to be determined experimentally. Our results are in
-figures \ref{fig:simple-net}, \ref{fig:context-net},
-\ref{fig:chord-net}, and \ref{fig:mode-net}.
+network has the risk of overfitting. Overfitting happens when the
+neural network has too much memory, so it starts inferring inexistent
+patterns from noise in the training data. This is similar to a
+superstitious person's belief that some things bring ``good luck'' or
+``bad luck'', according to \cite{white95:superstitious}. 
+
+The ideal number of hidden units in a neural network to better solve a
+given problem has to be determined experimentally. The results for
+each network are in figures \ref{fig:simple-net},
+\ref{fig:context-net}, \ref{fig:chord-net}, and \ref{fig:mode-net}.
 
 \begin{figure}
   \includegraphics[scale=0.35,angle=270]{dados-simple-net}
