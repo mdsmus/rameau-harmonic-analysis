@@ -1,13 +1,19 @@
 NAME = rameau-harmonic-analysis
 #CLEAN_FILES+= *.eps
-OTHER_EPS= $(notdir $(patsubst %.plot,%.eps,$(wildcard *.plot)))
-OTHER+= $(OTHER_EPS)
-CLEAN_FILES+= $(OTHER_EPS:.plot=.eps)
+OTHER_EPS1= $(patsubst %.plot,%.eps,$(wildcard *.plot))
+OTHER_EPS2= $(patsubst %.svg,%.eps,$(wildcard *.svg))
+OTHER+= $(OTHER_EPS1) $(OTHER_EPS2)
+CLEAN_FILES+= $(OTHER_EPS1:.plot=.eps)
+CLEAN_FILES+= $(OTHER_EPS2:.svg=.eps)
 
 -include /usr/share/latex-mk/latex.gmk
 
 %.eps: %.plot %.dat
 	gnuplot $<
+
+%.eps: %.svg
+	inkscape --export-eps=$@ $<
+
 
 push: ps
 	git push
