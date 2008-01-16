@@ -1,18 +1,13 @@
 NAME = rameau-harmonic-analysis
+#CLEAN_FILES+= *.eps
+OTHER_EPS= $(notdir $(patsubst %.plot,%.eps,$(wildcard *.plot)))
+OTHER+= $(OTHER_EPS)
+CLEAN_FILES+= $(OTHER_EPS:.plot=.eps)
+
 -include /usr/share/latex-mk/latex.gmk
 
-plotfiles = $(wildcard *.plot)
-datfiles = $(wildcard *.dat)
-epsfiles = $(notdir $(patsubst %.plot,%.eps,$(plotfiles)))
-
-ps: epsfiles
-
-epsfiles: $(epsfiles)
-
-%.eps: plotfiles datfiles
-	gnuplot *plot
-
-default: ps
+%.eps: %.plot %.dat
+	gnuplot $<
 
 push: ps
 	git push
