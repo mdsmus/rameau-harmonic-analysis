@@ -37,67 +37,60 @@
 %% introducao geral
 
 In music, harmonic analysis is the study of vertical sonorities and it
-conections. The analysit can find the root of chords, label sonorities
-with proper chords names (such as ``A minor''), and identify the
-relationship beetwen chords, usually using roman numerals.
-\nota{nao comeca sentenca com this} This is called functional
-analysis. Harmonic analysis is paramount to the understanding of tonal
-compositions. The harmonic analysis by computer is an important,
-challenging, and interesting computer music research topic. A análise
-automática é uma tarefa complexa por diversas razões; o material
-musical é composto de uma grande variedade de informações (timbre,
-notas, ritmo, dinâmica, harmonia) e pelo fato de música ser um
-processo temporal, diferentemente de imagem, por exemplo
-\cite{mouton95:numeric}. As mudanças harmônicas em uma textura coral,
-onde as notas em todas as vozes começam e terminam ao mesmo tempo, são
-óbvias. Contudo, frequentemente os acordes podem ser arpejados,
-incompletos, e intercalados com notas não-harmônicas (notas melódicas)
-aumentando consideravelmente a complexidade para a análise.
-\cite{pardo00:automated}. Also, many techniques such as pattern
-matching, Hidden Markov model, neural networks, decision trees, etc.
-can be used. \nota{voz passiva}
+connections and is paramount to the understanding of tonal
+compositions. The analyst can find the root of chords, label
+sonorities with proper chords names (such as ``A minor''), and
+identify the relationship between chords using roman numerals.
+
+Harmonic analysis by computer is an important, challenging, and
+interesting computer music research topic. It is challenging because
+the musical material has a large variety of information such as
+timber, notes, rhythm, dynamics, harmony, and by the fact that music is
+not a linear process, unlike image \cite{mouton95:numeric}. The
+harmonic changes in a choral texture, where usually all notes in all
+voices begin and finish at the same time, are obvious. However, very
+often chords can be arppeggiated, incomplete, and intertwined with
+non-harmonic tones. These things contribute to increase considerably
+the complexity for analysis \cite{pardo00:automated}. 
 
 There are many practical applications for automatic music analysis,
-among them arranging, detection of possible logical mistakes in scores,
-database search, automatic accompaniment generation, and statistical
-analysis of musical styles for automated composition
-\cite{pardo02:algorithms,temperley99:modeling}.
-
-Computer-based harmonic analysis is important because it can bring new
-insights in music theory, in the same way the use of computer in
-vision and problem solving has brought new insights in these areas
+among them arranging, detection of possible logical mistakes in
+scores, database search, automatic accompaniment generation, and
+statistical analysis of musical styles for automated composition
+\cite{pardo02:algorithms,temperley99:modeling}. Computer-based
+harmonic analysis is important because it can bring new insights in
+music theory, in the same way the use of computer in vision and
+problem solving has brought new insights in these areas
 \cite{temperley99:modeling}.
 
-% porque o trabalho e importante?
-
-Up to now there is not a single framework that allows the comparison
-beetwen different algorithms and results. Pardo and Birmmingham state
-that ``no researchers have published statistical performance results
-on a system designed to analyze tonal music''
-\cite{pardo02:algorithms} before their paper. This lack of data in
-literature makes it difficult to compare different systems. Also,
-there aren't standard benchmarks to compare different algorithms and
-results. In fact, only Pardo et al. \cite{pardo00:automated} and
-Barthèlemy and Sleator \cite{barthelemy01:figured} published specific
-comparisons between theirs and other's results. Pardo compares his
-results with \cite{temperley99:modeling} while Barthèlemy compares his
-model against \cite{maxwell92:expert}, \cite{pardo99:automated} and
-\cite{temperley96:algorithm}. However, they are based on the results
-published in papers and not on results from direct implementations,
-which means that only the examples published by the authors can be
-compared.
+Until now a single framework that allows the comparison between
+different algorithms and analysis results has not been developed.
+Pardo and Birmingham state that ``no researchers have published
+statistical performance results on a system designed to analyze tonal
+music'' \cite{pardo02:algorithms} before their paper. This lack of
+data in literature makes it difficult to compare different systems.
+Also, there aren't standard benchmarks to compare different algorithms
+and analysis results. In fact, only Pardo and Birmingham
+\cite{pardo00:automated} and Barthèlemy and Sleator
+\cite{barthelemy01:figured} published specific comparisons between
+different analysis results. Pardo and Birmingham compare his results
+with Temperley and Sleator's \cite{temperley99:modeling} while
+Barthèlemy compares his model against Maxwell's, Pardo and
+Birmingham's, and Temperley and Sleator's
+\cite{maxwell92:expert,temperley96:algorithm,pardo99:automated}.
+However, these comparisons are based on results published in papers
+and not from direct implementations. That means that only the examples
+published by the authors can be compared.
 
 In this paper we will present rameau, a system for automatic harmonic
-analysis of Western tonal music. The main goal of this systems to
-allow an easy comparison beetwen algorithms and results. \nota{falar
-  limitacoes e escopo (harmonia tonal, corais de bach)}
-
-In this paper we present an evaluation of five algorithms using a
-corpus of 1xx Bach Chorales. \nota{quantos corais?} Section
-\ref{sec:system} describes rameau in more details, section
-\ref{sec:problem} lists the problems related to harmonic analysis,
-section \ref{sec:analysis-results} analysis the results obtained, and
-section \ref{sec:concl-future-work} xxxxxxxxx.
+analysis of Western tonal music. The main goal of this system is to
+allow an easy comparison between algorithms and results. \nota{falar
+  limitacoes e escopo (harmonia tonal, corais de bach)} We also
+present an evaluation of ten algorithms using a corpus of 150 Bach
+Chorales. Section \ref{sec:system} describes rameau in more details,
+section \ref{sec:problem} lists the problems related to harmonic
+analysis, section \ref{sec:analysis-results} analysis the results
+obtained, and section \ref{sec:concl-future-work} .......
 
 \section{The problem of automated harmonic analysis}
 \label{sec:problem}
@@ -106,18 +99,18 @@ The problem of automated harmonic analysis might be understood by
 dividing it into four sub-problems. 
 
 The first problem has to do with the kind of input to the system. If
-the input doesn't store enharmonic information the program may have
-problems in places where enharmonic information is important. For
-example, in \cite{pardo02:algorithms} a german augmented sixth is
-wrongly classified as a dominant sevent chord. A solution for this
-problem is or to use a notation that retain enharmonic spelling or
-process the input using a pitch speller. Usually systems or ignore
-this problem (like the above mentioned citation) or develop a pitch
-speller \nota{citation needed}. To our knowledge no research dealing
-with harmonic analysis has used a notation that takes enharmonic
-differences in consideration as input. \nota{isso é verdade? passos:
-  como entrada, até agora sim, mas temperley, por exemplo, diferencia
-  enarmonias na saída}
+the input doesn't make a distintion between flats and sharps the
+program may have problems in places where enharmonic information is
+important. For example, in \cite{pardo02:algorithms} a german
+augmented sixth is wrongly classified as a dominant seventh chord. A
+solution for this problem is or to use a notation that retain
+enharmonic spelling or process the input using a pitch speller.
+Usually systems or ignore this problem (like the above mentioned
+citation) or develop a pitch speller \nota{citation needed}. To our
+knowledge no research dealing with harmonic analysis has used a
+notation that takes enharmonic differences in consideration as input.
+\nota{isso é verdade? passos: como entrada, até agora sim, mas
+  temperley, por exemplo, diferencia enarmonias na saída}
 
 The second problem is to divide a given piece into segments with
 harmonic significance. \nota{falar mais sobre segmentação}
