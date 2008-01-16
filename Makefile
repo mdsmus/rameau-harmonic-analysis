@@ -12,8 +12,7 @@ CLEAN_FILES+= $(OTHER_EPS2:.svg=.eps)
 	gnuplot $<
 
 %.eps: %.svg
-	inkscape --export-eps=$@ $<
-
+	inkscape -T --export-eps=$@ $<
 
 push: ps
 	git push
