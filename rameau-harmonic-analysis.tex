@@ -98,24 +98,30 @@ obtained, and section \ref{sec:concl-future-work} .......
 The problem of automated harmonic analysis might be understood by
 dividing it into four sub-problems. 
 
-The first problem has to do with the kind of input to the system. If
-the input doesn't make a distintion between flats and sharps the
-program may have problems in places where enharmonic information is
-important. For example, in \cite{pardo02:algorithms} a german
-augmented sixth is wrongly classified as a dominant seventh chord.
-Systems usually either ignore this problem or develop a pitch speller
-\cite{temperley99:modeling}. To our knowledge no research dealing with
-harmonic analysis has used an input format that takes enharmonic
-differences in consideration.
+The first problem is the system's input format. If sharps and flats
+are grouped together the program may have problems in places where
+enharmonic information is important. Most systems either ignore this
+problem or develop a pitch speller \cite{temperley99:modeling}. To our
+knowledge no harmonic analysis research has used an input format that
+preserves enharmonic information.
 
-The second problem is to divide a given piece into segments with
-harmonic significance. \nota{falar mais sobre segmentação}
+The second problem is determining what are the sonorities (here we
+define sonority as a set simultaneously sounding notes) in the piece
+and grouping these sonorities into harmonically significant segments,
+or chord-spans. This is called the segmentation problem. Most of the
+difficulty of segmenting is due to the number of possible
+segmentations of a piece being roughly an exponential function of its
+length \cite{pardo02:algorithms}.
 
-The third is to label each segment with a chord name. \nota{falar
-  sobre problemas de notas melodicas, acordes incompletos, contexto}
+The third is to label most chord-spans with a chord name. Not every
+chord-span can be so labeled: some will consist solely of non-chord
+tones and other melodic clues, which should be notated. This might
+require contextual information, which complicates the matter a bit,
+difficulting local decisions. Still, over $80%$ of accuracy is
+possible ignoring context (see section \ref{sec:analysis-results}).
 
-The last problem is to assign a tonal function to each chord.
-\nota{expandir nos problemas especificos}
+The last problem is finding the key of the piece and assigning a tonal
+function to each chord.
 
 \section{The Rameau Framework}
 \label{sec:system}
