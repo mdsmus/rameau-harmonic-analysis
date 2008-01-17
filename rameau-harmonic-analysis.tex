@@ -374,30 +374,23 @@ We only had access to one similar system, Temperley and Sleator's
 Melisma \cite{temperley99:modeling}. We had some issues parsing its
 output, and so have been unable to reproduce their claimed
 accuracy. We have a work-in-progress reimplementation of their
-algorithm, although it has some bugs.
-
-Rameau differs from Temperley and Sleator's Melisma
-\cite{temperley99:modeling} system mainly by our focus on testing the
-results of many algorithms. To run Melisma one uses a shell script or
-pipes, producing by default a pretty - although hard to parse -
-output. It is not trivial to transform this output into a form
-suitable for comparison with a human-made answer sheet. For this
-reason, also, since our re-implementation of their algorithm is still
-not perfect, we haven't been able to reproduce their claimed accuracy
-using the information available on their website.
+algorithm, although it has some bugs. Our reimplementation averages
+60\% accuracy on the chorales it can handle.
 
 Even though we couldn't find a public repository for Pardo and
 Birmingham's HarmAn \cite{pardo99:automated}, from their article the
 system seems to face most issues we found with the Melisma system. Our
 re-implementation of their algorithm is based solely on the article.
 
-Common to most other systems is the notion that in a musical piece
-every sonority is part of a chord or at least has a root. This,
-however, is not true of sonorities containing non-chord tones,
-suspensions, passing notes and some voice leading clues. It is one of
-our goals to get results as close as possible to usual human analysis,
-so we classify these sonorities as non-chord tone and consider any
-attempt at labeling them as a chord or finding their root an error.
+Rameau differs from these systems mainly by our focus on testing the
+results of many algorithms. Also common to most other systems is the
+notion that in a musical piece every sonority is part of a chord (or
+at least has a root). This is not true of sonorities containing
+non-chord tones such as suspensions, passing notes and some voice
+leading clues. It is one of our goals to get results as close as
+possible to usual human analysis, so we classify these sonorities as
+non-chord tones and any labeling of them with chords is seen as an
+error.
 
 \section{Preliminary results}
 \label{sec:analysis-results}
@@ -407,26 +400,27 @@ attempt at labeling them as a chord or finding their root an error.
 
 Neural networks are a tool to perform non-linear statistical data
 modeling that works by having artificial ``neurons'' exchange
-information \cite{tsui02:_harmon_analy_using_neural_networ}. There are
+information \cite{russel.norvig:aima}. There are
 many varieties of neural networks, each being more useful for a
 certain type of problem. Our networks are all multilayer feedforward
 neural networks, with one hidden layer each. This is the standard
 model for pattern recognition.
 
-A multilayer feedforward neural network with has a few layered sets of
-neurons, and activation flows through them in only one
-direction. First, the input neurons have their activation values set
-to the input to the neural network. Then, each neuron in the next
-layer takes a linear combination of the neurons in the previous layer
-(the weights in this operation are determined by training) and sets
-its own activation to the result of applying a function to the values
-obtained from the linear combination. The chosen function is usually
-the logistic sigmoid, but there are alternatives. This process repeats
-until the last layer, of output neurons. Their activation values are
-then used as the output of the neural network. A multilayer
-feedforward neural network with one hidden layer has only one layer
-between the input and output neurons. This has been found to be enough
-for many applications \cite{tsui02:_harmon_analy_using_neural_networ}.
+A multilayer feedforward neural network has a few layered sets of
+neurons, and activation flows through them from input to
+output. First, the input neurons have their activation values set to
+the input to the neural network. Then, each neuron in the next layer
+takes a linear combination of the activation values of the neurons in
+the previous layer (the weights in this operation are determined by
+training) and sets its own activation to the result of applying a
+function to the values obtained from the linear combination. The
+chosen function is usually the logistic sigmoid, but there are
+alternatives. This process repeats until the output layer. Their
+activation values are then used as the output of the neural network. A
+multilayer feedforward neural network with one hidden layer has only
+one layer between the input and output neurons. This has been found to
+be enough for many applications
+\cite{russel.norvig:aima}.
 
 We, in Rameau, have currently implemented four neural-network-based
 algorithms for harmonic analysis, basing our approaches on
@@ -438,26 +432,25 @@ analyze the effect of contextual information we have also implemented
 Context-net, differing from the Simple-net only by receiving
 information from two sonorities before and one after the desired
 one. Its performance is equivalent, so context, when seem in this
-form, doesn't increase accuracy by much. We have also two networks
-that also determine a chord's mode and its seventh, Chord-net and
-Mode-net. Chord-net looks only at one sonority at a time, and Mode-net
-receives as input the analysis from Context-net and the pitch counts
-for each sonority. Mode-net slightly outperforms chord-net, but this
-is not statistically significant.
+form, doesn't increase accuracy by much. Two other network-based
+algorithms, Chord-net and Mode-net, also determine a chord's mode and
+its seventh. Chord-net looks only at one sonority at a time, and
+Mode-net receives as input the analysis from Context-net and the pitch
+counts for each sonority.
 
 The performance of each neural network depends heavily on the number
 of sigmoid hidden units it uses. Too few units and the network hasn't
-got enough memory to recall all wanted patterns. Too many, and the
-network has the risk of overfitting. Overfitting happens when the
+got enough memory to learn enough harmonic patterns. Too many, and the
+network faces the risk of overfitting. Overfitting happens when the
 neural network has too much memory, so it starts inferring inexistent
 patterns from noise in the training data. This is similar to a
 superstitious person's belief that some things bring ``good luck'' or
-``bad luck'', according to \cite{white95:superstitious}. 
+``bad luck'', according to \cite{white95:superstitious}.
 
-The ideal number of hidden units in a neural network to better solve a
-given problem has to be determined experimentally. The results for
-each network are in figures \ref{fig:simple-net},
-\ref{fig:context-net}, \ref{fig:chord-net}, and \ref{fig:mode-net}.
+The ideal number of hidden units in a neural network has to be
+determined experimentally. The experiments for each of our networks
+can be seen figures \ref{fig:simple-net}, \ref{fig:context-net},
+\ref{fig:chord-net}, and \ref{fig:mode-net}.
 
 \begin{figure}
   \includegraphics[scale=0.35,angle=270]{dados-simple-net}
@@ -486,18 +479,20 @@ each network are in figures \ref{fig:simple-net},
 \subsection{Decision Trees}
 
 Decision trees are useful data modeling tools, with many uses in the
-machine learning community \cite{Mitchell:1997:ML}. They are most
-useful when trying to extract meaningful patterns from data in a
-human-readable way. We have built four decision trees that perform
-harmonic analysis, each mirroring one of the neural networks. Our
-original intention was analysing the rules generated by the trees to
-better understand harmonic analysis, but we have found that the trees
-haven't acquired much more information than memorizing their inputs.
+machine learning community \cite{Mitchell:1997:ML,
+  russel.norvig:aima}. They are most useful when trying to extract
+meaningful patterns from data in a human-readable way. We have built
+four decision trees that perform harmonic analysis, each mirroring one
+of the neural networks. Our original intention was analysing the rules
+generated by the trees to better understand harmonic analysis, but we
+have found that the trees haven't generalized beyond memorizing their
+inputs.
 
 \subsection{Training set}
 
 The effect of size of training corpora on the accuracy of the neural
-networks can be seen in figure \ref{fig:treinamento-corais}.
+networks and decision trees can be seen in figure
+\ref{fig:treinamento-corais}.
 
 \begin{figure}
   \includegraphics[scale=0.35,angle=270]{treinamento-corais}
