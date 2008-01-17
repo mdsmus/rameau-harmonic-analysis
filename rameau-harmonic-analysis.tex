@@ -102,15 +102,11 @@ The first problem has to do with the kind of input to the system. If
 the input doesn't make a distintion between flats and sharps the
 program may have problems in places where enharmonic information is
 important. For example, in \cite{pardo02:algorithms} a german
-augmented sixth is wrongly classified as a dominant seventh chord. A
-solution for this problem is or to use a notation that retain
-enharmonic spelling or process the input using a pitch speller.
-Usually systems or ignore this problem (like the above mentioned
-citation) or develop a pitch speller \nota{citation needed}. To our
-knowledge no research dealing with harmonic analysis has used a
-notation that takes enharmonic differences in consideration as input.
-\nota{isso é verdade? passos: como entrada, até agora sim, mas
-  temperley, por exemplo, diferencia enarmonias na saída}
+augmented sixth is wrongly classified as a dominant seventh chord.
+Systems usually either ignore this problem or develop a pitch speller
+\cite{temperley99:modeling}. To our knowledge no research dealing with
+harmonic analysis has used an input format that takes enharmonic
+differences in consideration.
 
 The second problem is to divide a given piece into segments with
 harmonic significance. \nota{falar mais sobre segmentação}
@@ -152,41 +148,59 @@ soon. The chorales are stored in a subset of the GNU Lilypond
 typeset scores. Our system also generates scores annotated with
 analysis results (both by human and by computer).
 
-\subsection{Tonal codification}
+\subsection{Numeric codification for tonal music}
 \label{sec:codificacao-jamary}
-
-\nota{usar tonal, base-40, e binomial systems?}
 
 Probably the pitch-class notation, or some variation such as MIDI, is
 the most used way to represent pitch numerically. The main problem of
-this notation is that it is imposible to retaim enharmonic spelling. A
-few systems have been developed to address this problem. 
+this notation is that it is impossible to keep enharmonic spelling. In
+this section we will revise three notations created independently by
+Brinkman, Hewlett, and Oliveira
+\cite{brinkman86:_binom_repres_of_pitch_for,hewlett92:base40,oliveira01:codificacao}
+to address this problem. For simplicity sake's we will call each one
+binomial, base-40, and base-96, respectively.
 
-Brinkman's sytem \cite{brinkman86:_binom_repres_of_pitch_for}
-represents notes in a format \texttt{<pc,nc>} where pc stands for
-pitch-class and nc for note-class. Note-class is a modulo 7 notation
-system that represents numerically each note name (A, B, C, D, E, F,
-G) from 0 to 6. In this system C$\sharp$ is represented as
-\texttt{<1,0>} and D$\flat$ as \texttt{<1,0>}. Brinkman also proposes
-a packged representation using single numbers in the formula $bc =
-pc\times10 + nc$. For instance, C$\sharp$ = 10 and D$\flat$ =
-11.\nota{esses valores são inconsistentes entre si, não?}
+The notes in the binomial notation are represented in the format
+\texttt{<pc,nc>} where pc stands for pitch-class and nc for
+note-class. Note-class is a modulo 7 notation system that represents
+numerically each note name (A, B, C, D, E, F, G) from 0 to 6. In this
+system C$\sharp$ is represented as \texttt{<1,0>} and D$\flat$ as
+\texttt{<1,1>}, for example. The binomial notation also has a packged
+representation using single numbers, where the pitch-class is
+multiplied by 10 and added to the note-class. In this notation C$\sharp$
+= 10 and D$\flat$ = 11, for example.
 
-Hewlett proposes a base-40 pitch notation that uses only single
-numbers \cite{hewlett92:base40}. In this system C$\sharp$ = 4 and
-D$\flat$ = 8, for instance.
+Unlike the binomial notation, the base-40 notation uses only single
+numbers. The octave is divided linearly in 40 notes from C$\flat\flat$
+to B$\sharp\sharp$. The table \ref{tab:base40} shows a few notes in
+this system.
 
-In rameau we use Oliveira's base-96 system
-\cite{oliveira01:codificacao}. Oliveira's system is simple, elegant,
-and overcomes a few shortcommings in both Brinkman's and Hewlett's.
-Since the original publication of Oliveira's system is available only
-in Portuguese, we will describe it here, comparing with the other
-systems.
+\begin{table}
+  \centering
+  \begin{tabular}{l|l}
+    note & code \\
+    \hline
+    c$\flat\flat$ & 1 \\
+    c$\flat$ & 2 \\
+    c & 3 \\
+    c$\sharp$ & 4 \\
+    c$\sharp\sharp$ & 5 \\
+    -- & 6 \\
+  \end{tabular}
+  \caption{A few notes in the base-40 notation}
+  \label{tab:base40}
+\end{table}
 
-Like Hewlett's, Oliveira's system assign each note with a number. For
-instance C = 0, G = 55, and so on up to 96. Table
-\ref{tab:jama-notas} shows all notes in the system. In this system the
-intervals are invariant under transformation. Table
+The base-96 notation is simple, elegant, and overcomes a few
+shortcommings in both the binomial and base-40 notations. Since the
+original publication of the base-96 notation is available only in
+Portuguese, we will describe it here, comparing with the other
+two.
+
+The base-96 also is a single number notation. It has all the
+advantagens of the base-40 notation with a few advantagens. Table
+\ref{tab:jama-notas} shows how all notes are encoded. In this notation
+system the intervals are invariant under transformation. Table
 \ref{tab:jama-intervalos} shows the coding for the intervals.
 
 \begin{table}
@@ -210,7 +224,7 @@ intervals are invariant under transformation. Table
     6$\sharp$  &  6&20&34&47&61&75&89 \\
     7$\sharp$  &   &  &  &48&  &  &   \\
   \end{tabular}
-  \caption{Notes in Oliveira's system}
+  \caption{Notes in the base-96 notation}
   \label{tab:jama-notas}
 \end{table}
 
@@ -236,29 +250,30 @@ intervals are invariant under transformation. Table
     sA  & 6&20&34&47&61&75&89&   \\
     hA  &  &  &  &48&  &  &  &   
   \end{tabular}
-  \caption{Invervals in Oliveira's system}
+  \caption{Invervals in base-96 notation}
   \label{tab:jama-intervalos}
 \end{table}
 
-Oliveira's system works up to seven flats and sharps, witch is more
-than enough for any aplication of tonal music. Because this system is
-modulo 96, it is compatible with the pitch-class (modulo 12) system.
-An operation of modulo 12 in any note in oliveira's system will
-convert it to the pitch-class. For example, in oliveira's system G =
-55. The result of 55 mod 12 is 7.
+The base-96 notation works well up to seven flats and sharps, witch is
+more than enough for any application of tonal music. Because this
+system is modulo 96, it is compatible with the pitch-class system
+(modulo 12). An operation of modulo 12 in any note in the base-96
+notation will convert it to the pitch-class system. For example, in
+the base-96 notation G = 55. The result of 55 mod 12 is 7.
 
-Hewlett's system starts to fail with notes that have more than two
-accidentals. For example, the interval beetween C$\flat\flat$ and
+The base-40 notation starts to fail with notes that have more than two
+accidentals. For example, the interval between C$\flat\flat$ and
 C$\sharp\sharp$ (a quadruple augmented unison) has the same value (6)
-as diminished second. On the other hand, in Oliveira's system this
-interval can be correctely computated.
+as diminished second. On the other hand, in the base-96 notation this
+interval can be correctly computed.
 
-The main problem with the binomial system is that operations that are
-simple become complex. In both tonal and base-40 systems transposition
-is as simple as A + B, while in the binomial system it has two
-different operations (mod and div). It's packaged representation is
-intended to simplify things, but as an example, transposition is
-something like:
+The main problem with the binomial notation is that operations that
+are (and should be) simple become complex. In both base-40 and base-96
+notations, transposition is as simple the sum of a note and the
+transposition index, while in the binomial system it has to use two
+different operations (mod and div) besides the addition. It's packaged
+representation is intended to simplify things, but as an example,
+transposition become something like:
 
 \begin{verbatim}
 10 ((a div 10 + B div 10) mod 12)
@@ -268,8 +283,10 @@ something like:
 To do anything more complex, like interval-class vectors, yet extra
 work has to be done, increasing complexity.
 
-For these reasons we have adopted Oliveira's codification, although no
-algorithm at present makes use of it.
+For these reasons we have adopted the base-96 codification, although no
+algorithm at present makes use of it yet. We believe it is a very nice
+solution to describe tonal music numerically and it should be more
+known among researches and developers.
 
 \subsection{Answer sheet format}
 \label{sec:formato-dos-acordes}
@@ -325,17 +342,17 @@ We have currently implemented using this API
   (ignoring, for now, segmentation), 
 \item a port (work-in-progress) of the algorithm described in
   \cite{temperley99:modeling}, 
-\item some neural networks (using the Fann \nota{citation needed}
+\item some neural networks (using the Fann \cite{nissen:fann}
   library) roughly similiar to some described in
   \cite{tsui02:_harmon_analy_using_neural_networ}, and
 \item decision trees modeled after the neural networks (using code
   from \cite{Mitchell:1997:ML}).
 \end{enumerate}
 
-The code is publicly available, under a GNU GPL \nota{citation needed}
-license in a git \cite{baudis:_git_users_manual} repository
-at:\\ \texttt{http://genos.mus.br/repos/rameau.git}\\ and for
-visualization at\\ \texttt{http://git.genos.mus.br/?p=rameau.git}
+The code is publicly available, under a GNU GPL \cite{fsf:gpl} license
+in a git \cite{baudis:_git_users_manual} repository at
+\url{genos.mus.br/repos/rameau.git} and for visualization at
+\url{git.genos.mus.br/?p=rameau.git}
 
 \subsection{Comparison with similar software}
 \label{sec:differences-from-similar-software}
@@ -363,6 +380,9 @@ our goals to get results as close as possible to usual human analysis,
 so we classify these sonorities as non-chord tone and consider any
 attempt at labeling them as a chord or finding their root an error.
 
+\section{Preliminary results}
+\label{sec:analysis-results}
+
 \begin{figure}
   \centering
   \includegraphics[scale=4]{coral-012}
@@ -376,9 +396,6 @@ attempt at labeling them as a chord or finding their root an error.
   \caption{Chorale 54}
   \label{fig:coral-54}
 \end{figure}
-
-\section{Preliminary results}
-\label{sec:analysis-results}
 
 \subsection{Neural Networks}
 \label{sec:neural-nets}
