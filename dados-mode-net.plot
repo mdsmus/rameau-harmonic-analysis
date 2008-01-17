@@ -9,4 +9,4 @@ set xlabel "Hidden units"
 set ylabel "Accuracy (%)"
 
 
-plot "dados-mode-net.dat" using 1:2:3 title "Mode-net" with errorlines
+plot "dados-mode-net.dat" using 1:2:3 title "Mode-net" with errorlines lt -1

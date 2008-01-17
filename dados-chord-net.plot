@@ -9,4 +9,4 @@ set xlabel "Hidden units"
 set ylabel "Accuracy (%)"
 
 
-plot "dados-chord-net.dat" using 1:2:3 title "Chord-net" with errorlines
+plot "dados-chord-net.dat" using 1:2:3 title "Chord-net" with errorlines lt -1

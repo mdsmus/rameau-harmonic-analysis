@@ -9,4 +9,4 @@ set xlabel "Hidden units"
 set ylabel "Accuracy (%)"
 
 
-plot "dados-context-net.dat" using 1:2:3 title "Context-net" with errorlines
+plot "dados-context-net.dat" using 1:2:3 title "Context-net" with errorlines lt -1
