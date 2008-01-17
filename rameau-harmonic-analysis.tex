@@ -71,9 +71,9 @@ music'' \cite{pardo02:algorithms} before their paper. This lack of
 data in literature makes it difficult to compare different systems.
 Also, there aren't standard benchmarks to compare different algorithms
 and analysis results. In fact, only Pardo and Birmingham
-\cite{pardo00:automated} and Barthèlemy and Sleator
+\cite{pardo00:automated} and Barthèlemy and Bonardi
 \cite{barthelemy01:figured} published specific comparisons between
-different analysis results. Pardo and Birmingham compare his results
+different analysis results. Pardo and Birmingham compare their results
 with Temperley and Sleator's \cite{temperley99:modeling} while
 Barthèlemy compares his model against Maxwell's, Pardo and
 Birmingham's, and Temperley and Sleator's
@@ -82,15 +82,15 @@ However, these comparisons are based on results published in papers
 and not from direct implementations. That means that only the examples
 published by the authors can be compared.
 
-In this paper we will present rameau, a system for automatic harmonic
-analysis of Western tonal music. The main goal of this system is to
-allow an easy comparison between algorithms and results. \nota{falar
-  limitacoes e escopo (harmonia tonal, corais de bach)} We also
-present an evaluation of ten algorithms using a corpus of 150 Bach
-Chorales. Section \ref{sec:system} describes rameau in more details,
-section \ref{sec:problem} lists the problems related to harmonic
-analysis, section \ref{sec:analysis-results} analysis the results
-obtained, and section \ref{sec:concl-future-work} .......
+In this paper we will present Rameau, a framework for automatic
+harmonic analysis of Western tonal music. Our main goal in building
+this framework is to allow an easy comparison between algorithms and
+results. \nota{falar limitacoes e escopo (harmonia tonal, corais de
+  bach)} We also present an evaluation of ten algorithms using a
+corpus of 150 Bach Chorales. Section \ref{sec:system} describes Rameau
+in more details, section \ref{sec:problem} lists the problems related
+to harmonic analysis, section \ref{sec:analysis-results} analysis the
+results obtained, and section \ref{sec:concl-future-work} .......
 
 \section{The problem of automated harmonic analysis}
 \label{sec:problem}
@@ -112,12 +112,12 @@ problem. Most of the difficulty of segmenting is due to the number of
 possible segmentations of a piece being roughly an exponential
 function of its length \cite{pardo02:algorithms}.
 
-The third problem is labeling most segments with a chord name. Not
-every segment forms a chord, though: some will consist solely of
-non-chord tones and other melodic clues. This might require contextual
-information, which complicates the matter a bit, difficulting local
-decisions. Still, over 80\% of accuracy is possible ignoring context
-(see section \ref{sec:analysis-results}).
+The third problem is labeling segments with chord names. Not every
+segment forms a chord, though - some will consist solely of non-chord
+tones and other melodic clues. Labeling a segment with a chord might
+require contextual information, which complicates the matter a bit,
+difficulting local decisions. Still, over 80\% of accuracy is possible
+ignoring context (see section \ref{sec:analysis-results}).
 
 The last problem is finding the key of the piece and assigning a tonal
 function to each chord.
@@ -139,24 +139,28 @@ implemented a framework , Rameau, that should enable us to
 \end{enumerate}
 
 Reimplementing other algorithms in Rameau allows us to easily evaluate
-its performance, study its errors and compare it with our baseline
-implementations. We haven't found, in literature, a comprehensive
-comparison of many techniques, in the manner of
-\cite{gomez.herrera:tonality}.
+their accuracy, study their errors and compare them with our baseline
+techniques. We are unaware of research comparing many techniques for
+harmonic analysis, in the manner of \cite{gomez.herrera:tonality}.
 
 \subsection{Comprehensive Test Corpus}
 \label{sec:comprehensive-test-corpus}
 
 We are building a corpus of analyzed and digitalized Bach chorales to
-use as training and test data. Bach chorales were chosen due to their
-being easily of analyzed (for example, the segmentation problem in
-them consists simply of determining the sonorities), their status as
-canonical examples of tonal harmony, their number (there are 371 on
-the Riemenschneider collection) and their simple structure. We have
-already analyzed 150 of them and plan on completing this task
+use as training and test data. Bach chorales were chosen because:
+
+\begin{enumerate}
+\item they are easily analyzed (for example, the segmentation problem in
+them consists simply of determining the sonorities), 
+\item they are canonical examples of tonal harmony,
+\item there are 371 on the Riemenschneider collection, and
+\item they have a simple structure. 
+\end{enumerate}
+
+We have already analyzed 150 of them and plan on completing this task
 soon. The chorales are stored in a subset of the GNU Lilypond
-\cite{nienhuys:lilypond} format, from which we generate MIDI files,
-typeset scores, and scores annotated with analysis results (both by
+\cite{nienhuys:lilypond} format, from which we generate MIDI files and
+typeset scores, possibly annotated with analysis results (both by
 human and by computer).
 
 \subsection{Numeric codification for tonal music}
@@ -164,28 +168,27 @@ human and by computer).
 
 Probably the pitch-class notation, or some variation such as MIDI, is
 the most used way of numerically representing pitch. The main problem
-of this notation is that it is impossible to keep enharmonic
-spelling. In this section we will revise three notations created
-independently by Brinkman, Hewlett, and Oliveira
-\cite{brinkman86:_binom_repres_of_pitch_for,hewlett92:base40,oliveira01:codificacao}
-to address this problem. For simplicity sake's we will refer to them
-as binomial, base-40, and base-96, respectively.
+with this notation is the loss of enharmonic spelling. In this section
+we will revise three notations created independently by Brinkman,
+Hewlett, and Oliveira \cite{brinkman86:_binom_repres_of_pitch_for,
+  hewlett92:base40, oliveira01:codificacao} to address this
+problem. For simplicity sake's we will refer to them as binomial,
+base-40, and base-96, respectively.
 
-Notes in the binomial notation are represented in the format
-\texttt{<pc,nc>} where pc stands for pitch-class and nc for
+Notes in the binomial notation are represented as \texttt{<pc,nc>}
+where \texttt{pc} stands for pitch-class and \texttt{nc} for
 note-class. Note-class is a modulo 7 notation system that represents
 numerically each note name (A, B, C, D, E, F, G) from 0 to 6. In this
-system C$\sharp$ is represented as \texttt{<1,0>} and D$\flat$ as
-\texttt{<1,1>}, for example. The binomial notation also has a packged
-representation using single numbers, where the pitch-class is
-multiplied by 10 and added to the note-class. In this notation
-C$\sharp$ = 10 and D$\flat$ = 11, for example. \nota{<1,1> não seria
-  D$\sharp$?}
+system, for example C$\sharp$ is represented as \texttt{<1,0>} and
+D$\flat$ as \texttt{<1,1>}. The binomial notation also allows a
+compact representation using only numbers, where the pitch-class is
+multiplied by 10 and added to the note-class. For example, C$\sharp$
+becomes 10 and D$\flat$ 11. \nota{<1,1> não seria D$\sharp$?}
 
-Unlike the binomial notation, the base-40 notation uses only single
+Unlike the binomial notation, the base-40 notation uses only
 numbers. The octave is divided linearly in 40 notes from C$\flat\flat$
-to B$\sharp\sharp$. The table \ref{tab:base40} shows a few notes in
-this system.
+to B$\sharp\sharp$. Table \ref{tab:base40} shows a few notes in this
+system.
 
 \begin{table}
   \centering
@@ -209,10 +212,10 @@ original publication of the base-96 notation is available only in
 Portuguese, we will describe it here, comparing with the other
 two.
 
-The base-96 also is a single number notation. It has all the
-advantagens of the base-40 notation with a few advantagens. Table
-\ref{tab:jama-notas} shows how all notes are encoded. In this notation
-system the intervals are invariant under transformation. Table
+The base-96 also is a numerical notation. It has all the advantagens
+of the base-40 notation with few advantagens. Table
+\ref{tab:jama-notas} shows how notes are encoded. In this notation the
+intervals are invariant under transposition. Table
 \ref{tab:jama-intervalos} shows the coding for the intervals.
 
 \begin{table}
@@ -266,13 +269,11 @@ system the intervals are invariant under transformation. Table
   \label{tab:jama-intervalos}
 \end{table}
 
-The base-96 notation works well up to seven flats and sharps, witch is
+The base-96 notation works for up to seven flats and sharps, witch is
 more than enough for tonal music. This system is compatible with the
-pitch-class system (modulo 12). Notes in the base-96 notation are
-interchangeable with notes in the base-12 notation, a modulo 12
-operation making the conversion. For example, in the base-96 notation
-G = 55. The result of 55 mod 12 is 7, representing G in the
-pitch-class notation.
+pitch-class system (modulo 12): in the base-96 notation G = 55, and
+the result of 55 mod 12 is 7, representing G in the pitch-class
+notation.
 
 The base-40 notation starts to fail with notes that have more than two
 accidentals. For example, the interval between C$\flat\flat$ and
@@ -293,13 +294,13 @@ something like:
  + ((a mod 10 + B div 10) mod 7)
 \end{verbatim}
 
-To do anything more complex, like interval-class vectors, yet extra
+To do anything non-trivial, like interval-class vectors, yet extra
 work has to be done, increasing complexity.
 
-For these reasons we have adopted the base-96 codification, although no
-algorithm at present makes use of it. We believe it is a very nice
-solution to describe tonal music numerically and it should be more
-known among researches and developers.
+For these reasons we have adopted the base-96 codification, although
+no algorithm at present makes direct use of it. We believe it is a
+very nice form of describing tonal music numerically and it should be
+more known among researches and developers.
 
 \subsection{Answer sheet format}
 \label{sec:formato-dos-acordes}
@@ -316,12 +317,12 @@ a simple, flexible text format, designed to
   having melodic functions on the piece.
 \end{enumerate}
 
-The beginning of the answer sheet for Bach's ``Aus meines Herzens
-Grunde'' chorale (the first in our corpus), for example, looks like
-\texttt{G G C/E (C7+/E [b])}. Each chord represents a sonority. Chords
-in parenthesis represent possible interpretations of a single
-sonority. Notes in brackets are non-chord tones, marking sonorities
-that do not constitute chords.
+The first four sonorities of the answer sheet for Bach's ``Aus meines
+Herzens Grunde'' chorale (the first in our corpus), for example, are
+stored as \texttt{G G C/E (C7+/E [b])}. Each chord symbols represents
+a sonority. Chords in parenthesis represent possible interpretations
+of a single sonority. Notes in brackets are non-chord tones, marking
+sonorities that do not constitute chords.
 
 This information is then used as anwer sheets and training data on the
 many algorithms implemented in our system.
@@ -329,9 +330,9 @@ many algorithms implemented in our system.
 \subsection{Architecture}
 \label{sec:architecture-and-api}
 
-The architecture of the Rameau framework is simple. First, a score in
-a GNU Lilypond-compatible format is parsed (our parser is written
-using Cl-Yacc \cite{chroboczek:_cl_yacc_manual} and Cl-Lexer
+The architecture of the Rameau framework is simple. First, a score is
+parsed (our parser is written using Cl-Yacc
+\cite{chroboczek:_cl_yacc_manual} and Cl-Lexer
 \cite{parker:_lexer_packag}) into a list of notes, which is then split
 into a list of sonorities. Then, these sonorities are sent to each
 algorithm for analysis. The analysis results and their comparison with
