@@ -71,7 +71,8 @@ music'' \cite{pardo02:algorithms} before their paper. This lack of
 data in literature makes it difficult to compare different systems.
 Also, there aren't standard benchmarks to compare different algorithms
 and analysis results. In fact, only Pardo and Birmingham
-\cite{pardo00:automated} and Barthèlemy and Bonardi
+\cite{pardo00:automated} and Barthèlemy and Bonardi \nota{tinha o nome
+  de Sleator aqui}
 \cite{barthelemy01:figured} published specific comparisons between
 different analysis results. Pardo and Birmingham compare their results
 with Temperley and Sleator's \cite{temperley99:modeling} while
@@ -82,15 +83,19 @@ However, these comparisons are based on results published in papers
 and not from direct implementations. That means that only the examples
 published by the authors can be compared.
 
-In this paper we will present Rameau, a framework for automatic
-harmonic analysis of Western tonal music. Our main goal in building
-this framework is to allow an easy comparison between algorithms and
-results. \nota{falar limitacoes e escopo (harmonia tonal, corais de
-  bach)} We also present an evaluation of ten algorithms using a
-corpus of 150 Bach Chorales. Section \ref{sec:system} describes Rameau
-in more details, section \ref{sec:problem} lists the problems related
-to harmonic analysis, section \ref{sec:analysis-results} analysis the
-results obtained, and section \ref{sec:concl-future-work} .......
+In this paper we will present Rameau \nota{passos:achei melhor falar
+  logo Rameau em vez de ``this system''}, a framework
+\nota{passos:rameau é um framework, é bom deixar claro} for automatic
+harmonic analysis of Western tonal music. Our main goal \nota{passos:
+  o sistema não tem um objetivo, nós temos um em construí-lo} in
+building this framework is to allow an easy comparison between
+algorithms and results. \nota{falar limitacoes e escopo (harmonia
+  tonal, corais de bach)} We also present an evaluation of ten
+algorithms using a corpus of 150 Bach Chorales. Section
+\ref{sec:system} describes Rameau in more details, section
+\ref{sec:problem} lists the problems related to harmonic analysis,
+section \ref{sec:analysis-results} analysis the results obtained, and
+section \ref{sec:concl-future-work} .......
 
 \section{The problem of automated harmonic analysis}
 \label{sec:problem}
@@ -156,6 +161,8 @@ them consists simply of determining the sonorities),
 \item there are 371 on the Riemenschneider collection, and
 \item they have a simple structure. 
 \end{enumerate}
+\nota{passos:achei melhor enumerar como uma lista, assim quebra a repetição
+  de analysis e padroniza melhor o parágrado}
 
 We have already analyzed 150 of them and plan on completing this task
 soon. The chorales are stored in a subset of the GNU Lilypond
@@ -167,21 +174,28 @@ human and by computer).
 \label{sec:codificacao-jamary}
 
 Probably the pitch-class notation, or some variation such as MIDI, is
-the most used way of numerically representing pitch. The main problem
-with this notation is the loss of enharmonic spelling. In this section
-we will revise three notations created independently by Brinkman,
-Hewlett, and Oliveira \cite{brinkman86:_binom_repres_of_pitch_for,
-  hewlett92:base40, oliveira01:codificacao} to address this
-problem. For simplicity sake's we will refer to them as binomial,
-base-40, and base-96, respectively.
+the most used way of numerically representing pitch \nota{passos:
+  troquei a ordem das palavras pra colocar pitch em ênfase, em vez de
+  numeric}. The main problem with this notation is the loss of
+enharmonic spelling \nota{passos: ``impossible to keep'' virou ``the
+  loss''}. In this section we will revise three notations created
+independently by Brinkman, Hewlett, and Oliveira
+\cite{brinkman86:_binom_repres_of_pitch_for, hewlett92:base40,
+  oliveira01:codificacao} to address this problem. For simplicity we
+will refer to them as binomial, base-40, and base-96, respectively.
 
-Notes in the binomial notation are represented as \texttt{<pc,nc>}
-where \texttt{pc} stands for pitch-class and \texttt{nc} for
-note-class. Note-class is a modulo 7 notation system that represents
+Notes in the binomial notation are represented as tuples in the form
+of \texttt{<pc,nc>} where \texttt{pc} stands for pitch-class and
+\texttt{nc} for note-class \nota{passos: achei bom especificar que são
+  tuplas}. Note-class is a modulo 7 notation system that represents
 numerically each note name (A, B, C, D, E, F, G) from 0 to 6. In this
 system, for example C$\sharp$ is represented as \texttt{<1,0>} and
 D$\flat$ as \texttt{<1,1>}. The binomial notation also allows a
-compact representation using only numbers, where the pitch-class is
+compact \nota{passos: ``packaged'' fica confuso, uma tupla é mais
+  ``packaged'' que um número, de certa forma, achei que ``compact''
+  fica mais claro} representation using only one number per note \nota{passos:
+  ``single numbers'' é confuso, é melhor usar ``one number per note''
+  ou simplesmente ``numbers''}, where the pitch-class is
 multiplied by 10 and added to the note-class. For example, C$\sharp$
 becomes 10 and D$\flat$ 11. \nota{<1,1> não seria D$\sharp$?}
 
@@ -212,10 +226,13 @@ original publication of the base-96 notation is available only in
 Portuguese, we will describe it here, comparing with the other
 two.
 
-The base-96 also is a numerical notation. It has all the advantagens
+The base-96 also is a numerical notation \nota{passos: ``single
+  numbers'' sai daqui também}. It has all the advantagens
 of the base-40 notation with few advantagens. Table
 \ref{tab:jama-notas} shows how notes are encoded. In this notation the
-intervals are invariant under transposition. Table
+intervals are invariant under transposition \nota{passos:
+  transposition fica mais claro que transformation (até onde eu sei é
+  difícil algo ser invariante quanto a transformação)}. Table
 \ref{tab:jama-intervalos} shows the coding for the intervals.
 
 \begin{table}
@@ -273,7 +290,8 @@ The base-96 notation works for up to seven flats and sharps, witch is
 more than enough for tonal music. This system is compatible with the
 pitch-class system (modulo 12): in the base-96 notation G = 55, and
 the result of 55 mod 12 is 7, representing G in the pitch-class
-notation.
+notation. \nota{passos: a parte do exemplo estava confusa, é melhor
+  explicar menos e mostrar só como funciona, eu acho}
 
 The base-40 notation starts to fail with notes that have more than two
 accidentals. For example, the interval between C$\flat\flat$ and
@@ -283,11 +301,13 @@ interval can be correctly computed.
 
 The main problem with the binomial notation is that operations that
 are (and should be) simple become complex. In both base-40 and base-96
-notations, transposition is as simple the adding an index to a note,
-while in the binomial system it has to use two different operations
-(mod and div) besides the addition. It's packaged representation is
-intended to simplify things, but as an example, transposition become
-something like:
+notations, transposition is as simple the adding \nota{passos: ``as
+  simple as the sum'' não faz sentido, usando ``as simple as adding}
+an index to a note, while in the binomial system it has to use two
+different operations (mod and div) besides the addition. Its compact
+\nota{passos: packaged -> compact} 
+representation is supposed to simplify things, but as an example,
+transposition become something like:
 
 \begin{verbatim}
 10 ((a div 10 + B div 10) mod 12)
@@ -375,8 +395,7 @@ We only had access to one similar system, Temperley and Sleator's
 Melisma \cite{temperley99:modeling}. We had some issues parsing its
 output, and so have been unable to reproduce their claimed
 accuracy. We have a work-in-progress reimplementation of their
-algorithm, although it has some bugs. Our reimplementation averages
-60\% accuracy on the chorales it can handle.
+algorithm, averaging 60\% accuracy on the chorales it can handle.
 
 Even though we couldn't find a public repository for Pardo and
 Birmingham's HarmAn \cite{pardo99:automated}, from their article the
