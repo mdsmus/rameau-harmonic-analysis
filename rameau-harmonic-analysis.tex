@@ -71,9 +71,10 @@ music'' \cite{pardo02:algorithms} before their paper. This lack of
 data in literature makes it difficult to compare different systems.
 Also, there aren't standard benchmarks to compare different algorithms
 and analysis results. In fact, only Pardo and Birmingham
-\cite{pardo00:automated} and Barthèlemy and Sleator
+\cite{pardo00:automated} and Barthèlemy and Bonardi \nota{tinha o nome
+  de Sleator aqui}
 \cite{barthelemy01:figured} published specific comparisons between
-different analysis results. Pardo and Birmingham compare his results
+different analysis results. Pardo and Birmingham compare their results
 with Temperley and Sleator's \cite{temperley99:modeling} while
 Barthèlemy compares his model against Maxwell's, Pardo and
 Birmingham's, and Temperley and Sleator's
@@ -82,15 +83,19 @@ However, these comparisons are based on results published in papers
 and not from direct implementations. That means that only the examples
 published by the authors can be compared.
 
-In this paper we will present rameau, a system for automatic harmonic
-analysis of Western tonal music. The main goal of this system is to
-allow an easy comparison between algorithms and results. \nota{falar
-  limitacoes e escopo (harmonia tonal, corais de bach)} We also
-present an evaluation of ten algorithms using a corpus of 150 Bach
-Chorales. Section \ref{sec:system} describes rameau in more details,
-section \ref{sec:problem} lists the problems related to harmonic
-analysis, section \ref{sec:analysis-results} analysis the results
-obtained, and section \ref{sec:concl-future-work} .......
+In this paper we will present Rameau \nota{passos:achei melhor falar
+  logo Rameau em vez de ``this system''}, a framework
+\nota{passos:rameau é um framework, é bom deixar claro} for automatic
+harmonic analysis of Western tonal music. Our main goal \nota{passos:
+  o sistema não tem um objetivo, nós temos um em construí-lo} in
+building this framework is to allow an easy comparison between
+algorithms and results. \nota{falar limitacoes e escopo (harmonia
+  tonal, corais de bach)} We also present an evaluation of ten
+algorithms using a corpus of 150 Bach Chorales. Section
+\ref{sec:system} describes Rameau in more details, section
+\ref{sec:problem} lists the problems related to harmonic analysis,
+section \ref{sec:analysis-results} analysis the results obtained, and
+section \ref{sec:concl-future-work} .......
 
 \section{The problem of automated harmonic analysis}
 \label{sec:problem}
@@ -112,12 +117,12 @@ problem. Most of the difficulty of segmenting is due to the number of
 possible segmentations of a piece being roughly an exponential
 function of its length \cite{pardo02:algorithms}.
 
-The third problem is labeling most segments with a chord name. Not
-every segment forms a chord, though: some will consist solely of
-non-chord tones and other melodic clues. This might require contextual
-information, which complicates the matter a bit, difficulting local
-decisions. Still, over 80\% of accuracy is possible ignoring context
-(see section \ref{sec:analysis-results}).
+The third problem is labeling segments with chord names. Not every
+segment forms a chord, though - some will consist solely of non-chord
+tones and other melodic clues. Labeling a segment with a chord might
+require contextual information, which complicates the matter a bit,
+difficulting local decisions. Still, over 80\% of accuracy is possible
+ignoring context (see section \ref{sec:analysis-results}).
 
 The last problem is finding the key of the piece and assigning a tonal
 function to each chord.
@@ -139,53 +144,69 @@ implemented a framework , Rameau, that should enable us to
 \end{enumerate}
 
 Reimplementing other algorithms in Rameau allows us to easily evaluate
-its performance, study its errors and compare it with our baseline
-implementations. We haven't found, in literature, a comprehensive
-comparison of many techniques, in the manner of
-\cite{gomez.herrera:tonality}.
+their accuracy, study their errors and compare them with our baseline
+techniques. We are unaware of research comparing many techniques for
+harmonic analysis, in the manner of \cite{gomez.herrera:tonality}.
 
 \subsection{Comprehensive Test Corpus}
 \label{sec:comprehensive-test-corpus}
 
 We are building a corpus of analyzed and digitalized Bach chorales to
-use as training and test data. Bach chorales were chosen due to their
-being easily of analyzed (for example, the segmentation problem in
-them consists simply of determining the sonorities), their status as
-canonical examples of tonal harmony, their number (there are 371 on
-the Riemenschneider collection) and their simple structure. We have
-already analyzed 150 of them and plan on completing this task
+use as training and test data. Bach chorales were chosen because:
+
+\begin{enumerate}
+\item they are easily analyzed (for example, the segmentation problem in
+them consists simply of determining the sonorities), 
+\item they are canonical examples of tonal harmony,
+\item there are 371 on the Riemenschneider collection, and
+\item they have a simple structure. 
+\end{enumerate}
+\nota{passos:achei melhor enumerar como uma lista, assim quebra a repetição
+  de analysis e padroniza melhor o parágrado}
+
+We have already analyzed 150 of them and plan on completing this task
 soon. The chorales are stored in a subset of the GNU Lilypond
-\cite{nienhuys:lilypond} format, from which we generate MIDI files,
-typeset scores, and scores annotated with analysis results (both by
+\cite{nienhuys:lilypond} format, from which we generate MIDI files and
+typeset scores, possibly annotated with analysis results (both by
 human and by computer).
 
 \subsection{Numeric codification for tonal music}
 \label{sec:codificacao-jamary}
 
 Probably the pitch-class notation, or some variation such as MIDI, is
-the most used way of numerically representing pitch. The main problem
-of this notation is that it is impossible to keep enharmonic
-spelling. In this section we will revise three notations created
+the most used way of numerically representing pitch \nota{passos:
+  troquei a ordem das palavras pra colocar pitch em ênfase, em vez de
+  numeric}. The main problem with this notation is the loss of
+enharmonic spelling \nota{passos: ``impossible to keep'' virou ``the
+  loss''}. In this section we will revise three notations created
 independently by Brinkman, Hewlett, and Oliveira
-\cite{brinkman86:_binom_repres_of_pitch_for,hewlett92:base40,oliveira01:codificacao}
-to address this problem. For simplicity sake's we will refer to them
-as binomial, base-40, and base-96, respectively.
+\cite{brinkman86:_binom_repres_of_pitch_for, hewlett92:base40,
+  oliveira01:codificacao} to address this problem. For simplicity we
+will refer to them as binomial, base-40, and base-96, respectively.
 
-Notes in the binomial notation are represented in the format
-\texttt{<pc,nc>} where pc stands for pitch-class and nc for
-note-class. Note-class is a modulo 7 notation system that represents
+Notes in the binomial notation are represented as tuples in the form
+of \texttt{<pc,nc>} where \texttt{pc} stands for pitch-class and
+\texttt{nc} for note-class \nota{passos: achei bom especificar que são
+  tuplas}. Note-class is a modulo 7 notation system that represents
 numerically each note name (A, B, C, D, E, F, G) from 0 to 6. In this
-system C$\sharp$ is represented as \texttt{<1,0>} and D$\flat$ as
-\texttt{<1,1>}, for example. The binomial notation also has a packged
-representation using single numbers, where the pitch-class is
-multiplied by 10 and added to the note-class. In this notation
-C$\sharp$ = 10 and D$\flat$ = 11, for example. \nota{<1,1> não seria
-  D$\sharp$?}
+system, for example C$\sharp$ is represented as \texttt{<1,0>} and
+D$\flat$ as \texttt{<1,1>}. The binomial notation also allows a
+compact \nota{passos: ``packaged'' fica confuso, uma tupla é mais
+  ``packaged'' que um número, de certa forma, achei que ``compact''
+  fica mais claro. kroger: brinkman usa packing e packaged}
+representation using only one number per note \nota{passos: ``single
+  numbers'' é confuso, é melhor usar ``one number per note'' ou
+  simplesmente ``numbers''. brinkman (e outros) usa(m) single
+  numbers}, where the pitch-class is multiplied by 10 and added to the
+note-class. For example, C$\sharp$ becomes 10 and D$\flat$ 11.
+\nota{<1,1> não seria D$\sharp$? nao é Db mesmo. passos: Certo. Então
+  talvez seja melhor explicar melhor como se chega no resultado, eu
+  mesmo só fui entender agora }
 
 Unlike the binomial notation, the base-40 notation uses only single
 numbers. The octave is divided linearly in 40 notes from C$\flat\flat$
-to B$\sharp\sharp$. The table \ref{tab:base40} shows a few notes in
-this system.
+to B$\sharp\sharp$. Table \ref{tab:base40} shows a few notes in this
+system.
 
 \begin{table}
   \centering
@@ -209,10 +230,16 @@ original publication of the base-96 notation is available only in
 Portuguese, we will describe it here, comparing with the other
 two.
 
-The base-96 also is a single number notation. It has all the
-advantagens of the base-40 notation with a few advantagens. Table
-\ref{tab:jama-notas} shows how all notes are encoded. In this notation
-system the intervals are invariant under transformation. Table
+The base-96 also is a numerical notation \nota{passos: ``single
+  numbers'' sai daqui também.}. It has all the advantagens
+of the base-40 notation with few advantagens. Table
+\ref{tab:jama-notas} shows how notes are encoded. In this notation the
+intervals are invariant under transformation \nota{passos:
+  transposition fica mais claro que transformation (até onde eu sei é
+  difícil algo ser invariante quanto a transformação). os intervalos
+  podem ser os mesmos para diversas transformações (operações) com
+  transposição, inversão, etc. passos: Então que tal ``invariant under
+most transformations, such as...'' pra ficar mais claro?}. Table
 \ref{tab:jama-intervalos} shows the coding for the intervals.
 
 \begin{table}
@@ -266,13 +293,12 @@ system the intervals are invariant under transformation. Table
   \label{tab:jama-intervalos}
 \end{table}
 
-The base-96 notation works well up to seven flats and sharps, witch is
+The base-96 notation works for up to seven flats and sharps, witch is
 more than enough for tonal music. This system is compatible with the
-pitch-class system (modulo 12). Notes in the base-96 notation are
-interchangeable with notes in the base-12 notation, a modulo 12
-operation making the conversion. For example, in the base-96 notation
-G = 55. The result of 55 mod 12 is 7, representing G in the
-pitch-class notation.
+pitch-class system (modulo 12): in the base-96 notation G = 55, and
+the result of 55 mod 12 is 7, representing G in the pitch-class
+notation. \nota{passos: a parte do exemplo estava confusa, é melhor
+  explicar menos e mostrar só como funciona, eu acho}
 
 The base-40 notation starts to fail with notes that have more than two
 accidentals. For example, the interval between C$\flat\flat$ and
@@ -282,24 +308,26 @@ interval can be correctly computed.
 
 The main problem with the binomial notation is that operations that
 are (and should be) simple become complex. In both base-40 and base-96
-notations, transposition is as simple the adding an index to a note,
-while in the binomial system it has to use two different operations
-(mod and div) besides the addition. It's packaged representation is
-intended to simplify things, but as an example, transposition become
-something like:
+notations, transposition is as simple the adding \nota{passos: ``as
+  simple as the sum'' não faz sentido, usando ``as simple as adding}
+an index to a note, while in the binomial system it has to use two
+different operations (mod and div) besides the addition. Its compact
+\nota{passos: packaged -> compact} 
+representation is supposed to simplify things, but as an example,
+transposition become something like:
 
 \begin{verbatim}
 10 ((a div 10 + B div 10) mod 12)
  + ((a mod 10 + B div 10) mod 7)
 \end{verbatim}
 
-To do anything more complex, like interval-class vectors, yet extra
+To do anything non-trivial, like interval-class vectors, yet extra
 work has to be done, increasing complexity.
 
-For these reasons we have adopted the base-96 codification, although no
-algorithm at present makes use of it. We believe it is a very nice
-solution to describe tonal music numerically and it should be more
-known among researches and developers.
+For these reasons we have adopted the base-96 codification, although
+no algorithm at present makes direct use of it. We believe it is a
+very nice form of describing tonal music numerically and it should be
+more known among researches and developers.
 
 \subsection{Answer sheet format}
 \label{sec:formato-dos-acordes}
@@ -316,12 +344,12 @@ a simple, flexible text format, designed to
   having melodic functions on the piece.
 \end{enumerate}
 
-The beginning of the answer sheet for Bach's ``Aus meines Herzens
-Grunde'' chorale (the first in our corpus), for example, looks like
-\texttt{G G C/E (C7+/E [b])}. Each chord represents a sonority. Chords
-in parenthesis represent possible interpretations of a single
-sonority. Notes in brackets are non-chord tones, marking sonorities
-that do not constitute chords.
+The first four sonorities of the answer sheet for Bach's ``Aus meines
+Herzens Grunde'' chorale (the first in our corpus), for example, are
+stored as \texttt{G G C/E (C7+/E [b])}. Each chord symbols represents
+a sonority. Chords in parenthesis represent possible interpretations
+of a single sonority. Notes in brackets are non-chord tones, marking
+sonorities that do not constitute chords.
 
 This information is then used as anwer sheets and training data on the
 many algorithms implemented in our system.
@@ -329,9 +357,9 @@ many algorithms implemented in our system.
 \subsection{Architecture}
 \label{sec:architecture-and-api}
 
-The architecture of the Rameau framework is simple. First, a score in
-a GNU Lilypond-compatible format is parsed (our parser is written
-using Cl-Yacc \cite{chroboczek:_cl_yacc_manual} and Cl-Lexer
+The architecture of the Rameau framework is simple. First, a score is
+parsed (our parser is written using Cl-Yacc
+\cite{chroboczek:_cl_yacc_manual} and Cl-Lexer
 \cite{parker:_lexer_packag}) into a list of notes, which is then split
 into a list of sonorities. Then, these sonorities are sent to each
 algorithm for analysis. The analysis results and their comparison with
@@ -340,7 +368,7 @@ score, as in figures \ref{fig:coral-12} and \ref{fig:coral-54}.
 
 The algorithms used for analysis are implemented using a very simple
 Common Lisp API. To implement one it is enough to place a lisp file in
-a special directory and call the \texttt{registra-algoritmo} function
+a special directory and call the \texttt{register-algorithm} function
 inside that file, specifying as parameter the algorithm's name, an
 analysis function and a comparison function. The input to the analysis
 function is a list of sonorities, which are lists of notes, each note
@@ -374,8 +402,7 @@ We only had access to one similar system, Temperley and Sleator's
 Melisma \cite{temperley99:modeling}. We had some issues parsing its
 output, and so have been unable to reproduce their claimed
 accuracy. We have a work-in-progress reimplementation of their
-algorithm, although it has some bugs. Our reimplementation averages
-60\% accuracy on the chorales it can handle.
+algorithm, averaging 60\% accuracy on the chorales it can handle.
 
 Even though we couldn't find a public repository for Pardo and
 Birmingham's HarmAn \cite{pardo99:automated}, from their article the
@@ -400,7 +427,7 @@ error.
 
 Neural networks are a tool to perform non-linear statistical data
 modeling that works by having artificial ``neurons'' exchange
-information \cite{russel02:aima}. There are
+information \cite{russell02:aima}. There are
 many varieties of neural networks, each being more useful for a
 certain type of problem. Our networks are all multilayer feedforward
 neural networks, with one hidden layer each. This is the standard
@@ -420,23 +447,24 @@ activation values are then used as the output of the neural network. A
 multilayer feedforward neural network with one hidden layer has only
 one layer between the input and output neurons. This has been found to
 be enough for many applications
-\cite{russel02:aima}.
+\cite{russell02:aima}.
 
 We, in Rameau, have currently implemented four neural-network-based
 algorithms for harmonic analysis, basing our approaches on
 \cite{tsui02:_harmon_analy_using_neural_networ}. Our simplest
-algorithm, Simple-net, has, as input, how many times each pitch class
-sounds in a given sonority and returns, as output, the fundamental of
-that sonority (or nothing, if the sonority does not form a chord). To
-analyze the effect of contextual information we have also implemented
-Context-net, differing from the Simple-net only by receiving
-information from two sonorities before and one after the desired
-one. Its performance is equivalent, so context, when seem in this
-form, doesn't increase accuracy by much. Two other network-based
-algorithms, Chord-net and Mode-net, also determine a chord's mode and
-its seventh. Chord-net looks only at one sonority at a time, and
-Mode-net receives as input the analysis from Context-net and the pitch
-counts for each sonority.
+algorithm, \texttt{Simple-net}, has, as input, how many times each
+pitch class sounds in a given sonority and returns, as output, the
+fundamental of that sonority (or nothing, if the sonority does not
+form a chord). To analyze the effect of contextual information we have
+also implemented \texttt{Context-net}, differing from the
+\texttt{Simple-net} only by receiving information from two sonorities
+before and one after the desired one. Its performance is equivalent,
+so context, when seem in this form, doesn't increase accuracy by
+much. Two other network-based algorithms, \texttt{Chord-net} and
+\texttt{Mode-net}, also determine a chord's mode and its
+seventh. \texttt{Chord-net} looks only at one sonority at a time, and
+\texttt{Mode-net} receives as input the analysis from
+\texttt{Context-net} and the pitch counts for each sonority.
 
 The performance of each neural network depends heavily on the number
 of sigmoid hidden units it uses. Too few units and the network hasn't
@@ -450,7 +478,9 @@ superstitious person's belief that some things bring ``good luck'' or
 The ideal number of hidden units in a neural network has to be
 determined experimentally. The experiments for each of our networks
 can be seen figures \ref{fig:simple-net}, \ref{fig:context-net},
-\ref{fig:chord-net}, and \ref{fig:mode-net}.
+\ref{fig:chord-net}, and \ref{fig:mode-net}. The chosen values were 12
+units for \texttt{Simple-net}, 24 for \texttt{Context-net}, 55 for
+\texttt{Chord-net} and 50 for \texttt{Mode-net}.
 
 \begin{figure}
   \includegraphics[scale=0.35,angle=270]{dados-simple-net}
@@ -480,7 +510,7 @@ can be seen figures \ref{fig:simple-net}, \ref{fig:context-net},
 
 Decision trees are useful data modeling tools, with many uses in the
 machine learning community \cite{Mitchell:1997:ML,
-  russel02:aima}. They are most useful when trying to extract
+  russell02:aima}. They are most useful when trying to extract
 meaningful patterns from data in a human-readable way. We have built
 four decision trees that perform harmonic analysis, each mirroring one
 of the neural networks. Our original intention was analysing the rules
@@ -492,7 +522,9 @@ inputs.
 
 The effect of size of training corpora on the accuracy of the neural
 networks and decision trees can be seen in figure
-\ref{fig:treinamento-corais}.
+\ref{fig:treinamento-corais}. One chorale is enough information for
+\texttt{Simple-net}, and most decision-tree algorithms need more
+chorales than their neural-network counterparts to perform similarly.
 
 \begin{figure}
   \includegraphics[scale=0.35,angle=270]{treinamento-corais}
