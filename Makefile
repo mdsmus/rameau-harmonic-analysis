@@ -1,5 +1,5 @@
 NAME = rameau-harmonic-analysis
-#CLEAN_FILES+= *.eps
+USE_DVIPDFM = 1
 OTHER_EPS1= $(patsubst %.plot,%.eps,$(wildcard *.plot))
 OTHER_EPS2= $(patsubst %.svg,%.eps,$(wildcard *.svg))
 OTHER+= $(OTHER_EPS1) $(OTHER_EPS2)
