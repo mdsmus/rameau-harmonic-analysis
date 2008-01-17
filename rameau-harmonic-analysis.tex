@@ -591,6 +591,24 @@ Total chord-tree     :  5200  5176  50.12% (50.71 +- 11.03)
 
 
 \subsection{Common Errors}
+
+Os erros de análise cometidos pelos algoritmos nos 150 corais\
+analisados envolvem principalmente notas melódicas (58\%), acordes com
+tônicas diferentes (24\%) e acordes com tônicas semelhantes, mas de
+tipos diferentes (19\%), como por exemplo A maior e A menor. A
+interpretação deste último tipo de erro é a mais útil para a avaliação
+do funcionamento dos algoritmos.
+
+Acordes de mesma tônica e tipos diferentes podem ser divididos em
+categorias a partir do resultado esperado. A categoria com maior
+número de erros é a de acordes menores analisados como maiores, com
+1550 ocorrências, e a de menor número é a de tétrades maiores, com 41
+ocorrências. A Chord tree tem alto índice de erros em quase todas as
+categorias, especialmente nas tríades menores. A tabela
+\ref{tab:common-errors} contém alguns desses dados com o valor
+percentual de cada algoritmo em função do total de erros de cada
+categoria.
+
 \begin{table}
   \centering
   \begin{tabular}{l|lllllll}
@@ -606,7 +624,7 @@ Total chord-tree     :  5200  5176  50.12% (50.71 +- 11.03)
     Context net  & 0.0& 0.0& 0.4& 0.1& 0.2& 0.0& 0.0\\
     Simple net   & 0.0& 0.0& 0.0& 0.1& 0.2& 0.0& 0.0\\
   \end{tabular}
-  \caption{}
+  \caption{Common Errors table (in \%)}
   \label{tab:common-errors}
 \end{table}
 
