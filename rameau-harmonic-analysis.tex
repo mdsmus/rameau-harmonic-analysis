@@ -323,7 +323,7 @@ using Cl-Yacc \cite{chroboczek:_cl_yacc_manual} and Cl-Lexer
 into a list of sonorities. Then, these sonorities are sent to each
 algorithm for analysis. The analysis results and their comparison with
 the answer sheets are then output either textually or as an annotated
-score.
+score, as in figures \ref{fig:coral-12} and \ref{fig:coral-54}.
 
 The algorithms used for analysis are implemented using a very simple
 Common Lisp API. To implement one it is enough to place a lisp file in
@@ -443,13 +443,16 @@ is not statistically significant.
 The performance of each neural network depends heavily on the number
 of sigmoid hidden units it uses. Too few units and the network hasn't
 got enough memory to recall all wanted patterns. Too many, and the
-network has the risk of overfitting. Overfitting can be seen as
-superstition, or the acquiring, by the neural network, of so many
-patterns that it does not generalize from them in any meaningful way
-\cite{white95:superstitious}. The ideal number of hidden units for a
-problem has to be determined experimentally. Our results are in
-figures \ref{fig:simple-net}, \ref{fig:context-net},
-\ref{fig:chord-net}, and \ref{fig:mode-net}.
+network has the risk of overfitting. Overfitting happens when the
+neural network has too much memory, so it starts inferring inexistent
+patterns from noise in the training data. This is similar to a
+superstitious person's belief that some things bring ``good luck'' or
+``bad luck'', according to \cite{white95:superstitious}. 
+
+The ideal number of hidden units in a neural network to better solve a
+given problem has to be determined experimentally. The results for
+each network are in figures \ref{fig:simple-net},
+\ref{fig:context-net}, \ref{fig:chord-net}, and \ref{fig:mode-net}.
 
 \begin{figure}
   \includegraphics[scale=0.35,angle=270]{dados-simple-net}
@@ -499,6 +502,20 @@ networks can be seen in figure \ref{fig:treinamento-corais}.
 
 \subsection{Common Errors}
 
+
+\begin{figure}
+  \centering
+  \includegraphics[scale=4]{coral-012}
+  \caption{An analysed exceprt from chorale 12 - ``Puer Natus in Bethlem''}
+  \label{fig:coral-12}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[scale=4]{coral-054}
+  \caption{An analysed exceprt from chorale 54 - ``Kommt her, ihr lieben Schwesterlein''}
+  \label{fig:coral-54}
+\end{figure}
 
 
 \section{Conclusions and future work}
