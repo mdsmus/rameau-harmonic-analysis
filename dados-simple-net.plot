@@ -9,4 +9,4 @@ set xlabel "Hidden units"
 set ylabel "Accuracy (%)"
 
 
-plot "dados-simple-net.dat" using 1:2:3 title "Simple-net" with errorlines lt -1
+plot "dados-simple-net.dat" using 1:2:3 title "Simple-net" with errorlines lw 4
