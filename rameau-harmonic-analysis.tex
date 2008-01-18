@@ -88,7 +88,7 @@ harmonic analysis of Western tonal music. Our main goal in building
 this framework is to allow an easy comparison between algorithms and
 results. \nota{falar limitacoes e escopo (harmonia tonal, corais de
   bach)} We also present an evaluation of ten algorithms using a
-corpus of 150 Bach Chorales. Section \ref{sec:system} describes Rameau
+corpus of 140 Bach Chorales. Section \ref{sec:system} describes Rameau
 in more details, section \ref{sec:problem} lists the problems related
 to harmonic analysis, section \ref{sec:analysis-results} analysis the
 results obtained, and section \ref{sec:concl-future-work} .......
@@ -144,6 +144,13 @@ their accuracy, study their errors and compare them with our baseline
 techniques. We are unaware of research comparing many techniques for
 harmonic analysis, in the manner of \cite{gomez.herrera:tonality}.
 
+\nota{texto novo abaixo}
+
+Rameau is written in Common Lisp and developed with the Steel Bank
+Common Lisp (SBCL) compiler on the GNU/Linux operating system. Rameau
+also runs on windows (it may run on macos, but that was not tested)
+and is portable enough to be compiled with CMUCL and Clisp.
+
 \subsection{Comprehensive Test Corpus}
 \label{sec:comprehensive-test-corpus}
 
@@ -164,7 +171,7 @@ them consists simply of determining the sonorities), \nota{eles tem
     mas tentei fazer o meu melhor}
 \end{enumerate}
 
-We have already analyzed 150 of them and plan on completing this task
+We have already analyzed 140 of them and plan on completing this task
 soon. The chorales are stored in a subset of the GNU Lilypond
 \cite{nienhuys:lilypond} format, from which we generate MIDI files and
 typeset scores, possibly annotated with analysis results (both by
@@ -350,8 +357,33 @@ a sonority. Chords in parenthesis represent possible interpretations
 of a single sonority. Notes in brackets are non-chord tones, marking
 sonorities that do not constitute chords.
 
-This information is then used as anwer sheets and training data on the
+This information is then used as answer sheets and training data on the
 many algorithms implemented in our system.
+
+\subsection{Analysis output}
+\label{sec:analysis-output}
+
+Rameau is basically a command line program, although a GUI version is
+planned. The user can select the chorales he or she wants to have
+analyzed and specify the algorithms for the analysis. The output shows
+a table with the partition number, the correct analysis from each
+sonority (take from the answer sheet) and the analysis output for
+each chosen algorithm. The nice thing about this output is that it
+can be further processed using regular unix tools such as grep, awk,
+and sed.
+
+To make reading easier easier to humans, rameau can output a score
+with the chorale and the analysis from each algorithm chosen. The
+music notation program LilyPond is used to render the score.
+
+Figure \ref{fig:coral-12} shows the result of the analysis of the
+first frase of the chorale \#12. The first line shows the partition
+number, the last line the correct answer result, and the lines in
+between the analysis results for the algorithms chosen. The results
+that doesn't match with the answer are shown in bold italic.
+
+\nota{falar das notas melodicas (em sequencia) no coral 54, ritardos,
+  etc.}
 
 \subsection{Architecture}
 \label{sec:architecture-and-api}
@@ -571,7 +603,7 @@ due to their lower generalization performance.
 \label{sec:common-errors}
 
 
-Os erros de análise cometidos pelos algoritmos nos 150 corais\
+Os erros de análise cometidos pelos algoritmos nos 140 corais\
 analisados envolvem principalmente notas melódicas (58\%), acordes com
 tônicas diferentes (24\%) e acordes com tônicas semelhantes, mas de
 tipos diferentes (19\%), como por exemplo A maior e A menor. A
