@@ -83,19 +83,15 @@ However, these comparisons are based on results published in papers
 and not from direct implementations. That means that only the examples
 published by the authors can be compared.
 
-In this paper we will present Rameau \nota{passos:achei melhor falar
-  logo Rameau em vez de ``this system''}, a framework
-\nota{passos:rameau é um framework, é bom deixar claro} for automatic
-harmonic analysis of Western tonal music. Our main goal \nota{passos:
-  o sistema não tem um objetivo, nós temos um em construí-lo} in
-building this framework is to allow an easy comparison between
-algorithms and results. \nota{falar limitacoes e escopo (harmonia
-  tonal, corais de bach)} We also present an evaluation of ten
-algorithms using a corpus of 150 Bach Chorales. Section
-\ref{sec:system} describes Rameau in more details, section
-\ref{sec:problem} lists the problems related to harmonic analysis,
-section \ref{sec:analysis-results} analysis the results obtained, and
-section \ref{sec:concl-future-work} .......
+In this paper we will present Rameau, a framework for automatic
+harmonic analysis of Western tonal music. Our main goal in building
+this framework is to allow an easy comparison between algorithms and
+results. \nota{falar limitacoes e escopo (harmonia tonal, corais de
+  bach)} We also present an evaluation of ten algorithms using a
+corpus of 150 Bach Chorales. Section \ref{sec:system} describes Rameau
+in more details, section \ref{sec:problem} lists the problems related
+to harmonic analysis, section \ref{sec:analysis-results} analysis the
+results obtained, and section \ref{sec:concl-future-work} .......
 
 \section{The problem of automated harmonic analysis}
 \label{sec:problem}
@@ -167,8 +163,6 @@ them consists simply of determining the sonorities), \nota{eles tem
     não seria a melhor pessoa para escrever essa parte, sinceramente,
     mas tentei fazer o meu melhor}
 \end{enumerate}
-\nota{passos:achei melhor enumerar como uma lista, assim quebra a repetição
-  de analysis e padroniza melhor o parágrado}
 
 We have already analyzed 150 of them and plan on completing this task
 soon. The chorales are stored in a subset of the GNU Lilypond
@@ -183,9 +177,8 @@ Probably the pitch-class notation, or some variation such as MIDI, is
 the most used way of numerically representing pitch \nota{passos:
   troquei a ordem das palavras pra colocar pitch em ênfase, em vez de
   numeric}. The main problem with this notation is the loss of
-enharmonic spelling \nota{passos: ``impossible to keep'' virou ``the
-  loss''}. In this section we will revise three notations created
-independently by Brinkman, Hewlett, and Oliveira
+enharmonic spelling. In this section we will revise three notations
+created independently by Brinkman, Hewlett, and Oliveira
 \cite{brinkman86:_binom_repres_of_pitch_for, hewlett92:base40,
   oliveira01:codificacao} to address this problem. For simplicity we
 will refer to them as binomial, base-40, and base-96, respectively.
