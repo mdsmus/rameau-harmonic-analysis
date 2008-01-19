@@ -618,6 +618,17 @@ due to their lower generalization performance.
 
 \nota{traduzir}
 
+Most analysis errors on our corpus are misrecognized non-chord tones
+(58\%), wrong fundamental (24\%) and correct fundamental but wrong mode
+(19\%). This last error is the most interesting in evaluating the
+accuracy of the algorithms.
+
+Chords analysed with the correct fundamental but incorrect mode can be
+classified by which modes are more frequently mistaken for others. The
+cateagory with most errors is minor chords labeled as major chords,
+with 1550 instances, and the least frequent is incorrectly labeled
+major tetrads, with 41 instances.
+
 Os erros de análise cometidos pelos algoritmos nos 140 corais\
 analisados envolvem principalmente notas melódicas (58\%), acordes com
 tônicas diferentes (24\%) e acordes com tônicas semelhantes, mas de
@@ -657,6 +668,7 @@ acerta a análise.
     Chord net    & 5.&5& 2.&3&20.&5&15.&0&35.&0&15.&5& 6.&4\\
     Context net  & 0.&0& 0.&0&33.&3&33.&3&33.&3& 0.&0& 0.&0\\
     Simple net   & 0.&0& 0.&0& 0.&0&50.&0&50.&0& 0.&0& 0.&0\\
+    Average      &12.&3& 2.&3&13.&6&35.&4&24.&7& 8.&2& 2.&0\\ 
   \end{tabular}
   \caption{Common Errors (in \%)}
   \label{tab:common-errors}
