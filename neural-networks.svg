@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.331614"
-     inkscape:cx="88.073173"
-     inkscape:cy="896.9755"
+     inkscape:zoom="1.6163168"
+     inkscape:cx="179.45708"
+     inkscape:cy="900.19075"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      inkscape:window-width="1276"
@@ -52,7 +52,8 @@
      inkscape:groupmode="layer"
      id="layer1">
     <g
-       id="g2434">
+       id="g2434"
+       transform="translate(0,-48)">
       <path
          transform="matrix(0.2973765,0,0,0.2973765,44.170431,87.844812)"
          d="M 78.749471 43.221611 A 13.037992 13.037992 0 1 1  52.673488,43.221611 A 13.037992 13.037992 0 1 1  78.749471 43.221611 z"
@@ -416,39 +417,49 @@
     </g>
     <text
        xml:space="preserve"
-       style="font-size:12px;font-style:normal;font-weight:bold;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
-       x="-86.835617"
-       y="67.694962"
-       id="text2326"
-       transform="matrix(0,-1,1,0,0,0)"><tspan
+       style="font-size:12px;font-style:normal;font-weight:bold;text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="65.200821"
+       y="10.86882"
+       id="text2326"><tspan
          sodipodi:role="line"
          id="tspan2328"
-         x="-86.835617"
-         y="67.694962">input layer</tspan></text>
+         x="67.286758"
+         y="10.86882">input </tspan><tspan
+         sodipodi:role="line"
+         x="65.200821"
+         y="25.86882"
+         id="tspan2696">layer</tspan></text>
     <text
-       transform="matrix(0,-1,1,0,0,0)"
        id="text2330"
-       y="138.5611"
-       x="-86.835617"
-       style="font-size:12px;font-style:normal;font-weight:bold;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       y="10.86882"
+       x="136.57086"
+       style="font-size:12px;font-style:normal;font-weight:bold;text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
        xml:space="preserve"><tspan
-         y="138.5611"
-         x="-86.835617"
-         id="tspan2332"
-         sodipodi:role="line">hidden layer</tspan></text>
+         y="10.86882"
+         x="136.57086"
+         sodipodi:role="line"
+         id="tspan2698">hidden</tspan><tspan
+         y="25.86882"
+         x="136.57086"
+         sodipodi:role="line"
+         id="tspan2704">layer</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:12px;font-style:normal;font-weight:bold;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
-       x="-86.835617"
-       y="209.42723"
-       id="text2334"
-       transform="matrix(0,-1,1,0,0,0)"><tspan
+       style="font-size:12px;font-style:normal;font-weight:bold;text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="205.69481"
+       y="10.177414"
+       id="text2334"><tspan
          sodipodi:role="line"
          id="tspan2336"
-         x="-86.835617"
-         y="209.42723">out layer</tspan></text>
+         x="205.69481"
+         y="10.177414">output</tspan><tspan
+         sodipodi:role="line"
+         x="205.69481"
+         y="25.177414"
+         id="tspan2700">layer</tspan></text>
     <g
-       id="g2524">
+       id="g2524"
+       transform="translate(0,-48)">
       <g
          id="g2472">
         <text
@@ -698,7 +709,7 @@
     </g>
     <g
        id="g5088"
-       transform="translate(0,-4)">
+       transform="translate(0,-52)">
       <path
          id="path2422"
          d="M 205.46375,104.26003 L 134.56081,104.26003 L 205.46375,122.06612"
