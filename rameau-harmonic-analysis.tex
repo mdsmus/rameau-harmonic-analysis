@@ -131,7 +131,7 @@ Rameau, that should enable us to
 \begin{enumerate}
 \item compare results precisely and repeatably with human analysis of
   a large corpus of music;
-\item allow algorithms to access detailed information the input score,
+\item allow algorithms to access detailed information in the input score,
   such as enharmonic differences, meter, etc; and \nota{especificar
     quais são as informações. Corrigido?}
 \item easily develop new algorithms, test existing ones, and compare
@@ -140,15 +140,15 @@ Rameau, that should enable us to
 
 Reimplementing existing algorithms in Rameau allows us to easily
 evaluate their accuracy, study their errors and compare them with our
-baseline techniques. We are unaware of research comparing many
-techniques for harmonic analysis, in the manner of
-reference \cite{gomez.herrera:tonality}.
+baseline techniques. We are unaware of research comparing different
+approaches for harmonic analysis, in the manner of reference
+\cite{gomez.herrera:tonality}.
 
-Rameau is written in Common Lisp and developed with the Steel Bank
-Common Lisp (SBCL \nota{citation needed}) compiler on the GNU/Linux
-operating system. Rameau also runs on windows (it may run on MacOS,
-but that was not tested) and is portable enough to be compiled with
-CMUCL \nota{citation needed} and Clisp \nota{citation needed}.
+Rameau is written in Common Lisp and runs on the Steel Bank Common
+Lisp (SBCL \nota{citation needed}) compiler on the GNU/Linux operating
+system. Rameau also runs on windows (it may run on MacOS, but that was
+not tested) and is portable enough to be compiled with CMUCL
+\nota{citation needed} and Clisp \nota{citation needed}.
 
 \subsection{Architecture}
 \label{sec:architecture-and-api}
@@ -347,9 +347,7 @@ a simple, flexible text format, designed to
 
 \begin{enumerate}
 \item be as close as possible to usual popular notation,
-\item represent inherent ambiguities in chords (it is possible to name
-  more than one chord as a possible analysis for a given sonority),
-  and
+\item represent inherent ambiguities in chord, and
 \item single out sonorities that do not constitute chords, instead
   having melodic functions on the piece.
 \end{enumerate}
@@ -394,14 +392,14 @@ human and by computer).
 
 When the chorales are fully analysed we plan on incorporating the
 Kostka-Payne \cite{kostka03:tonal} corpus, Beethoven sonatas, Bach
-cello suites and other pieces in our corpora.
+cello suites and other pieces.
 
 \nota{falar que pretendemos ter um corpus maior que os corais. Corrigido?}
 
-\subsection{Analysis output}
+\subsection{Interface}
 \label{sec:analysis-output}
 
-\nota{melhorar titulo}
+\nota{melhorar titulo. Que tal interface?}
 
 Rameau is basically a command line program, although a GUI version is
 planned. The user can select the chorales he or she wants to have
@@ -417,14 +415,14 @@ chorale and the analysis from each algorithm chosen. The music
 notation program LilyPond is used to render the score.
 
 Figure \ref{fig:coral-12} shows the result of the analysis of the
-first frase of the chorale \#12. The first line shows the partition
-number, the last line the correct answer result, and the lines in
-between the analysis results for the algorithms chosen. The output
-score shows incorrect analysis in bold italic. Non-chord tones are
-notated as ``-\,-''.
+first phrase of chorale \#12. The first line shows the partition
+number, the last line the expected answer, and the lines in between
+the analysis results for the chosen algorithms. The output score shows
+incorrect analysis in bold italic. Non-chord tones are notated as
+``-\,-''.
 
 \nota{falar das notas melodicas (em sequencia) no coral 54, ritardos,
-  etc.}
+  etc. passos: isso não cabe muito bem aqui, eu diria}
 
 \subsection{Comparison with similar works}
 \label{sec:differences-from-similar-software}
@@ -445,9 +443,9 @@ directly. Their algorithm, however, is reimplemented in Rameau, and it
 behaves precisely as described in the article.
 
 Our main issues with both systems are their ignorance, by design, of
-non-chord tones and the lack of an automated test suite for the
+non-chord tones and their lack of automated test suites for their
 algorithms. This difficults a clear evaluation of their merits and
-flaws, and lead us to design Rameau to attack both these issues.
+flaws.
 
 
 \section{Preliminary results}
@@ -486,11 +484,13 @@ neurons to output neurons. Our networks are layered feedforward neural
 networks, in which the neurons are arranged in layers, as in figure
 \ref{fig:simple-net-diagram}. Each neuron receives information from
 all neurons in the layer preceding it and forwards information to all
-neurons in the next layers. One hidden layer is enough to represent
-every continuous function with arbitrarily small error
-\cite{russell02:aima}. How each individual neuron will process its
-input is determined by training, usually with the backpropagation
-algorithm or a derivative of it.
+neurons in the next layers. The first layer, the input layer, receives
+the input to the neural network as information, and the output layer
+emits the neural network's outputs. One hidden layer between the input
+and output layers is enough to represent every continuous function
+with arbitrarily small error \cite{russell02:aima}. How each
+individual neuron will process its input is determined by training,
+usually with the backpropagation algorithm or a variant of it.
 
 
 \begin{figure}
@@ -509,7 +509,7 @@ algorithm or a derivative of it.
 We, in Rameau, have currently implemented four neural-network-based
 algorithms for harmonic analysis, basing our approaches on
 \cite{tsui02:_harmon_analy_using_neural_networ}. Our simplest
-algorithm, \texttt{Simple\hyp{}net}'s input is a sonority's pitch
+algorithm, \texttt{Sim\-ple\-\hyp{}net}'s input is a sonority's pitch
 count, or how many times each pitch class sounds in it. As output, the
 network activates the neuron representing the fundamental for that
 sonority (or does nothing, if the sonority does not form a
@@ -523,7 +523,7 @@ harmonic analysis is not easily inferrable from pitch counts
 \nota{justificar essa frase. Corrigido?}.The two other neural
 networks, \texttt{Chord-net} and \texttt{Mode-net}, also determine a
 chord's mode and its seventh. \texttt{Chord-net}'s input is the same
-as \texttt{Simple-net}'s, while and \texttt{Mode-net} also sees the
+as \texttt{Sim\-ple\--net}'s, while and \texttt{Mode-net} also sees the
 results of \texttt{Context-net}'s analysis for each sonority.
 
 The performance of each neural network depends heavily on the number
@@ -539,7 +539,7 @@ The ideal number of hidden units in a neural network has to be
 determined experimentally. The experiments for each of our networks
 can be seen figures \ref{fig:simple-net}, \ref{fig:context-net},
 \ref{fig:chord-net}, and \ref{fig:mode-net}. The chosen values were 12
-units for \texttt{Simple-net}, 24 for \texttt{Context-net}, 55 for
+units for \texttt{Sim\-ple\--net}, 24 for \texttt{Context-net}, 55 for
 \texttt{Chord-net} and 50 for \texttt{Mode-net}.
 
 Our current accuracies for these algorithms are $88\pm 8\%$ for
@@ -588,8 +588,8 @@ misclassifying most minor chords as major (see section
 two-step process: first a sonority's fundamental is determined by
 \texttt{Simple-tree}, then the sonority is transposed to a normalized
 format (the bass is always pitch class 0) and then \texttt{Mode-net}
-is applied. This effectively reduces the search space, diminishing the
-problem of poor generalization. \nota{exemplificar como
+is applied. This effectively reduces the input space, limiting the
+effects of poor generalization. \nota{exemplificar como
   chegou a isso, colocar exemplo do chord-tree. Corrigido?}
 
 Our current accuracies for the decision-tree based algorithms are $82
