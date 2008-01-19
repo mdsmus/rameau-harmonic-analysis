@@ -5,6 +5,7 @@
 \usepackage[utf8x]{inputenc}
 \usepackage[english]{babel}
 \usepackage{color}
+\usepackage[htt]{hyphenat}
 
 \title{Rameau: A System for Automatic Harmonic Analysis}
 
@@ -360,6 +361,7 @@ sonorities that do not constitute chords.
 
 This information is then used as answer sheets and training data on the
 many algorithms implemented in our system.
+
 \subsection{Test Corpus}
 \label{sec:test-corpus}
 
@@ -489,19 +491,19 @@ many applications \cite{russell02:aima}.
 We, in Rameau, have currently implemented four neural-network-based
 algorithms for harmonic analysis, basing our approaches on
 \cite{tsui02:_harmon_analy_using_neural_networ}. Our simplest
-algorithm, \texttt{Sim\-ple\--net}, has, as input, how many times each
+algorithm, \texttt{Simple\hyp{}net}, has, as input, how many times each
 pitch class sounds in a given sonority and returns, as output, the
 fundamental of that sonority (or nothing, if the sonority does not
 form a chord). To analyze the effect of contextual information we have
-also implemented \texttt{Con\-text\--net}, differing from the
-\texttt{Sim\-ple\--net} only by receiving information from two
+also implemented \texttt{Context-net}, differing from the
+\texttt{Simple-net} only by receiving information from two
 sonorities before and one after the desired one. Its performance is
 equivalent, \nota{justificar essa frase} so context, when seem in this
 form, doesn't increase accuracy by much. The two others,
-\texttt{Chord\--net} and \texttt{Mo\-de\--net}, also determine a
-chord's mode and its seventh. \texttt{Chord\--net} looks only at one
-sonority at a time, and \texttt{Mo\-de\--net} receives as input the
-analysis from \texttt{Con\-text\--net} and the pitch counts
+\texttt{Chord-net} and \texttt{Mode-net}, also determine a
+chord's mode and its seventh. \texttt{Chord-net} looks only at one
+sonority at a time, and \texttt{Mode-net} receives as input the
+analysis from \texttt{Context-net} and the pitch counts
 \nota{definir antes o que é} for each sonority.
 
 The performance of each neural network depends heavily on the number
@@ -512,6 +514,15 @@ neural network has too much memory, so it starts inferring inexistent
 patterns from noise in the training data. This is similar to a
 superstitious person's belief that some things bring ``good luck'' or
 ``bad luck'', according to \cite{white95:superstitious}.
+
+\nota{precisa de melhor caption}
+
+\begin{figure}
+  \centering
+  \includegraphics[scale=1]{neural-networks}
+  \caption{Neural network}
+  \label{fig:neural}
+\end{figure}
 
 The ideal number of hidden units in a neural network has to be
 determined experimentally. The experiments for each of our networks
