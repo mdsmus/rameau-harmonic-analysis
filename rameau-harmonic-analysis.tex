@@ -130,9 +130,10 @@ Rameau, that should enable us to
 
 \begin{enumerate}
 \item compare results precisely and repeatably with human analysis of
-  a large corpus of music,
-\item allow algorithms to access as much information as possible from
-  the score used as input, and \nota{especificar quais são as informações}
+  a large corpus of music;
+\item allow algorithms to access detailed information the input score,
+  such as enharmonic differences, meter, etc; and \nota{especificar
+    quais são as informações. Corrigido?}
 \item easily develop new algorithms, test existing ones, and compare
   precisely the results.
 \end{enumerate}
@@ -166,12 +167,13 @@ Common Lisp API. To implement one it is enough to place a lisp file in
 a special directory and call the \texttt{register-algorithm} function
 inside that file, specifying the algorithm's name, an analysis
 function and a comparison function as parameters. The input to the
-analysis function is a list of sonorities, which are lists of notes,
-each note specifying its onset time, duration, octave and pitch. The
-output is a list of either chords or non-chord tones, each chord
-possibly having a fundamental, a mode, a seventh, a bass, and
-other additions. The framework provides a few possible comparison functions
-for easy usage. \nota{restruturar a partir do which}
+analysis function is a list of sonorities. In Rameau, sonorities are
+lists of notes, each note specifying its onset time, duration, octave
+and pitch. The output is a list of either chords or non-chord tones,
+one for each input sonority. Chord are structures possibly having a
+fundamental, a mode, a seventh, a bass, and other additions. The
+framework provides a few possible comparison functions for easy
+usage. \nota{restruturar a partir do which. Corrigido?}
 
 We have currently implemented using this API 
 \begin{enumerate}
@@ -278,7 +280,7 @@ for the intervals. \nota{explicar tabela2 e mudar para 1st, 2nd, etc}
 \begin{table}
   \centering
   \begin{tabular}{l|llllllll}
-    & 1$^{a}$& 2$^{a}$& 3$^{a}$& 4$^{a}$& 5$^{a}$& 6$^{a}$& 7$^{a}$& 8$^{a}$ \\
+    & 1$^{st}$& 2$^{nd}$& 3$^{rd}$& 4$^{th}$& 5$^{th}$& 6$^{th}$& 7$^{th}$& 8$^{th}$ \\
     \hline
     sd  &  & 7&21&35&49&62&76&90 \\
     pd  &  & 8&22&36&50&63&77&91 \\
@@ -371,15 +373,17 @@ use as training and test data. Bach chorales were chosen because:
 \nota{reformatar}
 \begin{enumerate}
 \item they are easily analyzed. For example, the segmentation problem in
-them consists simply of determining the sonorities,
-\item \nota{eles tem
-  maior densidade de acorde por compasso que, por exemplo, uma sinfonia}
-\item they are canonical examples of tonal harmony;
-\item there are 371 on the Riemenschneider edition, more than
-  enough for most needs; and
-  \nota{especificar most needs}
-\item they have a simple constant texture, with four voices forming
-  simple triads and tetrads. \nota{rescrever mais claro}
+them consists simply of determining the sonorities.
+\item Their chord density is high - there are many more chords per
+  measure than in a symphony, for example. \nota{eles tem maior densidade de
+  acorde por compasso que, por exemplo, uma sinfonia. Corrigido?}
+\item They are canonical examples of tonal harmony.
+\item There are 371 on the Riemenschneider edition, more than
+  enough to train our algorithms and get precise error analysis.
+  \nota{especificar most needs. Corrigido?}
+\item Their texture is simple and constant. It consists basically of
+  four voices forming simple triads and tetrads. \nota{rescrever mais
+    claro. Corrigido?}
 \end{enumerate}
 
 We have already analyzed 140 of them and plan on completing this task
@@ -388,7 +392,11 @@ soon. The chorales are stored in a subset of the GNU Lilypond
 typeset scores, possibly annotated with analysis results (both by
 human and by computer).
 
-\nota{falar que pretendemos ter um corpus maior que os corais}
+When the chorales are fully analysed we plan on incorporating the
+Kostka-Payne \cite{kostka03:tonal} corpus, Beethoven sonatas, Bach
+cello suites and other pieces in our corpora.
+
+\nota{falar que pretendemos ter um corpus maior que os corais. Corrigido?}
 
 \subsection{Analysis output}
 \label{sec:analysis-output}
@@ -422,27 +430,25 @@ notated as ``-\,-''.
 \label{sec:differences-from-similar-software}
 
 We only had access to one similar system, Temperley and Sleator's
-Melisma \cite{temperley99:modeling}. We had some issues parsing its
-output, and so have been unable to reproduce their claimed accuracy.
-\nota{saida é complexa demais para extrair informação: dizer isso :-)}
-Our work-in-progress reimplementation of their algorithm averages 60\%
-accuracy on the chorales it can handle. \nota{falta alguma coisa}
+Melisma \cite{temperley99:modeling}. The output of the system is
+complex, with many not clearly delimited columns that can't be
+processed in isolation. Interpreting which notes are chord changes is
+difficult even for a human. Therefore, we have been unable to
+reproduce their claimed accuracy with their implementation. Our
+reimplementation isn't currently able to process every chorale (the
+algorithm is brittle and needs tuning in not clearly defined ways),
+but averages around 60\% on the ones it does handle.
 
-Even though we couldn't find a public repository for Pardo and
-Birmingham's HarmAn \cite{pardo99:automated}, from their article the
-system seems to face most issues we found with the Melisma system.
-\nota{essa frase está fora de contexto} Our
-re-implementation of their algorithm is based solely on the article.
-\nota{escrever algo mais claro para pardo}
+Pardo and Birmingham's HarmAn \cite{pardo99:automated} system isn't
+publicly avaliable on the internet, so we haven't been able to test it
+directly. Their algorithm, however, is reimplemented in Rameau, and it
+behaves precisely as described in the article.
 
-Rameau differs from these systems mainly by our focus on testing the
-results of many algorithms. Also common to most other systems is the
-notion that in a musical piece every sonority is part of a chord (or
-at least has a root). This is not true of sonorities containing
-non-chord tones such as suspensions, retardations, and passing notes.
-It is one of our goals to get results as close as possible to usual
-human analysis, so we classify these sonorities as non-chord tones and
-any labeling of them with chords is seen as an error.
+Our main issues with both systems are their ignorance, by design, of
+non-chord tones and the lack of an automated test suite for the
+algorithms. This difficults a clear evaluation of their merits and
+flaws, and lead us to design Rameau to attack both these issues.
+
 
 \section{Preliminary results}
 \label{sec:analysis-results}
@@ -471,6 +477,33 @@ information. There are many varieties of neural networks, each being
 useful for a certain type of problem. Our networks are all multilayer
 feedforward neural networks, with one hidden layer each. This is the
 standard model for pattern recognition \cite{russell02:aima}.
+
+A neural network is made of connected neurons. Each neuron receives
+signals from other neurons, processes them in a simple manner and
+forwards them to yet other neurons, as in figure \ref{fig:neuron}. In
+a feedforward neural network, these signals flow linearly from input
+neurons to output neurons. Our networks are layered feedforward neural
+networks, in which the neurons are arranged in layers, as in figure
+\ref{fig:simple-net-diagram}. Each neuron receives information from
+all neurons in the layer preceding it and forwards information to all
+neurons in the next layers. One hidden layer is enough to represent
+every continuous function with arbitrarily small error
+\cite{russell02:aima}. How each individual neuron will process its
+input is determined by training, usually with the backpropagation
+algorithm or a derivative of it.
+
+
+\begin{figure}
+  \includegraphics[scale=0.35]{neuron}
+  \caption{A single neuron in a neural network}
+  \label{fig:neuron}
+\end{figure}
+
+\begin{figure}
+  \includegraphics[]{neural-networks}
+  \caption{The Simple-net}
+  \label{fig:simple-net-diagram}
+\end{figure}
 
 A multilayer feedforward neural network has a few layered sets of
 neurons, and activation flows through them from input to output.
@@ -515,14 +548,7 @@ patterns from noise in the training data. This is similar to a
 superstitious person's belief that some things bring ``good luck'' or
 ``bad luck'', according to \cite{white95:superstitious}.
 
-\nota{precisa de melhor caption}
 
-\begin{figure}
-  \centering
-  \includegraphics[scale=1]{neural-networks}
-  \caption{Neural network}
-  \label{fig:neural}
-\end{figure}
 
 The ideal number of hidden units in a neural network has to be
 determined experimentally. The experiments for each of our networks

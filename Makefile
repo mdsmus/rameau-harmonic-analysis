@@ -14,6 +14,8 @@ CLEAN_FILES+= $(OTHER_EPS2:.svg=.eps)
 %.eps: %.svg
 	inkscape -T --export-eps=$@ $<
 
+%.eps: %.dia
+	dia --export=$@ $<
 push: ps
 	git push
 
