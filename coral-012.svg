@@ -15,7 +15,7 @@
    inkscape:version="0.45.1"
    sodipodi:docname="coral-012.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape"
-   sodipodi:docbase="/home/marcos/repositorios/rameau-harmonic-analysis"
+   sodipodi:docbase="/home/givaldo/genos/repos/rameau-harmonic-analysis"
    inkscape:export-filename="/home/kroger/doc/artigos/rameau-harmonic-analysis/coral-012.eps"
    inkscape:export-xdpi="400"
    inkscape:export-ydpi="400">
@@ -42,9 +42,9 @@
      bordercolor="#666666"
      pagecolor="#ffffff"
      id="base"
-     inkscape:zoom="10.251987"
-     inkscape:cx="56.035941"
-     inkscape:cy="255.6269"
+     inkscape:zoom="4.4556341"
+     inkscape:cx="41.99338"
+     inkscape:cy="254.67481"
      inkscape:window-x="0"
      inkscape:window-y="15"
      inkscape:current-layer="svg2" />
@@ -2388,7 +2388,7 @@
     </text>
   </g>
   <g
-     id="g4655">
+     id="g14454">
     <g
        transform="translate(55.673557,4.06)"
        id="g817">
@@ -4075,16 +4075,6 @@
          id="rect1883" />
     </g>
     <g
-       transform="translate(23.312308,36.46)"
-       id="g1909">
-      <text
-         style="font-size:1.95946133px;font-style:italic;font-weight:bold;fill:currentColor;font-family:Schoolbook"
-         id="text1911">
-        <tspan
-           id="tspan1913">--</tspan>
-      </text>
-    </g>
-    <g
        transform="translate(57.984622,3.56)"
        id="g1915">
       <text
@@ -5065,5 +5055,9 @@
            x1="0.050000001" />
       </g>
     </g>
+    <path
+       id="path5128"
+       d="M 23.13397,35.938241 L 24.81065,35.938241"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.28851658;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
   </g>
 </svg>
