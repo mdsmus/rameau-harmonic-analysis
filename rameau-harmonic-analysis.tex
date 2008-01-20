@@ -508,23 +508,23 @@ usually with the backpropagation algorithm or a variant of it.
 
 We, in Rameau, have currently implemented four neural-network-based
 algorithms for harmonic analysis, basing our approaches on
-\cite{tsui02:_harmon_analy_using_neural_networ}. Our simplest
-algorithm, \texttt{Sim\-ple\-\hyp{}net}'s input is a sonority's pitch
+\cite{tsui02:_harmon_analy_using_neural_networ}. The input of our
+simplest algorithm, \texttt{Simple\hyp{}net}, is a sonority's pitch
 count, or how many times each pitch class sounds in it. As output, the
 network activates the neuron representing the fundamental for that
-sonority (or does nothing, if the sonority does not form a
-chord). Figure \ref{fig:simple-net-diagram} shows its connections and
-labels. To study the effect of contextual information we have also
-implemented \texttt{Context-net}, differing from the
-\texttt{Simple-net} only by also looking at the pitch counts two
-preceding and one following sonoritie. Their performances are
-equivalent, so perhaps the contextual information necessary for
-harmonic analysis is not easily inferrable from pitch counts
-\nota{justificar essa frase. Corrigido?}.The two other neural
-networks, \texttt{Chord-net} and \texttt{Mode-net}, also determine a
-chord's mode and its seventh. \texttt{Chord-net}'s input is the same
-as \texttt{Sim\-ple\--net}'s, while and \texttt{Mode-net} also sees the
-results of \texttt{Context-net}'s analysis for each sonority.
+sonority (or does nothing, if the sonority does not form a chord).
+Figure \ref{fig:simple-net-diagram} shows its connections and labels.
+To study the effect of contextual information we have also implemented
+\texttt{Context-net}, differing from the \texttt{Simple\hyp{}net} only
+by also looking at the pitch counts two preceding and one following
+sonoritie. Their performances are equivalent, so perhaps the
+contextual information necessary for harmonic analysis is not easily
+inferrable from pitch counts \nota{justificar essa frase.
+  Corrigido?}.The two other neural networks, \texttt{Chord-net} and
+\texttt{Mode-net}, also determine a chord's mode and its seventh.
+\texttt{Chord-net}'s input is the same as \texttt{Sim\-ple\--net}'s,
+while and \texttt{Mode-net} also sees the results of
+\texttt{Context-net}'s analysis for each sonority.
 
 The performance of each neural network depends heavily on the number
 of hidden units it uses. Too few units and the network hasn't got
