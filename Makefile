@@ -2,7 +2,8 @@ NAME = rameau-harmonic-analysis
 USE_DVIPDFM = 1
 OTHER_EPS1= $(patsubst %.plot,%.eps,$(wildcard *.plot))
 OTHER_EPS2= $(patsubst %.svg,%.eps,$(wildcard *.svg))
-OTHER+= $(OTHER_EPS1) $(OTHER_EPS2)
+OTHER_EPS3= $(patsubst %.dia,%.eps,$(wildcard *.dia))
+OTHER+= $(OTHER_EPS1) $(OTHER_EPS2) $(OTHER_EPS3)
 CLEAN_FILES+= $(OTHER_EPS1:.plot=.eps)
 CLEAN_FILES+= $(OTHER_EPS2:.svg=.eps)
 
@@ -16,6 +17,7 @@ CLEAN_FILES+= $(OTHER_EPS2:.svg=.eps)
 
 %.eps: %.dia
 	dia --export=$@ $<
+
 push: ps
 	git push
 
