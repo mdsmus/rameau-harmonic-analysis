@@ -121,154 +121,7 @@ ignoring context (see section \ref{sec:analysis-results}).
 The last problem is finding the key of the piece and assigning a tonal
 function to each chord.
 
-\section{The Rameau Framework}
-\label{sec:system}
-
-To properly study, understand and compare algorithms for automated
-harmonic analysis we have designed and implemented a framework,
-Rameau, that should enable us to
-
-\begin{enumerate}
-\item compare results precisely and repeatably with human analysis of
-  a large corpus of music;
-\item allow algorithms to access detailed information in the input score,
-  such as enharmonic differences, meter, etc; and
-\item easily develop new algorithms, test existing ones, and compare
-  precisely the results.
-\end{enumerate}
-
-Reimplementing existing algorithms in Rameau allows us to easily
-evaluate their accuracy, study their errors and compare them with our
-baseline techniques. We are unaware of research comparing different
-approaches for harmonic analysis, in the manner of reference
-\cite{gomez.herrera:tonality}.
-
-Rameau is written in Common Lisp and runs on the Steel Bank Common
-Lisp \cite{team07:_sbcl} compiler on the GNU/Linux operating
-system. Rameau also runs on windows (it may run on MacOS, but that was
-not tested) and is portable enough to be compiled with CMUCL
-\cite{maclachlan06:_cmucl_users_manual} and Clisp
-\cite{haible07:_clisp}.
-
-\subsection{Architecture}
-\label{sec:architecture-and-api}
-
-The architecture of the Rameau framework is simple. First, a score is
-parsed (our parser is written using Cl-Yacc
-\cite{chroboczek:_cl_yacc_manual} and Cl-Lexer
-\cite{parker:_lexer_packag}) into a list of notes, which is then split
-into a list of sonorities. Then, these sonorities are sent to each
-algorithm for analysis. The analysis results and their comparison with
-the answer sheets are then output either textually or as an annotated
-score, as in figures \ref{fig:coral-12} and \ref{fig:coral-54}.
-
-The algorithms used for analysis are implemented using a very simple
-Common Lisp API. To implement one it is enough to place a lisp file in
-a special directory and call the \texttt{register-algorithm} function
-inside that file, specifying the algorithm's name, an analysis
-function and a comparison function as parameters. The input to the
-analysis function is a list of sonorities. In Rameau, sonorities are
-lists of notes, each note specifying its onset time, duration, octave
-and pitch. The output is a list of either chords or non-chord tones,
-one for each input sonority. Chords are structures possibly having a
-fundamental, a mode, a seventh, a bass, and other additions. The
-framework provides a few possible comparison functions for easy
-usage.
-
-We have currently implemented using this API 
-\begin{enumerate}
-\item a subset of the algorithm described in \cite{pardo02:algorithms}
-  (ignoring, for now, segmentation), 
-\item a port (work-in-progress) of the algorithm described in
-  \cite{temperley99:modeling}, 
-\item four neural networks (using the Fann \cite{nissen:fann}
-  library) roughly similiar to some described in
-  \cite{tsui02:_harmon_analy_using_neural_networ}, and
-\item four decision trees modeled after the neural networks (using code
-  from \cite{Mitchell:1997:ML}).
-\end{enumerate}
-
-Rameau's source code is publicly available, under a GNU GPL
-\cite{fsf:gpl} license in a git \cite{baudis:_git_users_manual}
-repository at \url{genos.mus.br/repos/rameau.git} and for
-visualization at \url{git.genos.mus.br/?p=rameau.git}.
-
-\subsection{The interface}
-\label{sec:analysis-output}
-
-Rameau is basically a command line program, although a GUI version is
-planned. The user can select the chorales he or she wants to have
-analyzed and specify the algorithms for the analysis. The output shows
-a table with the partition number, the correct analysis from each
-sonority (take from the answer sheet) and the analysis output for
-each chosen algorithm. The nice thing about this output is that it
-can be further processed using regular unix tools such as grep, awk,
-and sed.
-
-To simplify reading for humans, rameau can output a score with the
-chorale and the analysis from each algorithm chosen. The music
-notation program LilyPond is used to render the score.
-
-Figure \ref{fig:coral-12} shows the result of the analysis of the
-first phrase of chorale \#12. The first line shows the partition
-number, the last line the expected answer, and the lines in between
-the analysis results for the chosen algorithms. The output score shows
-incorrect analysis in bold italic. Non-chord tones are notated as
-``—''. It is important to remember that while some algorithms identify
-whole chords, others identify only the root.
-
-\subsection{Test Corpus}
-\label{sec:test-corpus}
-
-We are building a corpus of analyzed and digitalized Bach chorales to
-use as training and test data. Bach chorales were chosen because:
-
-\begin{enumerate}
-\item they are easily analyzed. For example, the segmentation problem in
-them consists simply of determining the sonorities.
-\item Their chord density is high - there are many more chords per
-  measure than in a symphony, for example.
-\item They are canonical examples of tonal harmony.
-\item There are 371 on the Riemenschneider edition, more than
-  enough to train our algorithms and get precise error analysis.
-\item Their texture is simple and constant. It consists basically of
-  four voices forming simple triads and tetrads.
-\end{enumerate}
-
-We have already analyzed 140 of them and plan on completing this task
-soon. The chorales are stored in a subset of the GNU Lilypond
-\cite{nienhuys:lilypond} format, from which we generate MIDI files and
-typeset scores, possibly annotated with analysis results (both by
-human and by computer).
-
-When the chorales are fully analysed we plan on incorporating the
-Kostka-Payne \cite{kostka03:tonal} corpus, Beethoven sonatas, Bach
-cello suites and other pieces.
-
-\subsection{The answer sheet format}
-\label{sec:formato-dos-acordes}
-
-The results of human analysis performed on the chorales are stored in
-a simple, flexible text format, designed to
-
-\begin{enumerate}
-\item be as close as possible to usual popular notation,
-\item represent inherent ambiguities in chord, and
-\item single out sonorities that do not constitute chords, instead
-  having melodic functions on the piece.
-\end{enumerate}
-
-The first four sonorities of the answer sheet for Bach's chorale \#1
-``Aus meines Herzens Grunde'', for example, are stored as \texttt{G G
-  C/E (C7+/E [b])}. Each chord symbols represents a sonority. Chords
-in parenthesis represent possible interpretations of a single
-sonority. Notes in brackets are non-chord tones, marking sonorities
-that do not constitute chords.
-
-This information is then used as answer sheets and training data on the
-many algorithms implemented in our system.
-
-\subsection{Numeric codification for tonal music}
+\section{Numeric codification for tonal music}
 \label{sec:codificacao-jamary}
 
 Probably the pitch-class notation, or some variation such as MIDI, is
@@ -416,8 +269,157 @@ no algorithm at present makes direct use of it. We believe it is a
 very nice form of describing tonal music numerically and it should be
 more known among researches and developers.
 
-\subsection{Comparison with similar works}
+\section{The Rameau Framework}
+\label{sec:system}
+
+To properly study, understand and compare algorithms for automated
+harmonic analysis we have designed and implemented a framework,
+Rameau, that should enable us to
+
+\begin{enumerate}
+\item compare results precisely and repeatably with human analysis of
+  a large corpus of music;
+\item allow algorithms to access detailed information in the input score,
+  such as enharmonic differences, meter, etc; and
+\item easily develop new algorithms, test existing ones, and compare
+  precisely the results.
+\end{enumerate}
+
+Reimplementing existing algorithms in Rameau allows us to easily
+evaluate their accuracy, study their errors and compare them with our
+baseline techniques. We are unaware of research comparing different
+approaches for harmonic analysis, in the manner of reference
+\cite{gomez.herrera:tonality}.
+
+Rameau is written in Common Lisp and runs on the Steel Bank Common
+Lisp \cite{team07:_sbcl} compiler on the GNU/Linux operating
+system. Rameau also runs on windows (it may run on MacOS, but that was
+not tested) and is portable enough to be compiled with CMUCL
+\cite{maclachlan06:_cmucl_users_manual} and Clisp
+\cite{haible07:_clisp}.
+
+\subsection{Architecture}
+\label{sec:architecture-and-api}
+
+The architecture of the Rameau framework is simple. First, a score is
+parsed (our parser is written using Cl-Yacc
+\cite{chroboczek:_cl_yacc_manual} and Cl-Lexer
+\cite{parker:_lexer_packag}) into a list of notes, which is then split
+into a list of sonorities. Then, these sonorities are sent to each
+algorithm for analysis. The analysis results and their comparison with
+the answer sheets are then output either textually or as an annotated
+score, as in figures \ref{fig:coral-12} and \ref{fig:coral-54}.
+
+The algorithms used for analysis are implemented using a very simple
+Common Lisp API. To implement one it is enough to place a lisp file in
+a special directory and call the \texttt{register-algorithm} function
+inside that file, specifying the algorithm's name, an analysis
+function and a comparison function as parameters. The input to the
+analysis function is a list of sonorities. In Rameau, sonorities are
+lists of notes, each note specifying its onset time, duration, octave
+and pitch. The output is a list of either chords or non-chord tones,
+one for each input sonority. Chords are structures possibly having a
+fundamental, a mode, a seventh, a bass, and other additions. The
+framework provides a few possible comparison functions for easy
+usage.
+
+We have currently implemented using this API 
+\begin{enumerate}
+\item a subset of the algorithm described in \cite{pardo02:algorithms}
+  (ignoring, for now, segmentation), 
+\item a port (work-in-progress) of the algorithm described in
+  \cite{temperley99:modeling}, 
+\item four neural networks (using the Fann \cite{nissen:fann}
+  library) roughly similiar to some described in
+  \cite{tsui02:_harmon_analy_using_neural_networ}, and
+\item four decision trees modeled after the neural networks (using code
+  from \cite{Mitchell:1997:ML}).
+\end{enumerate}
+
+Rameau's source code is publicly available, under a GNU GPL
+\cite{fsf:gpl} license in a git \cite{baudis:_git_users_manual}
+repository at \url{genos.mus.br/repos/rameau.git} and for
+visualization at \url{git.genos.mus.br/?p=rameau.git}.
+
+\subsection{The interface}
+\label{sec:analysis-output}
+
+Rameau is basically a command line program, although a GUI version is
+planned. The user can select the chorales he or she wants to have
+analyzed and specify the algorithms for the analysis. The output shows
+a table with the partition number, the correct analysis from each
+sonority (take from the answer sheet) and the analysis output for
+each chosen algorithm. The nice thing about this output is that it
+can be further processed using regular unix tools such as grep, awk,
+and sed.
+
+To simplify reading for humans, rameau can output a score with the
+chorale and the analysis from each algorithm chosen. The music
+notation program LilyPond is used to render the score.
+
+Figure \ref{fig:coral-12} shows the result of the analysis of the
+first phrase of chorale \#12. The first line shows the partition
+number, the last line the expected answer, and the lines in between
+the analysis results for the chosen algorithms. The output score shows
+incorrect analysis in bold italic. Non-chord tones are notated as
+``—''. It is important to remember that while some algorithms identify
+whole chords, others identify only the root.
+
+\subsection{Test Corpus}
+\label{sec:test-corpus}
+
+We are building a corpus of analyzed and digitalized Bach chorales to
+use as training and test data. Bach chorales were chosen because:
+
+\begin{enumerate}
+\item they are easily analyzed. For example, the segmentation problem in
+them consists simply of determining the sonorities.
+\item Their chord density is high - there are many more chords per
+  measure than in a symphony, for example.
+\item They are canonical examples of tonal harmony.
+\item There are 371 on the Riemenschneider edition, more than
+  enough to train our algorithms and get precise error analysis.
+\item Their texture is simple and constant. It consists basically of
+  four voices forming simple triads and tetrads.
+\end{enumerate}
+
+We have already analyzed 140 of them and plan on completing this task
+soon. The chorales are stored in a subset of the GNU Lilypond
+\cite{nienhuys:lilypond} format, from which we generate MIDI files and
+typeset scores, possibly annotated with analysis results (both by
+human and by computer).
+
+When the chorales are fully analysed we plan on incorporating the
+Kostka-Payne \cite{kostka03:tonal} corpus, Beethoven sonatas, Bach
+cello suites and other pieces.
+
+\subsection{The answer sheet format}
+\label{sec:formato-dos-acordes}
+
+The results of human analysis performed on the chorales are stored in
+a simple, flexible text format, designed to
+
+\begin{enumerate}
+\item be as close as possible to usual popular notation,
+\item represent inherent ambiguities in chord, and
+\item single out sonorities that do not constitute chords, instead
+  having melodic functions on the piece.
+\end{enumerate}
+
+The first four sonorities of the answer sheet for Bach's chorale \#1
+``Aus meines Herzens Grunde'', for example, are stored as \texttt{G G
+  C/E (C7+/E [b])}. Each chord symbols represents a sonority. Chords
+in parenthesis represent possible interpretations of a single
+sonority. Notes in brackets are non-chord tones, marking sonorities
+that do not constitute chords.
+
+This information is then used as answer sheets and training data on the
+many algorithms implemented in our system.
+
+\section{Comparison with similar works}
 \label{sec:differences-from-similar-software}
+
+\nota{fazer uma revisao maior}
 
 We only had access to one similar system, Temperley and Sleator's
 Melisma \cite{temperley99:modeling}. The output of the system is
@@ -438,7 +440,6 @@ Our main issues with both systems are their ignorance, by design, of
 non-chord tones and their lack of automated test suites for their
 algorithms. This difficults a clear evaluation of their merits and
 flaws.
-
 
 \section{Preliminary results}
 \label{sec:analysis-results}
