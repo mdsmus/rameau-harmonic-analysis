@@ -81,14 +81,14 @@ However, these comparisons are based on results published in papers
 and not from direct implementations. That means that only the examples
 published by the authors can be compared.
 
-\nota{terminar}
-In this paper we will present Rameau, a framework for automatic
-harmonic analysis of Western tonal music. Our main goal in building
-this framework is to allow an easy comparison between algorithms and
-results. We also present an evaluation of ten algorithms using a
-corpus of 140 Bach Chorales. Section \ref{sec:system} describes Rameau
-in more details, section \ref{sec:problem} lists the problems related
-to harmonic analysis, section \ref{sec:analysis-results} analyses the
+\nota{terminar} In this paper we will present Rameau, a framework for
+automatic harmonic analysis of Western tonal music. Our main goal in
+building this framework is to allow an easy comparison between
+algorithms and results. We also present an evaluation of ten
+algorithms using a corpus of 140 Bach Chorales from the
+Riemenschneider edition. Section \ref{sec:system} describes Rameau in
+more details, section \ref{sec:problem} lists the problems related to
+harmonic analysis, section \ref{sec:analysis-results} analyses the
 results obtained, and section \ref{sec:concl-future-work} .......
 
 \section{The problem of automated harmonic analysis}
@@ -144,11 +144,11 @@ approaches for harmonic analysis, in the manner of reference
 \cite{gomez.herrera:tonality}.
 
 Rameau is written in Common Lisp and runs on the Steel Bank Common
-Lisp (SBCL \nota{citation needed}) compiler on the GNU/Linux operating
+Lisp \cite{team07:_sbcl} compiler on the GNU/Linux operating
 system. Rameau also runs on windows (it may run on MacOS, but that was
 not tested) and is portable enough to be compiled with CMUCL
-\cite{maclachlan06:_cmucl_users_manual} and Clisp \nota{citation
-  needed}.
+\cite{maclachlan06:_cmucl_users_manual} and Clisp
+\cite{haible07:_clisp}.
 
 \subsection{Architecture}
 \label{sec:architecture-and-api}
@@ -216,6 +216,57 @@ the analysis results for the chosen algorithms. The output score shows
 incorrect analysis in bold italic. Non-chord tones are notated as
 ``—''. It is important to remember that while some algorithms identify
 whole chords, others identify only the root.
+
+\subsection{Test Corpus}
+\label{sec:test-corpus}
+
+We are building a corpus of analyzed and digitalized Bach chorales to
+use as training and test data. Bach chorales were chosen because:
+
+\begin{enumerate}
+\item they are easily analyzed. For example, the segmentation problem in
+them consists simply of determining the sonorities.
+\item Their chord density is high - there are many more chords per
+  measure than in a symphony, for example.
+\item They are canonical examples of tonal harmony.
+\item There are 371 on the Riemenschneider edition, more than
+  enough to train our algorithms and get precise error analysis.
+\item Their texture is simple and constant. It consists basically of
+  four voices forming simple triads and tetrads.
+\end{enumerate}
+
+We have already analyzed 140 of them and plan on completing this task
+soon. The chorales are stored in a subset of the GNU Lilypond
+\cite{nienhuys:lilypond} format, from which we generate MIDI files and
+typeset scores, possibly annotated with analysis results (both by
+human and by computer).
+
+When the chorales are fully analysed we plan on incorporating the
+Kostka-Payne \cite{kostka03:tonal} corpus, Beethoven sonatas, Bach
+cello suites and other pieces.
+
+\subsection{The answer sheet format}
+\label{sec:formato-dos-acordes}
+
+The results of human analysis performed on the chorales are stored in
+a simple, flexible text format, designed to
+
+\begin{enumerate}
+\item be as close as possible to usual popular notation,
+\item represent inherent ambiguities in chord, and
+\item single out sonorities that do not constitute chords, instead
+  having melodic functions on the piece.
+\end{enumerate}
+
+The first four sonorities of the answer sheet for Bach's chorale \#1
+``Aus meines Herzens Grunde'', for example, are stored as \texttt{G G
+  C/E (C7+/E [b])}. Each chord symbols represents a sonority. Chords
+in parenthesis represent possible interpretations of a single
+sonority. Notes in brackets are non-chord tones, marking sonorities
+that do not constitute chords.
+
+This information is then used as answer sheets and training data on the
+many algorithms implemented in our system.
 
 \subsection{Numeric codification for tonal music}
 \label{sec:codificacao-jamary}
@@ -364,57 +415,6 @@ For these reasons we have adopted the base-96 codification, although
 no algorithm at present makes direct use of it. We believe it is a
 very nice form of describing tonal music numerically and it should be
 more known among researches and developers.
-
-\subsection{The answer sheet format}
-\label{sec:formato-dos-acordes}
-
-The results of human analysis performed on the chorales are stored in
-a simple, flexible text format, designed to
-
-\begin{enumerate}
-\item be as close as possible to usual popular notation,
-\item represent inherent ambiguities in chord, and
-\item single out sonorities that do not constitute chords, instead
-  having melodic functions on the piece.
-\end{enumerate}
-
-The first four sonorities of the answer sheet for Bach's ``Aus meines
-Herzens Grunde'' chorale (the first in our corpus), for example, are
-stored as \texttt{G G C/E (C7+/E [b])}. Each chord symbols represents
-a sonority. Chords in parenthesis represent possible interpretations
-of a single sonority. Notes in brackets are non-chord tones, marking
-sonorities that do not constitute chords.
-
-This information is then used as answer sheets and training data on the
-many algorithms implemented in our system.
-
-\subsection{Test Corpus}
-\label{sec:test-corpus}
-
-We are building a corpus of analyzed and digitalized Bach chorales to
-use as training and test data. Bach chorales were chosen because:
-
-\begin{enumerate}
-\item they are easily analyzed. For example, the segmentation problem in
-them consists simply of determining the sonorities.
-\item Their chord density is high - there are many more chords per
-  measure than in a symphony, for example.
-\item They are canonical examples of tonal harmony.
-\item There are 371 on the Riemenschneider edition, more than
-  enough to train our algorithms and get precise error analysis.
-\item Their texture is simple and constant. It consists basically of
-  four voices forming simple triads and tetrads.
-\end{enumerate}
-
-We have already analyzed 140 of them and plan on completing this task
-soon. The chorales are stored in a subset of the GNU Lilypond
-\cite{nienhuys:lilypond} format, from which we generate MIDI files and
-typeset scores, possibly annotated with analysis results (both by
-human and by computer).
-
-When the chorales are fully analysed we plan on incorporating the
-Kostka-Payne \cite{kostka03:tonal} corpus, Beethoven sonatas, Bach
-cello suites and other pieces.
 
 \subsection{Comparison with similar works}
 \label{sec:differences-from-similar-software}
@@ -664,20 +664,18 @@ acerta a análise.
   \label{tab:common-errors}
 \end{table}
 
-
-\nota{conferir titulos}
-
 \begin{figure}
   \centering
   \includegraphics[scale=4]{coral-012}
-  \caption{An analysed excerpt from chorale 12 - ``Puer Natus in Bethlem''}
+  \caption{An analysed excerpt from chorale 12, ``Puer natus in Bethlem''}
   \label{fig:coral-12}
 \end{figure}
 
 \begin{figure}
   \centering
   \includegraphics[scale=4]{coral-054}
-  \caption{An analysed excerpt from chorale 54 - ``Kommt her, ihr lieben Schwesterlein''}
+  \caption{An analysed excerpt from chorale 54, ``Lobt Gott, ihr
+    Christen, allzugleich''}
   \label{fig:coral-54}
 \end{figure}
 
