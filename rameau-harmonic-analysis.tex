@@ -132,8 +132,7 @@ Rameau, that should enable us to
 \item compare results precisely and repeatably with human analysis of
   a large corpus of music;
 \item allow algorithms to access detailed information in the input score,
-  such as enharmonic differences, meter, etc; and \nota{especificar
-    quais são as informações. Corrigido?}
+  such as enharmonic differences, meter, etc; and
 \item easily develop new algorithms, test existing ones, and compare
   precisely the results.
 \end{enumerate}
@@ -170,10 +169,10 @@ function and a comparison function as parameters. The input to the
 analysis function is a list of sonorities. In Rameau, sonorities are
 lists of notes, each note specifying its onset time, duration, octave
 and pitch. The output is a list of either chords or non-chord tones,
-one for each input sonority. Chord are structures possibly having a
+one for each input sonority. Chords are structures possibly having a
 fundamental, a mode, a seventh, a bass, and other additions. The
 framework provides a few possible comparison functions for easy
-usage. \nota{restruturar a partir do which. Corrigido?}
+usage.
 
 We have currently implemented using this API 
 \begin{enumerate}
@@ -193,6 +192,30 @@ Rameau's source code is publicly available, under a GNU GPL
 repository at \url{genos.mus.br/repos/rameau.git} and for
 visualization at \url{git.genos.mus.br/?p=rameau.git}.
 
+\subsection{The interface}
+\label{sec:analysis-output}
+
+Rameau is basically a command line program, although a GUI version is
+planned. The user can select the chorales he or she wants to have
+analyzed and specify the algorithms for the analysis. The output shows
+a table with the partition number, the correct analysis from each
+sonority (take from the answer sheet) and the analysis output for
+each chosen algorithm. The nice thing about this output is that it
+can be further processed using regular unix tools such as grep, awk,
+and sed.
+
+To simplify reading for humans, rameau can output a score with the
+chorale and the analysis from each algorithm chosen. The music
+notation program LilyPond is used to render the score.
+
+Figure \ref{fig:coral-12} shows the result of the analysis of the
+first phrase of chorale \#12. The first line shows the partition
+number, the last line the expected answer, and the lines in between
+the analysis results for the chosen algorithms. The output score shows
+incorrect analysis in bold italic. Non-chord tones are notated as
+``—''. It is important to remember that while some algorithms identify
+whole chords, others identify only the root.
+
 \subsection{Numeric codification for tonal music}
 \label{sec:codificacao-jamary}
 
@@ -205,18 +228,18 @@ Hewlett, and Oliveira \cite{brinkman86:_binom_repres_of_pitch_for,
 For simplicity we will refer to them as binomial, base-40, and
 base-96, respectively.
 
-\nota{verificar quem é zero note-class}
-
 Notes in the binomial notation are represented as tuples in the form
 of \texttt{<pc,nc>} where \texttt{pc} stands for pitch-class and
 \texttt{nc} for note-class. Note-class is a modulo 7 notation system
 that represents numerically each note name (A, B, C, D, E, F, G) from
-0 to 6. For example, C$\sharp$ is represented as \texttt{<1,0>} and
-D$\flat$ as \texttt{<1,1>}. The binomial notation also allows a
-packaged representation using only single numbers, where the
-pitch-class is multiplied by 10 and added to the note-class. For
-example, C$\sharp$ becomes 10 and D$\flat$ 11. \nota{deixar mais
-  claro}
+0 to 6. 0 represents any C, with or without accidentals, 1 represents
+any D, with or without accidentals, and so on. For example, C$\sharp$
+is represented as \texttt{<1,0>}, D$\flat$ as \texttt{<1,1>}, and Cb
+as <11,0>. In this last example 11 represents the pich-class of the
+note and 0 indicates how it will be spelled. The binomial notation
+also allows a packaged representation using only single numbers, where
+the pitch-class is multiplied by 10 and added to the note-class. For
+example, C$\sharp$ becomes 10 and D$\flat$ 11.
 
 Unlike the binomial notation, the base-40 notation uses only single
 numbers. The octave is divided linearly in 40 notes from C$\flat\flat$
@@ -250,7 +273,10 @@ advantagens of the base-40 notation with a few advantagens. Table
 \ref{tab:jama-notas} shows how notes are encoded. In this notation the
 intervals are invariant under most transformations, such as inversion,
 transposition, etc. Table \ref{tab:jama-intervalos} shows the coding
-for the intervals. \nota{explicar tabela2 e mudar para 1st, 2nd, etc}
+for the intervals. In this table the first column indicates the
+interval name; p, M, m, d, A for perfect, major, minor, diminished,
+and augmented, respectively. The letters before d and A indicate the
+quantity of the interval. For instance, tA is triple-augmented.
 
 \begin{table}
   \centering
@@ -283,21 +309,21 @@ for the intervals. \nota{explicar tabela2 e mudar para 1st, 2nd, etc}
     & 1$^{st}$& 2$^{nd}$& 3$^{rd}$& 4$^{th}$& 5$^{th}$& 6$^{th}$& 7$^{th}$& 8$^{th}$ \\
     \hline
     sd  &  & 7&21&35&49&62&76&90 \\
-    pd  &  & 8&22&36&50&63&77&91 \\
+    qd  &  & 8&22&36&50&63&77&91 \\
     qd  &  & 9&23&37&51&64&77&92 \\
     td  &  &10&24&38&52&65&78&93 \\
     dd  &  &11&25&39&53&66&79&94 \\
     d   &  &12&26&40&54&67&80&95 \\
     m   &  &13&27&  &  &68&82&   \\
-    J   & 0&  &  &41&55&  &  &96 \\
+    P   & 0&  &  &41&55&  &  &96 \\
     M   &  &14&28&  &  &69&83&   \\
     A   & 1&15&29&42&56&70&84&   \\
     dA  & 2&16&30&43&57&71&85&   \\
     tA  & 3&17&31&44&58&72&86&   \\
     qA  & 4&18&32&45&59&73&87&   \\
-    pA  & 5&19&33&46&60&74&88&   \\
+    qA  & 5&19&33&46&60&74&88&   \\
     sA  & 6&20&34&47&61&75&89&   \\
-    hA  &  &  &  &48&  &  &  &   
+    oA  &  &  &  &48&  &  &  &   
   \end{tabular}
   \caption{Invervals in base-96 notation}
   \label{tab:jama-intervalos}
@@ -309,8 +335,7 @@ pitch-class system (modulo 12): in the base-96 notation G = 55, and
 the result of 55 mod 12 is 7, representing G in the pitch-class
 notation. 
 
-\nota{melhorar inicio}
-The base-40 notation starts to fail with notes that have more than two
+The problem with the base-40 notation is that it only works up to two
 accidentals. For example, the interval between C$\flat\flat$ and
 C$\sharp\sharp$ (a quadruple augmented unison) has the same value (6)
 as diminished second. On the other hand, in the base-96 notation this
@@ -368,20 +393,16 @@ many algorithms implemented in our system.
 We are building a corpus of analyzed and digitalized Bach chorales to
 use as training and test data. Bach chorales were chosen because:
 
-\nota{reformatar}
 \begin{enumerate}
 \item they are easily analyzed. For example, the segmentation problem in
 them consists simply of determining the sonorities.
 \item Their chord density is high - there are many more chords per
-  measure than in a symphony, for example. \nota{eles tem maior densidade de
-  acorde por compasso que, por exemplo, uma sinfonia. Corrigido?}
+  measure than in a symphony, for example.
 \item They are canonical examples of tonal harmony.
 \item There are 371 on the Riemenschneider edition, more than
   enough to train our algorithms and get precise error analysis.
-  \nota{especificar most needs. Corrigido?}
 \item Their texture is simple and constant. It consists basically of
-  four voices forming simple triads and tetrads. \nota{rescrever mais
-    claro. Corrigido?}
+  four voices forming simple triads and tetrads.
 \end{enumerate}
 
 We have already analyzed 140 of them and plan on completing this task
@@ -393,36 +414,6 @@ human and by computer).
 When the chorales are fully analysed we plan on incorporating the
 Kostka-Payne \cite{kostka03:tonal} corpus, Beethoven sonatas, Bach
 cello suites and other pieces.
-
-\nota{falar que pretendemos ter um corpus maior que os corais. Corrigido?}
-
-\subsection{Interface}
-\label{sec:analysis-output}
-
-\nota{melhorar titulo. Que tal interface?}
-
-Rameau is basically a command line program, although a GUI version is
-planned. The user can select the chorales he or she wants to have
-analyzed and specify the algorithms for the analysis. The output shows
-a table with the partition number, the correct analysis from each
-sonority (take from the answer sheet) and the analysis output for
-each chosen algorithm. The nice thing about this output is that it
-can be further processed using regular unix tools such as grep, awk,
-and sed.
-
-To simplify reading for humans, rameau can output a score with the
-chorale and the analysis from each algorithm chosen. The music
-notation program LilyPond is used to render the score.
-
-Figure \ref{fig:coral-12} shows the result of the analysis of the
-first phrase of chorale \#12. The first line shows the partition
-number, the last line the expected answer, and the lines in between
-the analysis results for the chosen algorithms. The output score shows
-incorrect analysis in bold italic. Non-chord tones are notated as
-``-\,-''.
-
-\nota{falar das notas melodicas (em sequencia) no coral 54, ritardos,
-  etc. passos: isso não cabe muito bem aqui, eu diria}
 
 \subsection{Comparison with similar works}
 \label{sec:differences-from-similar-software}
@@ -519,12 +510,11 @@ To study the effect of contextual information we have also implemented
 by also looking at the pitch counts two preceding and one following
 sonoritie. Their performances are equivalent, so perhaps the
 contextual information necessary for harmonic analysis is not easily
-inferrable from pitch counts \nota{justificar essa frase.
-  Corrigido?}.The two other neural networks, \texttt{Chord-net} and
-\texttt{Mode-net}, also determine a chord's mode and its seventh.
-\texttt{Chord-net}'s input is the same as \texttt{Sim\-ple\--net}'s,
-while and \texttt{Mode-net} also sees the results of
-\texttt{Context-net}'s analysis for each sonority.
+inferrable from pitch counts. The two other neural networks,
+\texttt{Chord-net} and \texttt{Mode-net}, also determine a chord's
+mode and its seventh. \texttt{Chord-net}'s input is the same as
+\texttt{Sim\-ple\--net}'s, while and \texttt{Mode-net} also sees the
+results of \texttt{Context-net}'s analysis for each sonority.
 
 The performance of each neural network depends heavily on the number
 of hidden units it uses. Too few units and the network hasn't got
@@ -589,8 +579,7 @@ two-step process: first a sonority's fundamental is determined by
 \texttt{Simple-tree}, then the sonority is transposed to a normalized
 format (the bass is always pitch class 0) and then \texttt{Mode-net}
 is applied. This effectively reduces the input space, limiting the
-effects of poor generalization. \nota{exemplificar como
-  chegou a isso, colocar exemplo do chord-tree. Corrigido?}
+effects of poor generalization.
 
 Our current accuracies for the decision-tree based algorithms are $82
 \pm 8\%$ for \texttt{Simple-tree}, $76 \pm 9\%$ for
@@ -696,6 +685,17 @@ acerta a análise.
 
 \nota{escrever (duh!)}
 \nota{fazer tabela}
+
+The chorale exerpt in figure \ref{fig:coral-54} is a little tricky to
+analyse because the all chords in partitions 36--39 have a non-chord
+tone. The A in partition 36 as a retardation, the C in p. 37 a
+passage, the G in p. 38 another retardation, and the E in p. a
+cambiata. It is interesting to observe that the neural network based
+algorithms identify correctely the non-chords tones, the decision tree
+algorithms fail in partitions 36 and 37 but give a correct answer in
+p. 38--39, pardo-birmingham is able to indentify the basic harmonic
+framework (without non-chord tones, however), while temperley-sleator
+incorrectelly assumes all chords have G as root.
 
 \section{Conclusions and future work}
 \label{sec:concl-future-work}
