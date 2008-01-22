@@ -40,18 +40,21 @@ In music, harmonic analysis is the study of vertical sonorities and it
 connections and is paramount to the understanding of tonal
 compositions. The analyst can find the root of chords, label
 sonorities with proper chords names (such as ``A minor''), and
-identify the relationship between chords using roman numerals.
+identify the relationship between chords using roman
+numerals. \nota{passos: seria melhor ``the analyst finds'' em vez de
+  ``the analyst can find'', não?}
 
 Harmonic analysis by computer is an important, challenging, and
 interesting computer music research topic. It is challenging because
 the musical material has a large variety of information such as
-timber, notes, rhythm, dynamics, harmony, and by the fact that music is
-not a linear process, unlike image \cite{mouton95:numeric}. The
+timbre, notes, rhythm, dynamics, harmony, and by the fact that music
+is not a linear process, unlike image \cite{mouton95:numeric}. The
 harmonic changes in a choral texture, where usually all notes in all
 voices begin and finish at the same time, are obvious. However, very
 often chords can be arppeggiated, incomplete, and intertwined with
-non-harmonic tones. These things contribute to increase considerably
-the complexity for analysis \cite{pardo00:automated}. 
+non-harmonic tones. \nota{passos: ``chords are'' ficaria melhor, não?}
+These things contribute to increase considerably the complexity for
+analysis \cite{pardo00:automated}.
 
 There are many practical applications for automatic music analysis,
 among them arranging, detection of possible logical mistakes in
@@ -61,7 +64,9 @@ statistical analysis of musical styles for automated composition
 harmonic analysis is important because it can bring new insights in
 music theory, in the same way the use of computer in vision and
 problem solving has brought new insights in these areas
-\cite{temperley99:modeling}.
+\cite{temperley99:modeling}. \nota{passos: as duas frases estão
+  soltas. Seria melhor, na segunda, colocar um ``also'' antes de
+  ``important''}
 
 Until now a single framework that allows the comparison between
 different algorithms and analysis results has not been developed.
@@ -80,7 +85,10 @@ Birmingham's, and Temperley and Sleator's
 \cite{maxwell92:expert,temperley96:algorithm,pardo99:automated}.
 However, these comparisons are based on results published in papers
 and not from direct implementations. That means that only the examples
-published by the authors can be compared.
+published by the authors can be compared. \nota{passos: essa última
+  frase está um pouco redundante. O que você acha de retirá-la, e
+  colocar na anterior algo dizendo ``so they aren't statistically
+  significant and reproducible'' ou algo assim?}
 
 \nota{terminar} In this paper we will present Rameau, a framework for
 automatic harmonic analysis of Western tonal music. Our main goal in
@@ -103,7 +111,11 @@ are grouped together the program may have problems in places where
 enharmonic information is important. Most systems either ignore this
 problem or develop a pitch speller \cite{temperley99:modeling}. To our
 knowledge no harmonic analysis software currently uses an input format
-that preserves enharmonic information.
+that preserves enharmonic information. \nota{ passos: pensando bem, eu
+  não sei se gosto de dizer que o formato de entrada é um
+  problema. Talvez seja melhor dizer ``the first problem is pitch
+  spelling'', e dizer que isso pode estar ou não no formato de
+  entrada. Que acha?}
 
 The second problem is determining what are the vertical sonorities in
 a piece of music and grouping these sonorities into harmonically
@@ -119,14 +131,18 @@ require contextual information, which complicates the matter a bit,
 difficulting local decisions. Still, over 80\% of accuracy is possible
 ignoring context (see section \ref{sec:analysis-results}).
 
-The last problem is finding the key of the piece and assigning a tonal
-function to each chord.
+The last problem is finding the main key and the modulations of the
+piece and assigning a tonal function to each chord.
 
 \section{Numeric codification for tonal music}
 \label{sec:codificacao-jamary}
 
 Probably the pitch-class notation, or some variation such as MIDI, is
-the most used way of to numerically represent pitch. The main problem
+the most used way of to numerically represent pitch \nota{ passos:
+  essa frase está muito uma colagem de edições anteriores. Eu
+  escreveria ``The most used way of numerically representing pitch'',
+  você diria ``The most used notation to numerically represent
+  pitch'', e pra mim tanto faz}. The main problem
 with this notation is the loss of enharmonic spelling. In this section
 we will revise three notations created independently by Brinkman,
 Hewlett, and Oliveira \cite{brinkman86:_binom_repres_of_pitch_for,
@@ -263,10 +279,12 @@ like:
 To do anything non-trivial, like interval-class vectors, yet extra
 work has to be done, increasing complexity.
 
-\nota{falar em algum lugar porque nao usa codificação tonal}
+\nota{falar em algum lugar porque nao usa codificação tonal. passos:
+  corrigido de forma concisa, acha melhor falar mais?}
 
 For these reasons we have adopted the base-96 codification, although
-no algorithm at present makes direct use of it. We believe it is a
+no algorithm at present makes direct use of it, since they expect
+pitch classes as input. We believe it is a
 very nice form of describing tonal music numerically and it should be
 more known among researches and developers.
 
@@ -294,7 +312,7 @@ approaches for harmonic analysis, in the manner of reference
 
 Rameau is written in Common Lisp and runs on the Steel Bank Common
 Lisp \cite{team07:_sbcl} compiler on the GNU/Linux operating
-system. Rameau also runs on windows (it may run on MacOS, but that was
+system. Rameau also runs on windows (it might run on MacOS, but that was
 not tested) and is portable enough to be compiled with CMUCL
 \cite{maclachlan06:_cmucl_users_manual} and Clisp
 \cite{haible07:_clisp}.
@@ -320,7 +338,7 @@ analysis function is a list of sonorities. In Rameau, sonorities are
 lists of notes, each note specifying its onset time, duration, octave
 and pitch. The output is a list of either chords or non-chord tones,
 one for each input sonority. Chords are structures possibly having a
-fundamental, a mode, a seventh, a bass, and other additions. The
+root, a mode, a seventh, a bass, and other additions. The
 framework provides a few possible comparison functions for easy
 usage.
 
@@ -345,14 +363,13 @@ visualization at \url{git.genos.mus.br/?p=rameau.git}.
 \subsection{The interface}
 \label{sec:analysis-output}
 
-Rameau is basically a command line program, although a GUI version is
+Rameau is a command line program, although a GUI version is
 planned. The user can select the chorales he or she wants to have
 analyzed and specify the algorithms for the analysis. The output shows
-a table with the partition number, the correct analysis from each
-sonority (take from the answer sheet) and the analysis output for
-each chosen algorithm. The nice thing about this output is that it
-can be further processed using regular unix tools such as grep, awk,
-and sed.
+a table with the partition number, the correct analysis for each
+sonority (taken from the answer sheet) and the analysis output for each
+chosen algorithm. The nice thing about this output is that it can be
+further processed using regular unix tools such as grep, awk, and sed.
 
 To simplify reading for humans, rameau can output a score with the
 chorale and the analysis from each algorithm chosen. The music
@@ -384,8 +401,8 @@ them consists simply of determining the sonorities.
   four voices forming simple triads and tetrads.
 \end{enumerate}
 
-We have already analyzed 140 of them and plan on completing this task
-soon. The chorales are stored in a subset of the GNU Lilypond
+We have already analyzed 140 of them and plan on fully analyzing the
+corpus soon. The chorales are stored in a subset of the GNU Lilypond
 \cite{nienhuys:lilypond} format, from which we generate MIDI files and
 typeset scores, possibly annotated with analysis results (both by
 human and by computer).
@@ -463,8 +480,8 @@ The current accuracy is $66 \pm 9\%$.
 \subsection{Neural Networks}
 \label{sec:neural-nets}
 
-Neural networks are a tool to perform non-linear statistical data
-modeling that works by having artificial ``neurons'' exchange
+Neural networks are tools for non-linear statistical data
+modeling that work by having artificial ``neurons'' exchange
 information. There are many varieties of neural networks, each being
 useful for a certain type of problem. Our networks are all multilayer
 feedforward neural networks, with one hidden layer each. This is the
@@ -478,7 +495,7 @@ neurons to output neurons. Our networks are layered feedforward neural
 networks, in which the neurons are arranged in layers, as in figure
 \ref{fig:simple-net-diagram}. Each neuron receives information from
 all neurons in the layer preceding it and forwards information to all
-neurons in the next layers. The first layer, the input layer, receives
+neurons in the next layer. The first layer, the input layer, receives
 the input to the neural network as information, and the output layer
 emits the neural network's outputs. One hidden layer between the input
 and output layers is enough to represent every continuous function
@@ -505,19 +522,21 @@ algorithms for harmonic analysis, basing our approaches on
 \cite{tsui02:_harmon_analy_using_neural_networ}. The input of our
 simplest algorithm, \texttt{Simple\hyp{}net}, is a sonority's pitch
 count, or how many times each pitch class sounds in it. As output, the
-network activates the neuron representing the fundamental for that
-sonority (or does nothing, if the sonority does not form a chord).
-Figure \ref{fig:simple-net-diagram} shows its connections and labels.
-To study the effect of contextual information we have also implemented
-\texttt{Context-net}, differing from the \texttt{Simple\hyp{}net} only
-by also looking at the pitch counts two preceding and one following
-sonoritie. Their performances are equivalent, so perhaps the
-contextual information necessary for harmonic analysis is not easily
-inferrable from pitch counts. The two other neural networks,
-\texttt{Chord-net} and \texttt{Mode-net}, also determine a chord's
-mode and its seventh. \texttt{Chord-net}'s input is the same as
-\texttt{Sim\-ple\--net}'s, while and \texttt{Mode-net} also sees the
-results of \texttt{Context-net}'s analysis for each sonority.
+network activates the neuron representing the root for that sonority
+(or does nothing, if the sonority does not form a chord).  Figure
+\ref{fig:simple-net-diagram} illustrates its connections and labels.
+To study the effect of contextual information in harmonic analysis we
+have also implemented \texttt{Context-net}, differing from the
+\texttt{Simple\hyp{}net} only by also looking at the pitch counts of
+two preceding sonorities and one immediately the one being
+analysed. \texttt{Context-net} and \texttt{Simple-net}'s performances
+are equivalent, so perhaps the contextual information necessary for
+harmonic analysis is not easily inferrable from pitch counts. The two
+other neural networks, \texttt{Chord-net} and \texttt{Mode-net}, also
+determine a chord's mode and its seventh. \texttt{Chord-net}'s input
+is the same as \texttt{Sim\-ple\--net}'s, while and \texttt{Mode-net}
+also sees the results of \texttt{Context-net}'s analysis for each
+sonority.
 
 The performance of each neural network depends heavily on the number
 of hidden units it uses. Too few units and the network hasn't got
