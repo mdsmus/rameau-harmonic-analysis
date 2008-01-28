@@ -625,28 +625,32 @@ due to their lower generalization performance.
 \subsection{Performance analysis}
 \label{sec:common-errors}
 
-We believe a more systematic analysis of the errors in harmonic
-analysis methods in fundamental to a better understanding of how to
-improve current techniques. Since harmonic analysis is an information
-retrieval problem, metrics developed to assess the performance of
-information retrieval algorithm might help understanding and
-evaluating improvements over the current methods. In this section we
-will evaluate our mode-finding algorithms' precision and
-recall. Recall measures how likely is a sonority's mode to be
-correctly recognized, while precision measures how correct are the
-recognized modes \cite{russell.ea:artificial}. 
+We believe a more systematic study of the errors made by harmonic
+analysis methods is necessary to understand and improve them. Since
+harmonic analysis can be seen as an information retrieval problem,
+metrics developed to assess the performance of information retrieval
+systems should help understanding and evaluating the performance of
+harmonic analysis algorithms. For this reason we chose to analyze our
+results in terms of precision and recall. Precision measures how
+correct are the returned results, while recall measures how likely is
+a sonority's mode to be correctly recognized, as can be seen in the
+chapter 23 of \cite{russell.ea:artificial}. While a combined measure
+of these characteristics (like average accuracy over all sonorities)
+is a good assessment of the general performance of an algorithm, it
+hides a lot of interesting information on its behavior.
 
-The consideration of precise metrics always shows interesting
-guidelines on how to improve existing techniques. For example, tables
-\ref{tab:precision} and \ref{tab:recall} show that, with proper
-modifications, to learn to classify more modes, Pardo and Birmingham's
-algorithm can match or excede the performance of our machine learning
-techniques. Table \ref{tab:recall} shows that our machine learning
-algorithms are missing many melodic notes. Tables \ref{tab:precision}
-and \ref{tab:recall} indicate that the neural network algorithms are
-failing to recognize fully diminished and augmented chords, which is
-probably and indication that our training examples should contain more
-of these.
+Tables \ref{tab:precision} and \ref{tab:recall} show that with proper
+modifications to classify more chord modes Pardo and Birmingham's
+algorithm can match or even exceed the accuracy of our current machine
+learning techniques. Table \ref{tab:recall} shows that our machine
+learning algorithms are missing many melodic notes. Tables
+\ref{tab:precision} and \ref{tab:recall} indicate that the neural
+network algorithms are failing to recognize fully diminished,
+incomplete, and augmented chords, probably because that our training
+corpus lacks enough examples of these chords. Because the decision
+trees are better at these rare modes we can conclude that they recall
+few examples better, while the neural networks tend to generalize more
+efficiently when more examples are available.
 
 As we implement more algorithms, performance analysis by rigorous
 metrics will enable us to draw better conclusions as to the merits and
@@ -655,14 +659,14 @@ flaws of each technique.
 
 \begin{table}
   \centering
-  \begin{tabular}{l|p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}}
-                 &  °& °7& ø7& m&  m7&  M& M7&M7+& + &  -& avg\\
-    \hline
-    Pardo-Birm   & 63& 59& 37& 77&  0& 66& 72&  0&  0&  0& 37 \\
-    Mode tree    & 56& 54& 66& 78& 61& 87& 76& 27&  0& 85& 59 \\
-    Chord tree   & 56& 54& 66& 78& 67& 87& 76& 27&  0& 85& 60 \\
-    Mode net     & 67&  0& 72& 89& 70& 92& 85& 34&  0& 84& 59 \\
-    Chord net    & 70&  0& 71& 87& 75& 90& 89& 35&  0& 86& 60 \\
+  \begin{tabular}{l|p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}}
+                 &  °& °7& ø7& m&  m7&  M& M7&M7+& + &  -& inc& avg\\
+    \hline                                                     
+    Pardo-Birm   & 63& 59& 37& 77&  0& 66& 72&  0&  0&  0&   0& 34 \\
+    Mode tree    & 56& 54& 66& 78& 61& 87& 76& 27&  0& 85&  23& 56 \\
+    Chord tree   & 56& 54& 66& 78& 67& 87& 76& 27&  0& 85&  23& 56 \\
+    Mode net     & 67&  0& 72& 89& 70& 92& 85& 34&  0& 84&   0& 54 \\
+    Chord net    & 70&  0& 71& 87& 75& 90& 89& 35&  0& 86&  18& 56 \\
   \end{tabular}
   \caption{Precision (\%)}
   \label{tab:precision}
@@ -670,14 +674,14 @@ flaws of each technique.
 
 \begin{table}
   \centering
-  \begin{tabular}{l|p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}}
-                 &  °& °7& ø7& m&  m7&  M& M7&M7+& + &  -& avg\\
+  \begin{tabular}{l|p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}}
+                 &  °& °7& ø7& m&  m7&  M& M7&M7+& + &  -& inc& avg\\
     \hline
-    Pardo-Birm   & 86& 85& 77& 91&  0& 97& 93&  0&  0&  0& 53 \\
-    Mode tree    & 68& 36& 44& 89& 65& 94& 82& 59&  0& 55& 59 \\
-    Chord tree   & 68& 37& 45& 88& 66& 94& 82& 56&  0& 58& 59 \\
-    Mode net     & 81&  0& 61& 93& 82& 94& 90& 70&  0& 68& 64 \\
-    Chord net    & 86&  0& 68& 93& 77& 95& 88& 78&  0& 67& 65 \\
+    Pardo-Birm   & 86& 85& 77& 91&  0& 97& 93&  0&  0&  0&   0& 48 \\
+    Mode tree    & 68& 36& 44& 89& 65& 94& 82& 59&  0& 55&  18& 55 \\
+    Chord tree   & 68& 37& 45& 88& 66& 94& 82& 56&  0& 58&  18& 56 \\
+    Mode net     & 81&  0& 61& 93& 82& 94& 90& 70&  0& 68&   0& 58 \\
+    Chord net    & 86&  0& 68& 93& 77& 95& 88& 78&  0& 67&   5& 60 \\
   \end{tabular}
   \caption{Recall (\%)}
   \label{tab:recall}
