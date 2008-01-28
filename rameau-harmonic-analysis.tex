@@ -352,7 +352,7 @@ We have currently implemented using this API
   \cite{temperley.ea:modeling}, 
 \item four neural networks (using the Fann \cite{nissen:fann}
   library) roughly similiar to some described in
-  \cite{tsui02:_harmon_analy_using_neural_networ}, and
+  \cite{tsui:harmonic}, and
 \item four decision trees modeled after the neural networks (using code
   from \cite{mitchell:machine}).
 \end{enumerate}
@@ -521,7 +521,7 @@ usually with the backpropagation algorithm or a variant of it.
 
 We, in Rameau, have currently implemented four neural-network-based
 algorithms for harmonic analysis, basing our approaches on
-\cite{tsui02:_harmon_analy_using_neural_networ}. The input of our
+\cite{tsui:harmonic}. The input of our
 simplest algorithm, \texttt{Simple\hyp{}net}, is a sonority's pitch
 count, or how many times each pitch class sounds in it. As output, the
 network activates the neuron representing the root for that sonority
@@ -606,7 +606,7 @@ Our current accuracies for the decision-tree based algorithms are $82
 \texttt{Context-tree}, $77 \pm 10\%$ for \texttt{Mode-tree} and $50
 \pm 11$ for \texttt{Chord-tree}.
 
-\subsection{Training set size}
+\subsection{The effect of training set size}
 
 The effect training set size on the accuracy of the neural networks
 and decision trees can be seen in figure
@@ -622,7 +622,7 @@ due to their lower generalization performance.
 \end{figure}
 
 
-\subsection{Performance Analysis}
+\subsection{Performance analysis}
 \label{sec:common-errors}
 
 We believe a more systematic analysis of the errors in harmonic
@@ -634,7 +634,7 @@ evaluating improvements over the current methods. In this section we
 will evaluate our mode-finding algorithms' precision and
 recall. Recall measures how likely is a sonority's mode to be
 correctly recognized, while precision measures how correct are the
-recognized modes \cite{russell02:aima}. 
+recognized modes \cite{russell.ea:artificial}. 
 
 The consideration of precise metrics always shows interesting
 guidelines on how to improve existing techniques. For example, tables
@@ -738,6 +738,5 @@ in \ref{sec:codificacao-jamary}. We intend
 
 \bibliographystyle{plain}
 \bibliography{strings-short,ismir,programs,coding,harmonic-analysis,dont-have,artifical-inteligence,music-harmony-and-theory,licenses}
-%\bibliography{rameau,analise-harmonica-nao-tenho,bib-outras,bib-geral}
 
 \end{document}
