@@ -621,66 +621,67 @@ due to their lower generalization performance.
 \end{figure}
 
 
-\subsection{Common Errors}
+\subsection{Performance Analysis}
 \label{sec:common-errors}
 
-\nota{traduzir}
+We believe a more systematic analysis of the errors in harmonic
+analysis methods in fundamental to a better understanding of how to
+improve current techniques. Since harmonic analysis is an information
+retrieval problem, metrics developed to assess the performance of
+information retrieval algorithm might help understanding and
+evaluating improvements over the current methods. In this section we
+will evaluate our mode-finding algorithms' precision and
+recall. Recall measures how likely is a sonority's mode to be
+correctly recognized, while precision measures how correct are the
+recognized modes \cite{russell02:aima}. 
 
-Most analysis errors on our corpus are misrecognized non-chord tones
-(58\%), wrong fundamental (24\%) and correct fundamental but wrong mode
-(19\%). This last error is the most interesting in evaluating the
-accuracy of the algorithms.
+The consideration of precise metrics always shows interesting
+guidelines on how to improve existing techniques. For example, tables
+\ref{tab:precision} and \ref{tab:recall} show that, with proper
+modifications, to learn to classify more modes, Pardo and Birmingham's
+algorithm can match or excede the performance of our machine learning
+techniques. Table \ref{tab:recall} shows that our machine learning
+algorithms are missing many melodic notes. Tables \ref{tab:precision}
+and \ref{tab:recall} indicate that the neural network algorithms are
+failing to recognize fully diminished and augmented chords, which is
+probably and indication that our training examples should contain more
+of these.
 
-Chords analysed with the correct fundamental but incorrect mode can be
-classified by which modes are more frequently mistaken for others. The
-cateagory with most errors is minor chords labeled as major chords,
-with 1550 instances, and the least frequent is incorrectly labeled
-major tetrads, with 41 instances.
+As we implement more algorithms, performance analysis by rigorous
+metrics will enable us to draw better conclusions as to the merits and
+flaws of each technique.
 
-Os erros de análise cometidos pelos algoritmos nos 140 corais\
-analisados envolvem principalmente notas melódicas (58\%), acordes com
-tônicas diferentes (24\%) e acordes com tônicas semelhantes, mas de
-tipos diferentes (19\%), como por exemplo A maior e A menor. A
-interpretação deste último tipo de erro é a mais útil para a avaliação
-do funcionamento dos algoritmos.
-
-Acordes de mesma tônica e tipos diferentes podem ser divididos em
-categorias a partir do resultado esperado. A categoria com maior
-número de erros é a de acordes menores analisados como maiores, com
-1550 ocorrências, e a de menor número é a de tétrades maiores, com 41
-ocorrências. A Chord tree tem alto índice de erros em quase todas as
-categorias, especialmente nas tríades menores. A tabela
-\ref{tab:common-errors} contém alguns desses dados, com o valor
-percentual de cada algoritmo em cada categoria em função do total de
-erros de cada algoritmo.
-
-A figura \ref{fig:coral-54} mostra um excerto de um coral analisado
-pelos algoritmos e ilustra todos esses erros. As partições 48 e 49
-ilustram notas melódicas analisadas como acordes. A partição 50 contém
-uma tétrade menor que é analisada por 5 algoritmos como acorde com
-tônica diferente do esperado, por 3 algoritmos como tônica correta e
-tríade maior, por um como tríade menor. Neste caso apenas um algoritmo
-acerta a análise.
 
 \begin{table}
   \centering
-  \begin{tabular}{l|r@{}p{.001cm}r@{}p{.001cm}r@{}p{.001cm}r@{}p{.001cm}r@{}p{.001cm}r@{}p{.001cm}r@{}p{.001cm}}
-                 &   °&&  °7&&  ø7&&   m&&  m7&&   M&&  M7 &\\
+  \begin{tabular}{l|p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}}
+                 &  °& °7& ø7& m&  m7&  M& M7&M7+& + &  -& avg\\
     \hline
-    Pardo-Birm   & 5.&4& 2.&5&19.&6&17.&2&38.&2&17.&2& 0.&0\\
-    Mode tree    &10.&6& 1.&4&15.&7&23.&6&13.&9&27.&8& 6.&9\\
-    Chord tree   &11.&3& 2.&0& 3.&2&68.&1&15.&4& 0.&0& 0.&0\\
-    Context tree &52.&9& 0.&0& 0.&0&41.&2& 5.&9& 0.&0& 0.&0\\
-    Simple tree  &25.&0& 8.&3& 8.&3&50.&0& 8.&3& 0.&0& 0.&0\\
-    Mode net     &11.&6& 3.&9&22.&4&20.&5&23.&2&13.&9& 4.&6\\
-    Chord net    & 5.&5& 2.&3&20.&5&15.&0&35.&0&15.&5& 6.&4\\
-    Context net  & 0.&0& 0.&0&33.&3&33.&3&33.&3& 0.&0& 0.&0\\
-    Simple net   & 0.&0& 0.&0& 0.&0&50.&0&50.&0& 0.&0& 0.&0\\
-    Average      &12.&3& 2.&3&13.&6&35.&4&24.&7& 8.&2& 2.&0\\ 
+    Pardo-Birm   & 63& 59& 37& 77&  0& 66& 72&  0&  0&  0& 37 \\
+    Mode tree    & 56& 54& 66& 78& 61& 87& 76& 27&  0& 85& 59 \\
+    Chord tree   & 56& 54& 66& 78& 67& 87& 76& 27&  0& 85& 60 \\
+    Mode net     & 67&  0& 72& 89& 70& 92& 85& 34&  0& 84& 59 \\
+    Chord net    & 70&  0& 71& 87& 75& 90& 89& 35&  0& 86& 60 \\
   \end{tabular}
-  \caption{Common Errors (in \%)}
-  \label{tab:common-errors}
+  \caption{Precision (\%)}
+  \label{tab:precision}
 \end{table}
+
+\begin{table}
+  \centering
+  \begin{tabular}{l|p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}}
+                 &  °& °7& ø7& m&  m7&  M& M7&M7+& + &  -& avg\\
+    \hline
+    Pardo-Birm   & 86& 85& 77& 91&  0& 97& 93&  0&  0&  0& 53 \\
+    Mode tree    & 68& 36& 44& 89& 65& 94& 82& 59&  0& 55& 59 \\
+    Chord tree   & 68& 37& 45& 88& 66& 94& 82& 56&  0& 58& 59 \\
+    Mode net     & 81&  0& 61& 93& 82& 94& 90& 70&  0& 68& 64 \\
+    Chord net    & 86&  0& 68& 93& 77& 95& 88& 78&  0& 67& 65 \\
+  \end{tabular}
+  \caption{Recall (\%)}
+  \label{tab:recall}
+\end{table}
+
 
 \begin{figure}
   \centering
