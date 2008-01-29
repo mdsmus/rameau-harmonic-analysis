@@ -52,10 +52,8 @@ is not a linear process, unlike image \cite{mouton.ea:numeric}. The
 harmonic changes in a choral texture, where usually all notes in all
 voices begin and finish at the same time, are obvious. However, chords
 are ocasionally arppeggiated, incomplete, and intertwined with
-non-harmonic tones.
-
-These things contribute to increase considerably the complexity for
-analysis \cite{pardo.ea:automated}.
+non-harmonic tones. These things contribute to increase considerably
+the complexity for analysis \cite{pardo.ea:automated}.
 
 There are many practical applications for automatic music analysis,
 among them arranging, detection of possible logical mistakes in
@@ -67,24 +65,47 @@ in music theory, in the same way the use of computer in vision and
 problem solving has brought new insights in these areas
 \cite{temperley.ea:modeling}. 
 
-Until now a single framework that allows comparison between
-different algorithms and analysis results has not been
-developed.  Pardo and Birmingham state that ``no researchers have
-published statistical performance results on a system designed to
-analyze tonal music'' \cite{pardo.ea:algorithms} before their
-paper. This lack of data in literature makes it difficult to compare
-different systems.  Also, there aren't standard benchmarks to compare
-different algorithms and analysis results. In fact, only Pardo and
-Birmingham \cite{pardo.ea:automated} and Barthèlemy and Bonardi
+Until now a single framework that allows comparison between different
+algorithms and analysis results has not been developed. Pardo and
+Birmingham state that ``no researchers have published statistical
+performance results on a system designed to analyze tonal music''
+\cite{pardo.ea:algorithms} before their paper. This lack of data in
+literature makes it difficult to compare different systems. Also,
+there aren't standard benchmarks to compare different algorithms and
+analysis results. In fact, only Pardo and Birmingham
+\cite{pardo.ea:automated} and Barthèlemy and Bonardi
 \cite{barthelemy.ea:figured} published specific comparisons between
 different analysis results. Pardo and Birmingham compare their results
 with Temperley and Sleator's \cite{temperley.ea:modeling} while
 Barthèlemy compares his model against Maxwell's, Pardo and
 Birmingham's, and Temperley and Sleator's
-\cite{maxwell:expert,temperley:algorithm,pardo.ea:automated}.
-However, these comparisons are based on results published in papers
-and not from direct implementations, so they aren't statistically
-  representative.
+\cite{maxwell:expert,temperley:algorithm,pardo.ea:automated}. However,
+these comparisons are based on results published in papers and not
+from direct implementations, so they aren't statistically
+representative. Tsui \cite{tsui:harmonic} gives a general comparisson
+of his algorithm with Taube's \cite{taube:automatic} and Temperley's
+\cite{temperley:algorithm}. Unfortunatelly the results of
+\cite{taube:automatic} are not published in the paper but in a web
+site that is no longer on-line, making further comparisson impossible.
+Illescas et al. \cite{illescas.ea:harmonic} have a even more general
+comparison with \cite{taube:automatic} where their system ``is
+comparable in results to those reported by MTW [Taube's system]''.
+
+The systems of Illescas et al. \cite{illescas.ea:harmonic} and Raphael
+and Stoddard \cite{raphael.ea:harmonic} don't show the inversion of
+chords, differentiate major from minor chords (they print both in
+upper case), and provide objective results, such as error rates or
+accuracy degree.
+
+To the best of our knowledge, \cite{illescas.ea:harmonic} and
+\cite{taube:automatic} are the only systems that provide non-chord
+tone (NCT) analysis. \cite{taube:automatic} prints the type of the NCT
+bellow the note, using PT for passing tone, NT for neighbor tone, and
+so on, while \cite{illescas.ea:harmonic} prints a very detailed
+analysis for each NCT.
+
+Barthèlemy \cite{barthelemy.ea:figured} provides a good sumary of the
+state of the art of harmonic analysis up to 2001.
 
 In this paper we present Rameau, a framework for automatic harmonic
 analysis of Western tonal music. We also present an preliminary
@@ -247,11 +268,10 @@ the result of 55 mod 12 is 7, representing G in the pitch-class
 notation. 
 
 The problem with the base-40 notation is that it has problems with
-more than two accidentals \nota{não soa bem passos:corrigido?}. For
-example, the interval between C$\flat\flat$ and C$\sharp\sharp$ (a
-quadruple augmented unison) has the same value (6) as diminished
-second. On the other hand, in the base-96 notation this interval can
-be correctly computed.
+more than two accidentals. For example, the interval between
+C$\flat\flat$ and C$\sharp\sharp$ (a quadruple augmented unison) has
+the same value (6) as diminished second. On the other hand, in the
+base-96 notation this interval can be correctly computed.
 
 The main problem with the binomial notation is that operations that
 are (and should be) simple become complex. In both base-40 and base-96
@@ -269,15 +289,13 @@ like:
 To do anything non-trivial, like interval-class vectors, yet extra
 work has to be done, increasing complexity.
 
-\nota{falar em algum lugar porque nao usa codificação tonal. passos:
-  corrigido de forma concisa, acha melhor falar mais?}
-
-We believe the base-96 codification is a very nice form of describing
+ believe the base-96 codification is a very nice form of describing
 tonal music numerically and it should be more known among researches
 and developers. For these reasons we have adopted it, although no
 algorithm at present makes direct use of it, since their original
 authors designed them expecting pitch classes as input. \nota{passos:
-  corrigido o problema?}
+  corrigido o problema? kroger: eu acho que precisamos deixar mais
+  claro a ideia de que estamos re-implementando outros algor.}
 
 \section{The Rameau Framework}
 \label{sec:system}
@@ -434,8 +452,6 @@ many algorithms implemented in our system.
 
 \section{Preliminary results}
 \label{sec:analysis-results}
-
-\nota{escrever introdução basica}
 
 \subsection{Pardo and Birmingham's algorithm}
 \label{sec:pardo-birmingham}
@@ -713,7 +729,7 @@ in \ref{sec:codificacao-jamary}. We intend
 * investigar enarmonia: pitch speller vs. entrada/saida tonal
 
 \bibliographystyle{plain}
-\bibliography{strings-short,ismir,programs,coding,harmonic-analysis,dont-have,artifical-inteligence,music-harmony-and-theory,licenses}
+\bibliography{strings-short,ismir,programs,coding,harmonic-analysis,dont-have,artifical-inteligence,music-harmony-and-theory,licenses,icmc}
 
 \end{document}
 
