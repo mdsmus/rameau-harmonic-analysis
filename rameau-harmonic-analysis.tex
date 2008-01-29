@@ -40,11 +40,10 @@
 
 In music, harmonic analysis is the study of vertical sonorities and it
 connections and is paramount to the understanding of tonal
-compositions. The analyst can find the root of chords, label
+compositions. The analyst may find the root of chords, label
 sonorities with proper chords names (such as ``A minor''), and
 identify the relationship between chords using roman
-numerals. \nota{passos: seria melhor ``the analyst finds'' em vez de
-  ``the analyst can find'', não?}
+numerals.
 
 Harmonic analysis by computer is an important, challenging, and
 interesting computer music research topic. It is challenging because
@@ -52,9 +51,10 @@ the musical material has a large variety of information such as
 timbre, notes, rhythm, dynamics, harmony, and by the fact that music
 is not a linear process, unlike image \cite{mouton.ea:numeric}. The
 harmonic changes in a choral texture, where usually all notes in all
-voices begin and finish at the same time, are obvious. However, very
-often chords can be arppeggiated, incomplete, and intertwined with
-non-harmonic tones. \nota{passos: ``chords are'' ficaria melhor, não?}
+voices begin and finish at the same time, are obvious. However, chords
+are ocasionally arppeggiated, incomplete, and intertwined with
+non-harmonic tones.
+
 These things contribute to increase considerably the complexity for
 analysis \cite{pardo.ea:automated}.
 
@@ -63,16 +63,13 @@ among them arranging, detection of possible logical mistakes in
 scores, database search, automatic accompaniment generation, and
 statistical analysis of musical styles for automated composition
 \cite{pardo.ea:algorithms,temperley.ea:modeling}. Computer-based
-harmonic analysis is important because it can bring new insights in
-music theory, in the same way the use of computer in vision and
+harmonic analysis is also important because it can bring new insights
+in music theory, in the same way the use of computer in vision and
 problem solving has brought new insights in these areas
-\cite{temperley.ea:modeling}. \nota{passos: as duas frases estão
-  soltas. Seria melhor, na segunda, colocar um ``also'' antes de
-  ``important''}
+\cite{temperley.ea:modeling}. 
 
-Until now a single framework that allows the comparison between
-different \nota{passos: ``allows comparison between'' ou ``allows the
-  comparison of''} algorithms and analysis results has not been
+Until now a single framework that allows comparison between
+different algorithms and analysis results has not been
 developed.  Pardo and Birmingham state that ``no researchers have
 published statistical performance results on a system designed to
 analyze tonal music'' \cite{pardo.ea:algorithms} before their
@@ -87,11 +84,8 @@ Barthèlemy compares his model against Maxwell's, Pardo and
 Birmingham's, and Temperley and Sleator's
 \cite{maxwell:expert,temperley:algorithm,pardo.ea:automated}.
 However, these comparisons are based on results published in papers
-and not from direct implementations. That means that only the examples
-published by the authors can be compared. \nota{passos: essa última
-  frase está um pouco redundante. O que você acha de retirá-la, e
-  colocar na anterior algo dizendo ``so they aren't statistically
-  significant and reproducible'' ou algo assim?}
+and not from direct implementations, so they aren't statistically
+  representative.
 
 \nota{terminar} In this paper we will present Rameau, a framework for
 automatic harmonic analysis of Western tonal music. Our main goal in
@@ -109,27 +103,25 @@ results obtained, and section \ref{sec:concl-future-work} .......
 The problem of automated harmonic analysis might be understood by
 dividing it into four sub-problems. 
 
-The first problem is in the system's input format. If sharps and flats
-are grouped together the program may have problems in places where
-enharmonic information is important. Most systems either ignore this
-problem or develop a pitch speller \cite{temperley.ea:modeling}. To our
-knowledge no harmonic analysis software currently uses an input format
-that preserves enharmonic information. \nota{ passos: pensando bem, eu
-  não sei se gosto de dizer que o formato de entrada é um
-  problema. Talvez seja melhor dizer ``the first problem is pitch
-  spelling'', e dizer que isso pode estar ou não no formato de
-  entrada. Que acha?}
+The first problem is pitch spelling. If sharps and flats are not
+distinguished the program may have problems in places where enharmonic
+information is important. Most systems either ignore this problem or
+develop a pitch speller \cite{temperley.ea:modeling}. To our knowledge
+no harmonic analysis software currently uses an input format that
+preserves enharmonic information. \nota{citar muses
+  \cite{pachet.ea:representing}}
 
 The second problem is determining what are the vertical sonorities in
 a piece of music and grouping these sonorities into harmonically
 significant segments, or chord-spans. This is called the segmentation
-problem. Most of the difficulty of segmenting is due to the number of
-possible segmentations of a piece being roughly an exponential
-function of its length \cite{pardo.ea:algorithms}.
+problem. \nota{colocar no comeco} Most of the difficulty of segmenting
+is due to the number of possible segmentations of a piece being
+roughly an exponential function of its length
+\cite{pardo.ea:algorithms}.
 
 The third problem is labeling segments with chord names. Not every
-segment forms a chord, though - some will consist solely of non-chord
-tones and other melodic clues. Labeling a segment with a chord might
+segment forms a chord, though---some will consist solely of non-chord
+tones and other melodic information. Labeling a segment with a chord might
 require contextual information, which complicates the matter a bit,
 difficulting local decisions. Still, over 80\% of accuracy is possible
 ignoring context (see section \ref{sec:analysis-results}).
@@ -141,11 +133,7 @@ piece and assigning a tonal function to each chord.
 \label{sec:codificacao-jamary}
 
 Probably the pitch-class notation, or some variation such as MIDI, is
-the most used way of to numerically represent pitch \nota{ passos:
-  essa frase está muito uma colagem de edições anteriores. Eu
-  escreveria ``The most used way of numerically representing pitch'',
-  você diria ``The most used notation to numerically represent
-  pitch'', e pra mim tanto faz}. The main problem
+the most used way to numerically represent pitch. The main problem
 with this notation is the loss of enharmonic spelling. In this section
 we will revise three notations created independently by Brinkman,
 Hewlett, and Oliveira \cite{brinkman:binomial,
@@ -159,7 +147,7 @@ of \texttt{<pc,nc>} where \texttt{pc} stands for pitch-class and
 that represents numerically each note name (A, B, C, D, E, F, G) from
 0 to 6. 0 represents any C, with or without accidentals, 1 represents
 any D, with or without accidentals, and so on. For example, C$\sharp$
-is represented as \texttt{<1,0>}, D$\flat$ as \texttt{<1,1>}, and Cb
+is represented as \texttt{<1,0>}, D$\flat$ as \texttt{<1,1>}, and C$\flat$
 as \texttt{<11,0>}. In this last example 11 represents the pich-class of the
 note and 0 indicates how it will be spelled. The binomial notation
 also allows a packaged representation using only single numbers, where
@@ -193,7 +181,7 @@ original publication of the base-96 notation is available only in
 Portuguese, we will describe it here, comparing with the other
 two.
 
-The base-96 also is a single number notation. It has all the
+The base-96 is also a single number notation. It has all the
 advantagens of the base-40 notation with a few advantagens. Table
 \ref{tab:jama-notas} shows how notes are encoded. In this notation the
 intervals are invariant under most transformations, such as inversion,
@@ -261,23 +249,23 @@ the result of 55 mod 12 is 7, representing G in the pitch-class
 notation. 
 
 The problem with the base-40 notation is that it only works up to two
-accidentals. For example, the interval between C$\flat\flat$ and
-C$\sharp\sharp$ (a quadruple augmented unison) has the same value (6)
-as diminished second. On the other hand, in the base-96 notation this
-interval can be correctly computed.
+accidentals \nota{não soa bem}. For example, the interval between
+C$\flat\flat$ and C$\sharp\sharp$ (a quadruple augmented unison) has
+the same value (6) as diminished second. On the other hand, in the
+base-96 notation this interval can be correctly computed.
 
 The main problem with the binomial notation is that operations that
 are (and should be) simple become complex. In both base-40 and base-96
-notations, transposition is as simple adding an index to a note, while
+notations, transposition is as simple as adding an index to a note, while
 in the binomial system it has to use two different operations (mod and
 div) besides the addition. Its packaged representation is supposed to
 simplify things, but as an example, transposition become something
 like:
 
-\begin{verbatim}
-10 ((a div 10 + B div 10) mod 12)
- + ((a mod 10 + B div 10) mod 7)
-\end{verbatim}
+\begin{eqnarray}
+10\times((a \div 10 + B \div 10) \mod 12)\; + \nonumber \\
+((a \mod 10 + B \div 10) \mod 7)
+\end{eqnarray}
 
 To do anything non-trivial, like interval-class vectors, yet extra
 work has to be done, increasing complexity.
@@ -302,9 +290,9 @@ Rameau, that should enable us to
 \item compare results precisely and repeatably with human analysis of
   a large corpus of music;
 \item allow algorithms to access detailed information in the input score,
-  such as enharmonic differences, meter, etc; and
-\item easily develop new algorithms, test existing ones, and compare
-  precisely the results.
+  such as enharmonic differences, meter, etc.; and
+\item easily develop new algorithms, test existing ones, and precisely
+  compare the results.
 \end{enumerate}
 
 Reimplementing existing algorithms in Rameau allows us to easily
@@ -314,11 +302,10 @@ approaches for harmonic analysis, in the manner of reference
 \cite{gomez.ea:song}.
 
 Rameau is written in Common Lisp and runs on the Steel Bank Common
-Lisp \cite{team:sbcl} compiler on the GNU/Linux operating
-system. Rameau also runs on windows (it might run on MacOS, but that was
-not tested) and is portable enough to be compiled with CMUCL
-\cite{maclachlan:cmucl} and Clisp
-\cite{haible.ea:clisp}.
+Lisp \cite{team:sbcl} compiler on the GNU/Linux operating system.
+\nota{run, run, run!} Rameau also runs on windows (it might run on
+MacOS, but that was not tested) and is portable enough to be compiled
+with CMUCL \cite{maclachlan:cmucl} and Clisp \cite{haible.ea:clisp}.
 
 \subsection{Architecture}
 \label{sec:architecture-and-api}
@@ -349,7 +336,7 @@ We have currently implemented using this API
 \begin{enumerate}
 \item a subset of the algorithm described in \cite{pardo.ea:algorithms}
   (ignoring, for now, segmentation), 
-\item a port (work-in-progress) of the algorithm described in
+\item a work-in-progress port of the algorithm described in
   \cite{temperley.ea:modeling}, 
 \item four neural networks (using the Fann \cite{nissen:fann}
   library) roughly similiar to some described in
@@ -366,17 +353,18 @@ visualization at \url{git.genos.mus.br/?p=rameau.git}.
 \subsection{The interface}
 \label{sec:analysis-output}
 
-Rameau is a command line program, although a GUI version is
-planned. The user can select the chorales he or she wants to have
-analyzed and specify the algorithms for the analysis. The output shows
-a table with the partition number, the correct analysis for each
-sonority (taken from the answer sheet) and the analysis output for each
-chosen algorithm. The nice thing about this output is that it can be
-further processed using regular unix tools such as grep, awk, and sed.
+Rameau is a command line program, although a GUI version is planned.
+The user can select the chorales to be analyzed and specify the
+algorithms for the analysis. The output shows a table with the
+partition number, the correct analysis for each sonority (taken from
+the answer sheet) and the analysis output for each chosen algorithm.
+The nice thing about this output is that it can be further processed
+using regular unix tools such as grep, awk, and sed.
 
 To simplify reading for humans, rameau can output a score with the
 chorale and the analysis from each algorithm chosen. The music
-notation program LilyPond is used to render the score.
+notation program LilyPond \cite{nienhuys.ea:lilypond} is used to
+render the score.
 
 Figure \ref{fig:coral-12} shows the result of the analysis of the
 first phrase of chorale \#12. The first line shows the partition
@@ -384,7 +372,7 @@ number, the last line the expected answer, and the lines in between
 the analysis results for the chosen algorithms. The output score shows
 incorrect analysis in bold italic. Non-chord tones are notated as
 ``—''. It is important to remember that while some algorithms identify
-whole chords, others identify only the root.
+chords, others identify only the root.
 
 \subsection{Test corpus}
 \label{sec:test-corpus}
@@ -405,10 +393,10 @@ them consists simply of determining the sonorities.
 \end{enumerate}
 
 We have already analyzed 140 of them and plan on fully analyzing the
-corpus soon. The chorales are stored in a subset of the GNU Lilypond
-\cite{nienhuys.ea:lilypond} format, from which we generate MIDI files and
-typeset scores, possibly annotated with analysis results (both by
-human and by computer).
+Riemenschneider corpus soon. The chorales are stored in a subset of
+the GNU Lilypond \cite{nienhuys.ea:lilypond} format, from which we
+generate MIDI files and typeset scores, possibly annotated with
+analysis results (both by human and by computer).
 
 When the chorales are fully analysed we plan on incorporating the
 Kostka-Payne \cite{kostka.ea:tonal} corpus, Beethoven sonatas, Bach
@@ -437,31 +425,6 @@ that do not constitute chords.
 This information is then used as answer sheets and training data on the
 many algorithms implemented in our system.
 
-\section{Comparison with similar works}
-\label{sec:differences-from-similar-software}
-
-\nota{fazer uma revisao maior}
-
-We only had access to one similar system, Temperley and Sleator's
-Melisma \cite{temperley.ea:modeling}. The output of the system is
-complex, with many not clearly delimited columns that can't be
-processed in isolation. Interpreting which notes are chord changes is
-difficult even for a human. Therefore, we have been unable to
-reproduce their claimed accuracy with their implementation. Our
-reimplementation isn't currently able to process every chorale (the
-algorithm is brittle and needs tuning in not clearly defined ways),
-but averages around 60\% on the ones it does handle.
-
-Pardo and Birmingham's HarmAn \cite{pardo.ea:automated} system isn't
-publicly avaliable on the internet, so we haven't been able to test it
-directly. Their algorithm, however, is reimplemented in Rameau, and it
-behaves precisely as described in the article.
-
-Our main issues with both systems are their ignorance, by design, of
-non-chord tones and their lack of automated test suites for their
-algorithms. This difficults a clear evaluation of their merits and
-flaws.
-
 \section{Preliminary results}
 \label{sec:analysis-results}
 
@@ -484,7 +447,7 @@ The current accuracy is $66 \pm 9\%$.
 \label{sec:neural-nets}
 
 Neural networks are tools for non-linear statistical data
-modeling that work by having artificial ``neurons'' exchange
+modeling that work by having artificial neurons exchange
 information. There are many varieties of neural networks, each being
 useful for a certain type of problem. Our networks are all multilayer
 feedforward neural networks, with one hidden layer each. This is the
@@ -494,8 +457,8 @@ A neural network is made of connected neurons. Each neuron receives
 signals from other neurons, processes them in a simple manner and
 forwards them to yet other neurons, as in figure \ref{fig:neuron}. In
 a feedforward neural network, these signals flow linearly from input
-neurons to output neurons. Our networks are layered feedforward neural
-networks, in which the neurons are arranged in layers, as in figure
+neurons to output neurons. We use feedforward neural networks in which
+the neurons are arranged in layers, as in figure
 \ref{fig:simple-net-diagram}. Each neuron receives information from
 all neurons in the layer preceding it and forwards information to all
 neurons in the next layer. The first layer, the input layer, receives
@@ -520,26 +483,25 @@ usually with the backpropagation algorithm or a variant of it.
 \end{figure}
 
 
-We, in Rameau, have currently implemented four neural-network-based
+We have currently implemented in Rameau four neural-network-based
 algorithms for harmonic analysis, basing our approaches on
-\cite{tsui:harmonic}. The input of our
-simplest algorithm, \texttt{Simple\hyp{}net}, is a sonority's pitch
-count, or how many times each pitch class sounds in it. As output, the
-network activates the neuron representing the root for that sonority
-(or does nothing, if the sonority does not form a chord).  Figure
+\cite{tsui:harmonic}. The input of our simplest algorithm,
+\texttt{Simple\hyp{}net}, is how many times each pitch class sounds in
+a sonority (its pitch count). As output, the network activates the
+neuron representing the root for that sonority (or does nothing, if
+the sonority does not form a chord). Figure
 \ref{fig:simple-net-diagram} illustrates its connections and labels.
 To study the effect of contextual information in harmonic analysis we
 have also implemented \texttt{Context-net}, differing from the
 \texttt{Simple\hyp{}net} only by also looking at the pitch counts of
-two preceding sonorities and one immediately the one being
-analysed. \texttt{Context-net} and \texttt{Simple-net}'s performances
-are equivalent, so perhaps the contextual information necessary for
+two preceding sonorities and one immediately the one being analysed.
+\texttt{Context-net} and \texttt{Simple-net}'s performances are
+equivalent, so perhaps the contextual information necessary for
 harmonic analysis is not easily inferrable from pitch counts. The two
 other neural networks, \texttt{Chord-net} and \texttt{Mode-net}, also
 determine a chord's mode and its seventh. \texttt{Chord-net}'s input
-is the same as \texttt{Sim\-ple\--net}'s, while and \texttt{Mode-net}
-also sees the results of \texttt{Context-net}'s analysis for each
-sonority.
+is the same as \texttt{Sim\-ple\--net}'s, while \texttt{Mode-net} also
+sees the results of \texttt{Context-net}'s analysis for each sonority.
 
 The performance of each neural network depends heavily on the number
 of hidden units it uses. Too few units and the network hasn't got
@@ -649,7 +611,7 @@ learning algorithms are missing many melodic notes. Tables
 network algorithms are failing to recognize fully diminished,
 incomplete, and augmented chords, probably because that our training
 corpus lacks enough examples of these chords. Because the decision
-trees are better at these rare modes we can conclude that they recall
+trees are better at these rare chords we can conclude that they recall
 few examples better, while the neural networks tend to generalize more
 efficiently when more examples are available.
 
@@ -660,8 +622,8 @@ flaws of each technique.
 
 \begin{table}
   \centering
-  \begin{tabular}{l|p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}}
-                 &  °& °7& ø7& m&  m7&  M& M7&M7+& + &  -& inc& avg\\
+  \begin{tabular}{l|p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}|p{.1cm}}
+                 &  °& °7& ø7& m&  m7&  M&  7& 7+&+&nct& inc& avg\\
     \hline                                                     
     Pardo-Birm   & 63& 59& 37& 77&  0& 66& 72&  0&  0&  0&   0& 34 \\
     Mode tree    & 56& 54& 66& 78& 61& 87& 76& 27&  0& 85&  23& 56 \\
@@ -675,8 +637,8 @@ flaws of each technique.
 
 \begin{table}
   \centering
-  \begin{tabular}{l|p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}}
-                 &  °& °7& ø7& m&  m7&  M& M7&M7+& + &  -& inc& avg\\
+  \begin{tabular}{l|p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}|p{.1cm}}
+                 &  °& °7& ø7& m&  m7&  M&  7& 7+&+&nct& inc& avg\\
     \hline
     Pardo-Birm   & 86& 85& 77& 91&  0& 97& 93&  0&  0&  0&   0& 48 \\
     Mode tree    & 68& 36& 44& 89& 65& 94& 82& 59&  0& 55&  18& 55 \\
@@ -704,11 +666,8 @@ flaws of each technique.
   \label{fig:coral-54}
 \end{figure}
 
-\subsection{Benchmarks}
-\label{sec:benchmarks}
-
-\nota{escrever (duh!)}
-\nota{fazer tabela}
+\subsection{Analysis example}
+\label{sec:analysis-example}
 
 The chorale exerpt in figure \ref{fig:coral-54} is a little tricky to
 analyse because the all chords in partitions 36--39 have a non-chord
