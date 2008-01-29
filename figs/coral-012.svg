@@ -31,8 +31,8 @@
     </rdf:RDF>
   </metadata>
   <sodipodi:namedview
-     inkscape:window-height="781"
-     inkscape:window-width="1276"
+     inkscape:window-height="741"
+     inkscape:window-width="827"
      inkscape:pageshadow="2"
      inkscape:pageopacity="0.0"
      guidetolerance="10.0"
@@ -42,11 +42,11 @@
      bordercolor="#666666"
      pagecolor="#ffffff"
      id="base"
-     inkscape:zoom="4.4556341"
-     inkscape:cx="41.99338"
-     inkscape:cy="254.67481"
+     inkscape:zoom="8.6407474"
+     inkscape:cx="43.187829"
+     inkscape:cy="253.44846"
      inkscape:window-x="0"
-     inkscape:window-y="15"
+     inkscape:window-y="0"
      inkscape:current-layer="svg2" />
   <defs
      id="defs4">
@@ -2636,7 +2636,7 @@
          style="font-size:1.95946133px;fill:currentColor;font-family:Schoolbook"
          id="text979">
         <tspan
-           id="tspan981">D</tspan>
+           id="tspan981">D/F#</tspan>
       </text>
     </g>
     <g
@@ -2709,7 +2709,7 @@
          style="font-size:1.95946133px;fill:currentColor;font-family:Schoolbook"
          id="text1021">
         <tspan
-           id="tspan1023">D</tspan>
+           id="tspan1023">D/F#</tspan>
       </text>
     </g>
     <g
@@ -2789,10 +2789,10 @@
        transform="translate(31.772815,43.86)"
        id="g1067">
       <text
-         style="font-size:1.95946133px;font-style:italic;font-weight:bold;fill:currentColor;font-family:Schoolbook"
+         style="font-size:1.95946133px;fill:currentColor;font-family:Schoolbook"
          id="text1069">
         <tspan
-           id="tspan1071">Am</tspan>
+           id="tspan1071">Am7/G</tspan>
       </text>
     </g>
     <g
@@ -2802,7 +2802,7 @@
          style="font-size:1.95946133px;fill:currentColor;font-family:Schoolbook"
          id="text1075">
         <tspan
-           id="tspan1077">Am7</tspan>
+           id="tspan1077">Am7/G</tspan>
       </text>
     </g>
     <g
@@ -2913,17 +2913,17 @@
          style="font-size:1.95946133px;fill:currentColor;font-family:Schoolbook"
          id="text1145">
         <tspan
-           id="tspan1147">G7</tspan>
+           id="tspan1147">G7/F</tspan>
       </text>
     </g>
     <g
        transform="translate(52.514402,32.76)"
        id="g1149">
       <text
-         style="font-size:1.95946133px;font-style:italic;font-weight:bold;fill:currentColor;font-family:Schoolbook"
+         style="font-size:1.95946133px;fill:currentColor;font-family:Schoolbook"
          id="text1151">
         <tspan
-           id="tspan1153">G</tspan>
+           id="tspan1153">G7/F</tspan>
       </text>
     </g>
     <g
@@ -2953,7 +2953,7 @@
          style="font-size:1.95946133px;fill:currentColor;font-family:Schoolbook"
          id="text1169">
         <tspan
-           id="tspan1171">G7</tspan>
+           id="tspan1171">G7/F</tspan>
       </text>
     </g>
     <g
@@ -2963,7 +2963,7 @@
          style="font-size:1.95946133px;fill:currentColor;font-family:Schoolbook"
          id="text1175">
         <tspan
-           id="tspan1177">G7</tspan>
+           id="tspan1177">G7/F</tspan>
       </text>
     </g>
     <g
@@ -3387,10 +3387,10 @@
        transform="translate(62.689635,32.76)"
        id="g1437">
       <text
-         style="font-size:1.95946133px;font-style:italic;font-weight:bold;fill:currentColor;font-family:Schoolbook"
+         style="font-size:1.95946133px;fill:currentColor;font-family:Schoolbook"
          id="text1439">
         <tspan
-           id="tspan1441">C</tspan>
+           id="tspan1441">C7+</tspan>
       </text>
     </g>
     <g
@@ -3417,20 +3417,20 @@
        transform="translate(62.689635,43.86)"
        id="g1455">
       <text
-         style="font-size:1.95946133px;font-style:italic;font-weight:bold;fill:currentColor;font-family:Schoolbook"
+         style="font-size:1.95946133px;fill:currentColor;font-family:Schoolbook"
          id="text1457">
         <tspan
-           id="tspan1459">C</tspan>
+           id="tspan1459">C7+</tspan>
       </text>
     </g>
     <g
        transform="translate(62.689635,47.56)"
        id="g1461">
       <text
-         style="font-size:1.95946133px;font-style:italic;font-weight:bold;fill:currentColor;font-family:Schoolbook"
+         style="font-size:1.95946133px;fill:currentColor;font-family:Schoolbook"
          id="text1463">
         <tspan
-           id="tspan1465">C</tspan>
+           id="tspan1465">C7+</tspan>
       </text>
     </g>
     <g
@@ -3520,7 +3520,7 @@
          style="font-size:1.95946133px;fill:currentColor;font-family:Schoolbook"
          id="text1523">
         <tspan
-           id="tspan1525">D</tspan>
+           id="tspan1525">D/F#</tspan>
       </text>
     </g>
     <g
@@ -3530,7 +3530,7 @@
          style="font-size:1.95946133px;fill:currentColor;font-family:Schoolbook"
          id="text1529">
         <tspan
-           id="tspan1531">D</tspan>
+           id="tspan1531">D/F#</tspan>
       </text>
     </g>
     <g
@@ -3730,7 +3730,7 @@
          style="font-size:1.95946133px;fill:currentColor;font-family:Schoolbook"
          id="text1623">
         <tspan
-           id="tspan1625">G</tspan>
+           id="tspan1625">G/D</tspan>
       </text>
     </g>
     <g
@@ -3740,7 +3740,7 @@
          style="font-size:1.95946133px;fill:currentColor;font-family:Schoolbook"
          id="text1629">
         <tspan
-           id="tspan1631">G</tspan>
+           id="tspan1631">G/D</tspan>
       </text>
     </g>
     <g
@@ -3832,10 +3832,10 @@
        transform="translate(31.772815,29.06)"
        id="g1753">
       <text
-         style="font-size:1.95946133px;fill:currentColor;font-family:Schoolbook"
+         style="font-size:1.95946133px;font-style:italic;font-weight:bold;fill:currentColor;font-family:Schoolbook"
          id="text1755">
         <tspan
-           id="tspan1757">Am7</tspan>
+           id="tspan1757">C/G</tspan>
       </text>
     </g>
     <g
@@ -3845,7 +3845,7 @@
          style="font-size:1.95946133px;font-style:italic;font-weight:bold;fill:currentColor;font-family:Schoolbook"
          id="text1761">
         <tspan
-           id="tspan1763">A</tspan>
+           id="tspan1763">C/G</tspan>
       </text>
     </g>
     <g
@@ -3914,10 +3914,10 @@
        transform="translate(27.673324,32.76)"
        id="g1797">
       <text
-         style="font-size:1.95946133px;font-style:italic;font-weight:bold;fill:currentColor;font-family:Schoolbook"
+         style="font-size:1.95946133px;fill:currentColor;font-family:Schoolbook"
          id="text1799">
         <tspan
-           id="tspan1801">A</tspan>
+           id="tspan1801">Am</tspan>
       </text>
     </g>
     <g
@@ -4141,7 +4141,7 @@
          style="font-size:1.95946133px;fill:currentColor;font-family:Schoolbook"
          id="text1953">
         <tspan
-           id="tspan1955">C</tspan>
+           id="tspan1955">C/E</tspan>
       </text>
     </g>
     <g
@@ -4151,7 +4151,7 @@
          style="font-size:1.95946133px;fill:currentColor;font-family:Schoolbook"
          id="text1959">
         <tspan
-           id="tspan1961">C</tspan>
+           id="tspan1961">C/E</tspan>
       </text>
     </g>
     <g
@@ -4181,7 +4181,7 @@
          style="font-size:1.95946133px;fill:currentColor;font-family:Schoolbook"
          id="text1977">
         <tspan
-           id="tspan1979">C</tspan>
+           id="tspan1979">C/E</tspan>
       </text>
     </g>
     <g
@@ -4191,7 +4191,7 @@
          style="font-size:1.95946133px;fill:currentColor;font-family:Schoolbook"
          id="text1983">
         <tspan
-           id="tspan1985">C</tspan>
+           id="tspan1985">C/E</tspan>
       </text>
     </g>
     <g
@@ -4801,10 +4801,10 @@
        transform="translate(23.312308,32.76)"
        id="g2387">
       <text
-         style="font-size:1.95946133px;font-style:italic;font-weight:bold;fill:currentColor;font-family:Schoolbook"
+         style="font-size:1.95946133px;fill:currentColor;font-family:Schoolbook"
          id="text2389">
         <tspan
-           id="tspan2391">A</tspan>
+           id="tspan2391">Am</tspan>
       </text>
     </g>
     <g
