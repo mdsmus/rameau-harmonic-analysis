@@ -87,15 +87,14 @@ However, these comparisons are based on results published in papers
 and not from direct implementations, so they aren't statistically
   representative.
 
-\nota{terminar} In this paper we will present Rameau, a framework for
-automatic harmonic analysis of Western tonal music. Our main goal in
-building this framework is to allow an easy comparison between
-algorithms and results. We also present an evaluation of ten
-algorithms using a corpus of 140 Bach Chorales from the
-Riemenschneider edition. Section \ref{sec:system} describes Rameau in
-more details, section \ref{sec:problem} lists the problems related to
-harmonic analysis, section \ref{sec:analysis-results} analyses the
-results obtained, and section \ref{sec:concl-future-work} .......
+In this paper we present Rameau, a framework for automatic harmonic
+analysis of Western tonal music. We also present an preliminary
+evaluation of nine algorithms for harmonic analysis, using a corpus of
+140 Bach Chorales from the Riemenschneider edition. Section
+\ref{sec:system} describes Rameau in more details, section
+\ref{sec:problem} lists the problems related to harmonic analysis,
+section \ref{sec:analysis-results} analyses the results obtained, and
+section \ref{sec:concl-future-work} .......
 
 \section{The problem of automated harmonic analysis}
 \label{sec:problem}
@@ -107,17 +106,17 @@ The first problem is pitch spelling. If sharps and flats are not
 distinguished the program may have problems in places where enharmonic
 information is important. Most systems either ignore this problem or
 develop a pitch speller \cite{temperley.ea:modeling}. To our knowledge
-no harmonic analysis software currently uses an input format that
-preserves enharmonic information. \nota{citar muses
-  \cite{pachet.ea:representing}}
+most harmonic analysis software (with the notable exception of the
+MusEs \cite{pachet.ea:representing} system) uses input formats that
+lose enharmonic information.
 
-The second problem is determining what are the vertical sonorities in
-a piece of music and grouping these sonorities into harmonically
-significant segments, or chord-spans. This is called the segmentation
-problem. \nota{colocar no comeco} Most of the difficulty of segmenting
-is due to the number of possible segmentations of a piece being
-roughly an exponential function of its length
-\cite{pardo.ea:algorithms}.
+The second problem, the segmentation problem
+\cite{pardo.ea:automated}, is determining what are the vertical
+sonorities in a piece of music and grouping these sonorities into
+harmonically significant segments, or chord-spans. Most of the
+difficulty of segmenting is due to the number of possible
+segmentations of a piece being roughly an exponential function of its
+length \cite{pardo.ea:algorithms}.
 
 The third problem is labeling segments with chord names. Not every
 segment forms a chord, though---some will consist solely of non-chord
@@ -248,11 +247,12 @@ pitch-class system (modulo 12): in the base-96 notation G = 55, and
 the result of 55 mod 12 is 7, representing G in the pitch-class
 notation. 
 
-The problem with the base-40 notation is that it only works up to two
-accidentals \nota{não soa bem}. For example, the interval between
-C$\flat\flat$ and C$\sharp\sharp$ (a quadruple augmented unison) has
-the same value (6) as diminished second. On the other hand, in the
-base-96 notation this interval can be correctly computed.
+The problem with the base-40 notation is that it has problems with
+more than two accidentals \nota{não soa bem passos:corrigido?}. For
+example, the interval between C$\flat\flat$ and C$\sharp\sharp$ (a
+quadruple augmented unison) has the same value (6) as diminished
+second. On the other hand, in the base-96 notation this interval can
+be correctly computed.
 
 The main problem with the binomial notation is that operations that
 are (and should be) simple become complex. In both base-40 and base-96
@@ -273,11 +273,12 @@ work has to be done, increasing complexity.
 \nota{falar em algum lugar porque nao usa codificação tonal. passos:
   corrigido de forma concisa, acha melhor falar mais?}
 
-For these reasons we have adopted the base-96 codification, although
-no algorithm at present makes direct use of it, since they expect
-pitch classes as input. We believe it is a
-very nice form of describing tonal music numerically and it should be
-more known among researches and developers.
+We believe the base-96 codification is a very nice form of describing
+tonal music numerically and it should be more known among researches
+and developers. For these reasons we have adopted it, although no
+algorithm at present makes direct use of it, since their original
+authors designed them expecting pitch classes as input. \nota{passos:
+  corrigido o problema?}
 
 \section{The Rameau Framework}
 \label{sec:system}
