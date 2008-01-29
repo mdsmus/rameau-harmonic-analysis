@@ -711,22 +711,21 @@ incorrectelly assumes all chords have G as root.
 \section{Conclusions and future work}
 \label{sec:concl-future-work}
 
-In this article we described a framework for automatic harmonic
-analysis.
+In this article we described Rameau, a framework for studying
+automatic harmonic analysis of tonal music.
 
-Probably the very next step will be to implement segmentation in the
-program. It will allow us to have a broader and larger musical corpus.
-In the future we plan to implement other techniques such as Hidden
-Markov Model, ``classic'' algorithms for harmonic analysis such as
-\cite{ulrich:analysis,maxwell:expert}, and refine the use of neural
-networks. We also plan on having rameu perform functional harmonic
-analysis.
+Right now our research can branch in many directions. A few important
+algorithms, like Maxwell's expert system \cite{maxwell:expert},
+Ulrich's algorithm \cite{ulrich:analysis}, a variant of Noland and
+Sandler's Hidden Markov Model-based key-finding algorithm
+\cite{noland.ea:key}, and many others are still unimplemented. We plan
+on implementing segmentation and functional analysis, which will allow
+us to extend our corpus, incorporating, for example, the KP corpus
+\cite{temperley:bayesian}. We are also looking for new metrics and
+evaluation techniques, and will extend and improve our existing
+algorithms accordingly. We believe all these tasks will be
+considerably easier now our basic platform is mostly finished.
 
-\nota{melhorar isso. passos: isso não cabe na conclusão, eu diria, até
-por que rameau usa, os algoritmos é que ignoram}
-For now rameau doesn't uses the tonal codification described
-in \ref{sec:codificacao-jamary}. We intend 
-* investigar enarmonia: pitch speller vs. entrada/saida tonal
 
 \bibliographystyle{plain}
 \bibliography{strings-short,ismir,programs,coding,harmonic-analysis,dont-have,artifical-inteligence,music-harmony-and-theory,licenses,icmc}
