@@ -14,7 +14,7 @@
    sodipodi:version="0.32"
    inkscape:version="0.45.1"
    sodipodi:docname="coral-054.svg"
-   sodipodi:docbase="/home/givaldo/genos/repos/rameau-harmonic-analysis"
+   sodipodi:docbase="/home/marcos/repositorios/rameau-harmonic-analysis/figs"
    inkscape:output_extension="org.inkscape.output.svg.inkscape">
   <metadata
      id="metadata45084">
@@ -28,8 +28,8 @@
     </rdf:RDF>
   </metadata>
   <sodipodi:namedview
-     inkscape:window-height="781"
-     inkscape:window-width="1276"
+     inkscape:window-height="741"
+     inkscape:window-width="827"
      inkscape:pageshadow="2"
      inkscape:pageopacity="0.0"
      guidetolerance="10.0"
@@ -39,11 +39,11 @@
      bordercolor="#666666"
      pagecolor="#ffffff"
      id="base"
-     inkscape:zoom="5.5142818"
-     inkscape:cx="-0.095807709"
-     inkscape:cy="271.98047"
+     inkscape:zoom="11.363359"
+     inkscape:cx="34.902021"
+     inkscape:cy="253.8606"
      inkscape:window-x="0"
-     inkscape:window-y="15"
+     inkscape:window-y="0"
      inkscape:current-layer="svg38364" />
   <defs
      id="defs38366">
@@ -11977,7 +11977,7 @@ E</tspan>
          style="font-size:1.95946133px;fill:currentColor;font-family:Schoolbook"
          id="text44839">
         <tspan
-           id="tspan44841">F#</tspan>
+           id="tspan44841">D</tspan>
       </text>
     </g>
     <g
@@ -12905,7 +12905,7 @@ E</tspan>
          id="text23816"
          style="font-size:1.95946133px;fill:currentColor;font-family:Schoolbook">
         <tspan
-           id="tspan23818">F#</tspan>
+           id="tspan23818">D</tspan>
       </text>
     </g>
     <g
@@ -12925,7 +12925,7 @@ E</tspan>
          style="font-size:1.95946133px;font-style:italic;font-weight:bold;fill:currentColor;font-family:Schoolbook"
          id="text23840">
         <tspan
-           id="tspan23842">A</tspan>
+           id="tspan23842">A7/G</tspan>
       </text>
     </g>
     <g
@@ -12935,7 +12935,7 @@ E</tspan>
          style="font-size:1.95946133px;fill:currentColor;font-family:Schoolbook"
          id="text23852">
         <tspan
-           id="tspan23854">C</tspan>
+           id="tspan23854">C/E</tspan>
       </text>
     </g>
     <g
@@ -12945,7 +12945,7 @@ E</tspan>
          id="text23864"
          style="font-size:1.95946133px;font-style:italic;font-weight:bold;fill:currentColor;font-family:Schoolbook">
         <tspan
-           id="tspan23866">C</tspan>
+           id="tspan23866">C7+/G</tspan>
       </text>
     </g>
     <g
@@ -12955,7 +12955,7 @@ E</tspan>
          id="text23882"
          style="font-size:1.95946133px;font-style:italic;font-weight:bold;fill:currentColor;font-family:Schoolbook">
         <tspan
-           id="tspan23884">A7</tspan>
+           id="tspan23884">A7/G</tspan>
       </text>
     </g>
     <g
@@ -12965,7 +12965,7 @@ E</tspan>
          id="text23894"
          style="font-size:1.95946133px;fill:currentColor;font-family:Schoolbook">
         <tspan
-           id="tspan23896">C</tspan>
+           id="tspan23896">C/E</tspan>
       </text>
     </g>
     <g
@@ -12973,9 +12973,9 @@ E</tspan>
        transform="translate(27.997711,37.315664)">
       <text
          id="text23900"
-         style="font-size:1.95946133px;fill:currentColor;font-family:Schoolbook">
+         style="font-size:1.95946133px;font-style:italic;font-weight:bold;fill:currentColor;font-family:Schoolbook">
         <tspan
-           id="tspan23902">F#°</tspan>
+           id="tspan23902">D7/F#</tspan>
       </text>
     </g>
     <g
@@ -12985,7 +12985,7 @@ E</tspan>
          style="font-size:1.95946133px;font-style:italic;font-weight:bold;fill:currentColor;font-family:Schoolbook"
          id="text23906">
         <tspan
-           id="tspan23908">C7+</tspan>
+           id="tspan23908">C7+/G</tspan>
       </text>
     </g>
     <g
@@ -13032,10 +13032,10 @@ E</tspan>
        transform="translate(23.262182,29.095481)"
        id="g24018">
       <text
-         style="font-size:1.95946133px;fill:currentColor;font-family:Schoolbook"
+         style="font-size:1.95946133px;font-style:italic;font-weight:bold;fill:currentColor;font-family:Schoolbook"
          id="text24020">
         <tspan
-           id="tspan24022">C</tspan>
+           id="tspan24022">C7+/E</tspan>
       </text>
     </g>
     <g
@@ -13053,9 +13053,9 @@ E</tspan>
        transform="translate(23.262182,26.359005)">
       <text
          id="text24062"
-         style="font-size:1.95946133px;fill:currentColor;font-family:Schoolbook">
+         style="font-size:1.95946133px;font-style:italic;font-weight:bold;fill:currentColor;font-family:Schoolbook">
         <tspan
-           id="tspan24064">C</tspan>
+           id="tspan24064">C7+/E</tspan>
       </text>
     </g>
     <g
@@ -13123,7 +13123,7 @@ E</tspan>
          id="text24122"
          style="font-size:1.95946133px;font-style:italic;font-weight:bold;fill:currentColor;font-family:Schoolbook">
         <tspan
-           id="tspan24124">F#</tspan>
+           id="tspan24124">D7F#</tspan>
       </text>
     </g>
     <g
