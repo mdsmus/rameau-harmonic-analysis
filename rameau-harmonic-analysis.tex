@@ -617,10 +617,11 @@ learning algorithms are missing many melodic notes. Tables
 \ref{tab:precision} and \ref{tab:recall} indicate that the neural
 network algorithms are failing to recognize fully diminished,
 incomplete, and augmented chords, probably because that our training
-corpus lacks enough examples of these chords. Because the decision
-trees are better at these rare chords we can conclude that they recall
-few examples better, while the neural networks tend to generalize more
-efficiently when more examples are available.
+corpus lacks enough examples of these chords, as seen in table
+\ref{tab:frequency}. Because the decision trees are better at these
+rare chords we can conclude that they recall few examples better,
+while the neural networks tend to generalize more efficiently when
+more examples are available.
 
 As we implement more algorithms, performance analysis by rigorous
 metrics will enable us to draw better conclusions as to the merits and
@@ -641,6 +642,18 @@ flaws of each technique.
   \caption{Precision (\%)}
   \label{tab:precision}
 \end{table}
+
+\begin{table}
+  \centering
+  \begin{tabular}{l|p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.1cm}p{.25cm}}
+    Chord        &  °& °7& ø7&   m& m7&   M&  7& 7+&+  & nct&inc \\
+    \hline                                                     
+    Frequency    &2.8&0.7&2.3&16.4&4.6&37.6&9.6&1.0&0.1&24.3&0.3  \\
+  \end{tabular}
+  \caption{Frequency of chords in our corpus (\%)}
+  \label{tab:frequency}
+\end{table}
+
 
 \begin{table}
   \centering
