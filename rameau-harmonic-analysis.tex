@@ -51,7 +51,7 @@ timbre, notes, rhythm, dynamics, harmony, and by the fact that music
 is not a linear process, unlike image \cite{mouton.ea:numeric}. The
 harmonic changes in a choral texture, where usually all notes in all
 voices begin and finish at the same time, are obvious. However, chords
-are ocasionally arppeggiated, incomplete, and intertwined with
+are occasionally arppeggiated, incomplete, and intertwined with
 non-harmonic tones. These things contribute to increase considerably
 the complexity for analysis \cite{pardo.ea:automated}.
 
@@ -67,7 +67,7 @@ problem solving has brought new insights in these areas
 
 Until now a single framework that allows comparison between different
 algorithms and analysis results has not been developed.  Barthèlemy
-\cite{barthelemy.ea:figured} provides a good sumary of the state of
+\cite{barthelemy.ea:figured} provides a good summary of the state of
 the art of harmonic analysis up to 2001. Every comparison we found in
 literature (\cite{pardo.ea:automated, barthelemy.ea:figured,
   tsui:harmonic, taube:automatic, illescas.ea:harmonic}) is based only
@@ -87,7 +87,7 @@ so on, while \cite{illescas.ea:harmonic} prints a very detailed
 analysis for each NCT.
 
 In this paper we present Rameau, a framework for automatic harmonic
-analysis of Western tonal music that allows easy comparisson between
+analysis of Western tonal music that allows easy comparison between
 algorithms and results. We also present an preliminary evaluation of
 nine algorithms for harmonic analysis using a corpus of 140 Bach
 Chorales from the Riemenschneider edition \cite{bach:371}.
@@ -144,7 +144,7 @@ that represents numerically each note name (A, B, C, D, E, F, G) from
 0 to 6. 0 represents any C, with or without accidentals, 1 represents
 any D, with or without accidentals, and so on. For example, C$\sharp$
 is represented as \texttt{<1,0>}, D$\flat$ as \texttt{<1,1>}, and C$\flat$
-as \texttt{<11,0>}. In this last example 11 represents the pich-class of the
+as \texttt{<11,0>}. In this last example 11 represents the pitch-class of the
 note and 0 indicates how it will be spelled. The binomial notation
 also allows a packaged representation using only single numbers, where
 the pitch-class is multiplied by 10 and added to the note-class. For
@@ -172,13 +172,13 @@ system.
 \end{table}
 
 The base-96 notation is simple, elegant, and overcomes a few
-shortcommings in both the binomial and base-40 notations. Since the
+shortcomings in both the binomial and base-40 notations. Since the
 original publication of the base-96 notation is available only in
 Portuguese, we will describe it here, comparing with the other
 two.
 
 The base-96 is also a single number notation. It has all the
-advantagens of the base-40 notation with a few advantagens. Table
+advantages of the base-40 notation with a few advantages. Table
 \ref{tab:jama-notas} shows how notes are encoded. In this notation the
 intervals are invariant under most transformations, such as inversion,
 transposition, etc. Table \ref{tab:jama-intervalos} shows the coding
@@ -234,7 +234,7 @@ quantity of the interval. For instance, tA is triple-augmented.
     sA  & 6&20&34&47&61&75&89&   \\
     oA  &  &  &  &48&  &  &  &   
   \end{tabular}
-  \caption{Invervals in base-96 notation}
+  \caption{Intervals in base-96 notation}
   \label{tab:jama-intervalos}
 \end{table}
 
@@ -333,7 +333,7 @@ We have currently implemented using this API
 \item a work-in-progress port of the algorithm described in
   \cite{temperley.ea:modeling}, 
 \item four neural networks (using the Fann \cite{nissen:fann}
-  library) roughly similiar to some described in
+  library) roughly similar to some described in
   \cite{tsui:harmonic}, and
 \item four decision trees modeled after the neural networks (using code
   from \cite{mitchell:machine}).
@@ -371,13 +371,13 @@ chords, others identify only the root.
 \begin{figure}
   \centering
   \includegraphics[scale=4]{coral-012}
-  \caption{An analysed excerpt from chorale 12, ``Puer natus in Bethlem''}
+  \caption{An analyzed excerpt from chorale 12, ``Puer natus in Bethlem''}
   \label{fig:coral-12}
 \end{figure}
 
 Rameau performs the analysis of one chorale, using all nine
 algorithms, in less than one-half second running on a Pentium Celeron
-M at 1.4 GHz with 2 GB RAM linux box. All 140 chorales are analysed
+M at 1.4 GHz with 2 GB RAM linux box. All 140 chorales are analyzed
 and the results compared with the answer sheet under 40 seconds.
 
 \subsection{Test corpus}
@@ -411,7 +411,7 @@ it is also compact (unlike MusicXML), has tools to convert from
 different formats (such as MIDI) to it, and lilypond itself can be
 used to render the scores.
 
-When the chorales are fully analysed we plan on incorporating the
+When the chorales are fully analyzed we plan on incorporating the
 Kostka-Payne \cite{kostka.ea:tonal} corpus, Beethoven sonatas, Bach
 cello suites and other pieces.
 
@@ -461,13 +461,13 @@ Sleator's Melisma Music Analyzer and described in
 \cite{temperley.ea:modeling}. As the article does not discuss some
 fundamental implementation issues -- the weighting of the different
 preference rules, for example -- we resorted to porting the code
-avaliable on their web page. Neither their program nor our
+available on their web page. Neither their program nor our
 reimplementation was able to match the performance claimed in the
 article. Tsui \cite{tsui:harmonic} also experienced this.
 
 The algorithm is heavily dependent on many parameters, and its
 performance is orders of magnitude slower than any other we have
-tried. Our reimplementation is still very fragile, ocasionally not
+tried. Our reimplementation is still very fragile, occasionally not
 properly processing a chorale. The accuracy of our reimplementation on
 the properly processed chorales is around $50 \pm 20\%$. The original
 implementation's accuracy couldn't be computed due to difficulties in
@@ -482,14 +482,14 @@ Neural networks are tools for non-linear statistical data
 modeling that work by having artificial neurons exchange
 information. There are many varieties of neural networks, each being
 useful for a certain type of problem. Our networks are all multilayer
-feedforward neural networks, with one hidden layer each. This is the
+feed-forward neural networks, with one hidden layer each. This is the
 standard model for pattern recognition \cite{russell.ea:artificial}.
 
 A neural network is made of connected neurons. Each neuron receives
 signals from other neurons, processes them in a simple manner and
 forwards them to yet other neurons, as in figure \ref{fig:neuron}. In
-a feedforward neural network, these signals flow linearly from input
-neurons to output neurons. We use feedforward neural networks in which
+a feed-forward neural network, these signals flow linearly from input
+neurons to output neurons. We use feed-forward neural networks in which
 the neurons are arranged in layers, as in figure
 \ref{fig:simple-net-diagram}. Each neuron receives information from
 all neurons in the layer preceding it and forwards information to all
@@ -526,20 +526,20 @@ the sonority does not form a chord). Figure
 To study the effect of contextual information in harmonic analysis we
 have also implemented \texttt{Context-net}, differing from the
 \texttt{Simple\hyp{}net} only by also looking at the pitch counts of
-two preceding sonorities and one immediately the one being analysed.
+two preceding sonorities and one immediately the one being analyzed.
 \texttt{Context-net} and \texttt{Simple-net}'s performances are
 equivalent, so perhaps the contextual information necessary for
 harmonic analysis is not easily inferrable from pitch counts. The two
 other neural networks, \texttt{Chord-net} and \texttt{Mode-net}, also
 determine a chord's mode and its seventh. \texttt{Chord-net}'s input
-is the same as \texttt{Sim\-ple\--net}'s, while \texttt{Mode-net} also
+is the same as \texttt{Simple-net}'s, while \texttt{Mode-net} also
 sees the results of \texttt{Context-net}'s analysis for each sonority.
 
 The performance of each neural network depends heavily on the number
 of hidden units it uses. Too few units and the network hasn't got
 enough memory to learn enough harmonic patterns. Too many, and the
 network faces the risk of overfitting. Overfitting happens when the
-neural network has too much memory, so it starts inferring inexistent
+neural network has too much memory, so it starts inferring nonexistent
 patterns from noise in the training data. This is similar to a
 superstitious person's belief that some things bring ``good luck'' or
 ``bad luck'', according to \cite{white.ea:superstitious}.
@@ -548,7 +548,7 @@ The ideal number of hidden units in a neural network has to be
 determined experimentally. The experiments for each of our networks
 can be seen figures \ref{fig:simple-net}, \ref{fig:context-net},
 \ref{fig:chord-net}, and \ref{fig:mode-net}. The chosen values were 12
-units for \texttt{Sim\-ple\--net}, 24 for \texttt{Context-net}, 55 for
+units for \texttt{Simple-net}, 24 for \texttt{Context-net}, 55 for
 \texttt{Chord-net} and 50 for \texttt{Mode-net}.
 
 Our current accuracies for these algorithms are $88\pm 8\%$ for
@@ -711,7 +711,7 @@ CN: Chord net
 \begin{figure}
   \centering
   \includegraphics[scale=4]{coral-054}
-  \caption{An analysed excerpt from chorale 54, ``Lobt Gott, ihr
+  \caption{An analyzed excerpt from chorale 54, ``Lobt Gott, ihr
     Christen, allzugleich''}
   \label{fig:coral-54}
 \end{figure}
@@ -720,14 +720,14 @@ CN: Chord net
 \label{sec:analysis-example}
 
 An interesting example of our analysis is seen in figure
-\ref{fig:coral-54}. This chorale exerpt is a little tricky to analyse
+\ref{fig:coral-54}. This chorale excerpt is a little tricky to Analise
 because all chords in partitions 36--39 have a non-chord tone. The A
 in partition 36 is a retardation, the C in p. 37 a passage, the G in
 p. 38 another retardation, and the E in p. a cambiata. It is
 interesting to observe that the neural network based algorithms
-correctely identify the non-chords tones, the decision tree algorithms
+correctly identify the non-chords tones, the decision tree algorithms
 fail in partitions 36 and 37 but give a correct answer in p. 38--39,
-and pardo-birmingham is able to indentify the basic harmonic framework
+and pardo-birmingham is able to identify the basic harmonic framework
 (without non-chord tones, however), while temperley-sleator
 incorrectly assumes all chords but the last have G as root.
 
