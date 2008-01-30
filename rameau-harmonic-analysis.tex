@@ -86,15 +86,11 @@ bellow the note, using PT for passing tone, NT for neighbor tone, and
 so on, while \cite{illescas.ea:harmonic} prints a very detailed
 analysis for each NCT.
 
-
 In this paper we present Rameau, a framework for automatic harmonic
-analysis of Western tonal music. We also present an preliminary
-evaluation of nine algorithms for harmonic analysis, using a corpus of
-140 Bach Chorales from the Riemenschneider edition. Section
-\ref{sec:system} describes Rameau in more details, section
-\ref{sec:problem} lists the problems related to harmonic analysis,
-section \ref{sec:analysis-results} analyses the results obtained, and
-section \ref{sec:concl-future-work} .......
+analysis of Western tonal music that allows easy comparisson between
+algorithms and results. We also present an preliminary evaluation of
+nine algorithms for harmonic analysis using a corpus of 140 Bach
+Chorales from the Riemenschneider edition \cite{bach:371}.
 
 \section{The problem of automated harmonic analysis}
 \label{sec:problem}
@@ -106,9 +102,10 @@ The first problem is pitch spelling. If sharps and flats are not
 distinguished the program may have problems in places where enharmonic
 information is important. Most systems either ignore this problem or
 develop a pitch speller \cite{temperley.ea:modeling}. To our knowledge
-most harmonic analysis software (with the notable exception of the
-MusEs \cite{pachet.ea:representing} system) uses input formats that
-lose enharmonic information.
+most harmonic analysis software, with the notable exception of the
+system described in \cite{illescas.ea:harmonic} and the MusEs
+\cite{pachet.ea:representing} system, uses input formats that lose
+enharmonic information.
 
 The second problem, the segmentation problem
 \cite{pardo.ea:automated}, is determining what are the vertical
@@ -274,9 +271,7 @@ tonal music numerically and it should be more known among researches
 and developers. For these reasons we have adopted it, although no
 algorithm at present makes direct use of it, since they are
 reimplementations designed by their original authors expecting pitch
-classes as input. \nota{passos: corrigido o problema? kroger: eu acho
-  que precisamos deixar mais claro a ideia de que estamos
-  re-implementando outros algor. passos: e agora?}
+classes as input. 
 
 \section{The Rameau Framework}
 \label{sec:system}
