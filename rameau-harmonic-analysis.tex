@@ -66,36 +66,18 @@ problem solving has brought new insights in these areas
 \cite{temperley.ea:modeling}. 
 
 Until now a single framework that allows comparison between different
-algorithms and analysis results has not been developed. Pardo and
-Birmingham state that ``no researchers have published statistical
-performance results on a system designed to analyze tonal music''
-\cite{pardo.ea:algorithms} before their paper. This lack of data in
-literature makes it difficult to compare different systems. Also,
-there aren't standard benchmarks to compare different algorithms and
-analysis results. In fact, only Pardo and Birmingham
-\cite{pardo.ea:automated} and Barthèlemy and Bonardi
-\cite{barthelemy.ea:figured} published specific comparisons between
-different analysis results. Pardo and Birmingham compare their results
-with Temperley and Sleator's \cite{temperley.ea:modeling} while
-Barthèlemy compares his model against Maxwell's, Pardo and
-Birmingham's, and Temperley and Sleator's
-\cite{maxwell:expert,temperley:algorithm,pardo.ea:automated}. However,
-these comparisons are based on results published in papers and not
-from direct implementations, so they aren't statistically
-representative. Tsui \cite{tsui:harmonic} gives a general comparisson
-of his algorithm with Taube's \cite{taube:automatic} and Temperley's
-\cite{temperley:algorithm}. Unfortunatelly the results of
-\cite{taube:automatic} are not published in the paper but in a web
-site that is no longer on-line, making further comparisson impossible.
-Illescas et al. \cite{illescas.ea:harmonic} have a even more general
-comparison with \cite{taube:automatic} where their system ``is
-comparable in results to those reported by MTW [Taube's system]''.
+algorithms and analysis results has not been developed.  Barthèlemy
+\cite{barthelemy.ea:figured} provides a good sumary of the state of
+the art of harmonic analysis up to 2001. Every comparison we found in
+literature (\cite{pardo.ea:automated, barthelemy.ea:figured,
+  tsui:harmonic, taube:automatic, illescas.ea:harmonic}) is based only
+on very few published examples (at most 18 chorales, in
+\cite{tsui:harmonic}), and so very difficult to analyze statistically.
 
 The systems of Illescas et al. \cite{illescas.ea:harmonic} and Raphael
-and Stoddard \cite{raphael.ea:harmonic} don't show the inversion of
-chords, differentiate major from minor chords (they print both in
-upper case), and provide objective results, such as error rates or
-accuracy degree.
+and Stoddard \cite{raphael.ea:harmonic} don't show chord inversions,
+differentiate major and minor chords (they print both in upper case),
+and provide objective results, such as error rates or accuracy degree.
 
 To the best of our knowledge, \cite{illescas.ea:harmonic} and
 \cite{taube:automatic} are the only systems that provide non-chord
@@ -104,8 +86,6 @@ bellow the note, using PT for passing tone, NT for neighbor tone, and
 so on, while \cite{illescas.ea:harmonic} prints a very detailed
 analysis for each NCT.
 
-Barthèlemy \cite{barthelemy.ea:figured} provides a good sumary of the
-state of the art of harmonic analysis up to 2001.
 
 In this paper we present Rameau, a framework for automatic harmonic
 analysis of Western tonal music. We also present an preliminary
@@ -465,6 +445,27 @@ algorithm, since segmentation is trivial in Bach Chorales.
 
 The current accuracy is $66 \pm 9\%$.
 
+\subsection{Temperley and Sleator's algorithm}
+\label{sec:temperley}
+
+We have a reimplementation of the algorithm used in Temperley and
+Sleator's Melisma Music Analyzer and described in
+\cite{temperley.ea:modeling}. As the article does not discuss some
+fundamental implementation issues -- the weighting of the different
+preference rules, for example -- we resorted to porting the code
+avaliable on their web page. Neither their program nor our
+reimplementation was able to match the performance claimed in the
+article. Tsui \cite{tsui:harmonic} also experienced this.
+
+The algorithm is heavily dependent on many parameters, and its
+performance is orders of magnitude slower than any other we have
+tried. Our reimplementation is still very fragile, ocasionally not
+properly processing a chorale. The accuracy of our reimplementation on
+the properly processed chorales is around $50 \pm 20\%$. The original
+implementation's accuracy couldn't be computed due to difficulties in
+parsing Melisma's output and matching it with our answer sheets, but on
+a glance the results seem very poor, as can be seen in figures
+\ref{fig:coral-12} and \ref{fig:coral-54}.
 
 \subsection{Neural networks}
 \label{sec:neural-nets}
@@ -710,16 +711,17 @@ CN: Chord net
 \subsection{Analysis example}
 \label{sec:analysis-example}
 
-The chorale exerpt in figure \ref{fig:coral-54} is a little tricky to
-analyse because the all chords in partitions 36--39 have a non-chord
-tone. The A in partition 36 as a retardation, the C in p. 37 a
-passage, the G in p. 38 another retardation, and the E in p. a
-cambiata. It is interesting to observe that the neural network based
-algorithms identify correctely the non-chords tones, the decision tree
-algorithms fail in partitions 36 and 37 but give a correct answer in
-p. 38--39, pardo-birmingham is able to indentify the basic harmonic
-framework (without non-chord tones, however), while temperley-sleator
-incorrectelly assumes all chords have G as root.
+An interesting example of our analysis is seen in figure
+\ref{fig:coral-54}. This chorale exerpt is a little tricky to analyse
+because all chords in partitions 36--39 have a non-chord tone. The A
+in partition 36 is a retardation, the C in p. 37 a passage, the G in
+p. 38 another retardation, and the E in p. a cambiata. It is
+interesting to observe that the neural network based algorithms
+correctely identify the non-chords tones, the decision tree algorithms
+fail in partitions 36 and 37 but give a correct answer in p. 38--39,
+and pardo-birmingham is able to indentify the basic harmonic framework
+(without non-chord tones, however), while temperley-sleator
+incorrectly assumes all chords but the last have G as root.
 
 \section{Conclusions and future work}
 \label{sec:concl-future-work}
