@@ -269,13 +269,14 @@ like:
 To do anything non-trivial, like interval-class vectors, yet extra
 work has to be done, increasing complexity.
 
- believe the base-96 codification is a very nice form of describing
+believe the base-96 codification is a very nice form of describing
 tonal music numerically and it should be more known among researches
 and developers. For these reasons we have adopted it, although no
-algorithm at present makes direct use of it, since their original
-authors designed them expecting pitch classes as input. \nota{passos:
-  corrigido o problema? kroger: eu acho que precisamos deixar mais
-  claro a ideia de que estamos re-implementando outros algor.}
+algorithm at present makes direct use of it, since they are
+reimplementations designed by their original authors expecting pitch
+classes as input. \nota{passos: corrigido o problema? kroger: eu acho
+  que precisamos deixar mais claro a ideia de que estamos
+  re-implementando outros algor. passos: e agora?}
 
 \section{The Rameau Framework}
 \label{sec:system}
@@ -301,9 +302,9 @@ approaches for harmonic analysis, in the manner of reference
 
 Rameau is written in Common Lisp and runs on the Steel Bank Common
 Lisp \cite{team:sbcl} compiler on the GNU/Linux operating system.
-\nota{run, run, run!} Rameau also runs on windows (it might run on
-MacOS, but that was not tested) and is portable enough to be compiled
-with CMUCL \cite{maclachlan:cmucl} and Clisp \cite{haible.ea:clisp}.
+Rameau also has been ported to windows (it might be ported to MacOS,
+but that was not tested) and can also be compiled with CMUCL
+\cite{maclachlan:cmucl} and Clisp \cite{haible.ea:clisp}.
 
 \subsection{Architecture}
 \label{sec:architecture-and-api}
