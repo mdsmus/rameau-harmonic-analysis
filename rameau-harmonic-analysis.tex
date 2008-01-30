@@ -375,6 +375,11 @@ chords, others identify only the root.
   \label{fig:coral-12}
 \end{figure}
 
+Rameau performs the analysis of one chorale, using all nine
+algorithms, in less than one-half second running on a Pentium Celeron
+M at 1.4 GHz with 2 GB RAM linux box. All 140 chorales are analysed
+and the results compared with the answer sheet under 40 seconds.
+
 \subsection{Test corpus}
 \label{sec:test-corpus}
 
@@ -384,20 +389,27 @@ use as training and test data. Bach chorales were chosen because:
 \begin{enumerate}
 \item they are easily analyzed. For example, the segmentation problem in
 them consists simply of determining the sonorities.
-\item Their chord density is high - there are many more chords per
+\item Their chord density is high---there are many more chords per
   measure than in a symphony, for example.
 \item They are canonical examples of tonal harmony.
 \item There are 371 on the Riemenschneider edition, more than
   enough to train our algorithms and get precise error analysis.
 \item Their texture is simple and constant. It consists basically of
   four voices forming simple triads and tetrads.
+\item Although they have been used in many researches \cite{taube:automatic,
+    tsui:harmonic, illescas.ea:harmonic, winograd:linguistics}, none
+  of them have analyzed all of them.
 \end{enumerate}
 
 We have already analyzed 140 of them and plan on fully analyzing the
 Riemenschneider corpus soon. The chorales are stored in a subset of
-the GNU Lilypond \cite{nienhuys.ea:lilypond} format, from which we
-generate MIDI files and typeset scores, possibly annotated with
-analysis results (both by human and by computer).
+the GNU Lilypond format, from which we generate MIDI files and typeset
+scores, possibly annotated with analysis results (both by human and by
+computer). The lilypond format was choosen because it is easy to parse
+(if you are only using a subset of it), easy to read and write by
+humans, compact (unlike MusicXML), there are tools to convert from
+different formats (such as MIDI) to lilypond, and lilypond itself can
+be used to render the scores.
 
 When the chorales are fully analysed we plan on incorporating the
 Kostka-Payne \cite{kostka.ea:tonal} corpus, Beethoven sonatas, Bach
