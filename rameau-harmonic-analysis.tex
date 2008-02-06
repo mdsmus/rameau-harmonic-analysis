@@ -44,39 +44,54 @@ sonorities with proper chords names (such as ``A minor''), and
 identify their relationship using roman numerals.
 
 Harmonic analysis by computer is an important, challenging, and
-interesting music research topic. It is challenging because
-the musical material has a large variety of information such as
-timbre, notes, rhythm, dynamics, harmony, and by the fact that music
-is not a linear process, unlike image \cite{mouton.ea:numeric}. The
-harmonic changes in a choral texture, where usually all notes in all
-voices begin and finish at the same time, are obvious. However, chords
-are occasionally arppeggiated, incomplete, and intertwined with
-non-harmonic tones. These things contribute to increase considerably
-the complexity for analysis \cite{pardo.ea:automated}.
+interesting music research topic. It is challenging because the
+musical material has a large variety of information such as timbre,
+notes, rhythm, dynamics, harmony, and by the fact that music is not a
+linear process, unlike image \cite{mouton.ea:numeric} \nota{iara:``and
+  by the fact that music, unlike image, is not a linear process.''
+  ficaria melhor que ``and by the fact that music is not a linear
+  process, unlike image.''} . The harmonic changes in a choral
+texture, where usually all notes in all voices begin and finish at the
+same time, are obvious. However, chords are occasionally arppeggiated,
+incomplete, and intertwined with non-harmonic tones. These things
+contribute to increase considerably the complexity for analysis
+\cite{pardo.ea:automated}.
 
 There are many practical applications for automatic music analysis,
-among them, arranging, detection of possible logical mistakes in
-scores, database search, automatic accompaniment generation, and
-statistical analysis of musical styles for automated composition
+among them \nota{ iara:o ``among them'' me soou muito como a tradução
+  de ``entre eles''. Talvez ``such as'' ficasse melhor? }, arranging,
+detection of possible logical mistakes in scores, database search,
+automatic accompaniment generation, and statistical analysis of
+musical styles for automated composition
 \cite{pardo.ea:algorithms,temperley.ea:modeling}. Computer-based
 harmonic analysis is also important because it can bring new insights
 in music theory, in the same way the use of computer in vision and
 problem solving has brought new insights in these areas
-\cite{temperley.ea:modeling}. 
+\cite{temperley.ea:modeling}.
 
 Until now a single framework that allows comparison between different
 algorithms and analysis results has not been developed.  Barthèlemy
 \cite{barthelemy.ea:figured} provides a good summary of the state of
-the art of harmonic analysis up to 2001. Every comparison we found in
-literature (\cite{pardo.ea:automated, barthelemy.ea:figured,
-  tsui:harmonic, taube:automatic, illescas.ea:harmonic}) is based only
-on very few published examples (at most 18 chorales, in
-\cite{tsui:harmonic}), and so very difficult to analyze statistically.
+the art of harmonic analysis up to 2001 \nota{iara: ``Barthelemy
+  provides a good summary of the state of the art of harmonic analysis
+  up to 2001'' ficou meio esquisito. Eu entendi o que vcs estavam
+  dizendo, claro, mas não é meio tradução não? Usaria-se ``state of
+  the art'' nesse sentido?  }. Every comparison we found in literature
+(\cite{pardo.ea:automated, barthelemy.ea:figured, tsui:harmonic,
+  taube:automatic, illescas.ea:harmonic}) is based only on very few
+published examples (at most 18 chorales, in \cite{tsui:harmonic}), and
+so \nota{iara: eu colocaria um ``are'' nesse lugar }very difficult to
+analyze statistically.
 
 The systems of Illescas et al. \cite{illescas.ea:harmonic} and Raphael
 and Stoddard \cite{raphael.ea:harmonic} don't show chord inversions,
 differentiate major and minor chords (they print both in upper case),
-and provide objective results, such as error rates or accuracy degree.
+and provide objective results, such as error rates or accuracy
+degree. \nota{ iara: eu entendi que vcs estavam listando coisas que o
+  sistema Blá Blá Blá não faz (né?), mas isso ficaria mais claro se
+  vcs juntassem as tres frases com negativas (por exemplo, ao invés de
+  ``and provide'', ``or provide'' - cause i'm guessing they don't
+  provide objective results... or did i get it wrong? )  }
 
 To the best of our knowledge, \cite{illescas.ea:harmonic} and
 \cite{taube:automatic} are the only systems that provide non-chord
@@ -87,7 +102,7 @@ analysis for each NCT.
 
 In this paper we present Rameau, a framework for automatic harmonic
 analysis of Western tonal music that allows easy comparison between
-algorithms and results. We also present an preliminary evaluation of
+algorithms and results. We also present a preliminary evaluation of
 nine algorithms for harmonic analysis using a corpus of 140 Bach
 Chorales from the Riemenschneider edition \cite{bach:371}.
 
@@ -95,16 +110,23 @@ Chorales from the Riemenschneider edition \cite{bach:371}.
 \label{sec:problem}
 
 The problem of automated harmonic analysis might be understood by
-dividing it into four sub-problems. 
+dividing it into four sub-problems. \nota{iara: Eu diria que ``the
+  problem of automated harmonics analysis may be understood'', e não
+  ``might be understood'', já que vcs parecem estar mais falando de um
+  fato que de uma possibildade. (eu sei que may tb é possibiliade, mas
+  é mais um pode de fato... but this is silly). Eu tb diria ``may be
+  better understood if we divide it into 4 sub-problems'', ao inves de
+  ``by dividing it into 4 sub-problems'' (but this is still silly). }
 
 The first problem is pitch spelling. If sharps and flats are not
-distinguished the program may have problems in places where enharmonic
-information is important. Most systems either ignore this problem or
-develop a pitch speller \cite{temperley.ea:modeling}. To our knowledge
-most harmonic analysis software, with the notable exception of the
-system described in \cite{illescas.ea:harmonic} and the MusEs
-\cite{pachet.ea:representing} system, uses input formats that lose
-enharmonic information.
+distinguished the program may have problems in places where
+\nota{iara: ``whenever'' fica melhor que ``in places where''}
+enharmonic information is important. Most systems either ignore this
+problem or develop a pitch speller \cite{temperley.ea:modeling}. To
+our knowledge most harmonic analysis software, with the notable
+exception of the system described in \cite{illescas.ea:harmonic} and
+the MusEs \cite{pachet.ea:representing} system, uses input formats
+that lose enharmonic information.
 
 The second problem, the segmentation problem
 \cite{pardo.ea:automated}, is determining what are the vertical
@@ -127,14 +149,17 @@ piece and assigning a tonal function to each chord.
 \section{Numeric codification for tonal music}
 \label{sec:codificacao-jamary}
 
-Probably the pitch-class notation, or some variation such as MIDI, is
-the most used way to numerically represent pitch. The main problem
-with this notation is the loss of enharmonic spelling. In this section
-we will revise three notations created independently by Brinkman,
-Hewlett, and Oliveira \cite{brinkman:binomial,
-  hewlett:base-40, oliveira:busca} to address this problem.
-For simplicity we will refer to them as binomial, base-40, and
-base-96, respectively.
+\nota{iara: fica feio começar com ``probably''. Não seria melhor ``The
+  picth-class notation, or some variation such as MIDI, is probably
+  the most used....''? Tb deu vontade de pensar ``in order to
+  adress'', e acho que depois de base-40 não tem vírgula.}Probably the
+pitch-class notation, or some variation such as MIDI, is the most used
+way to numerically represent pitch. The main problem with this
+notation is the loss of enharmonic spelling. In this section we will
+revise three notations created independently by Brinkman, Hewlett, and
+Oliveira \cite{brinkman:binomial, hewlett:base-40, oliveira:busca} to
+address this problem.  For simplicity we will refer to them as
+binomial, base-40, and base-96, respectively.
 
 Notes in the binomial notation are represented as tuples in the form
 of \texttt{<pc,nc>} where \texttt{pc} stands for pitch-class and
@@ -174,18 +199,24 @@ The base-96 notation is simple, elegant, and overcomes a few
 shortcomings in both the binomial and base-40 notations. Since the
 original publication of the base-96 notation is available only in
 Portuguese, we will describe it here, comparing with the other
-two.
+two. \nota{iara: ``As'' é mais bonitinho que ``Since''. E simplesmente
+  ``comparing with the other two'' ficou estranho ( ou ``comparing it
+  with the other two'' ou ``in comparison with the other two'').}
 
 The base-96 is also a single number notation. It has all the
-advantages of the base-40 notation with some additional advantages.
-Table \ref{tab:jama-notas} shows how notes are encoded. In this
-notation the intervals are invariant under most transformations, such
-as inversion, transposition, etc. Table \ref{tab:jama-intervalos}
-shows the coding for the intervals. In this table the first column
-indicates the interval name; p, M, m, d, A for perfect, major, minor,
-diminished, and augmented, respectively. The letters before d and A
-indicate the quantity of the interval. For instance, tA is
-triple-augmented.
+advantages of the base-40 notation with some additional advantages
+\nota{iara: ``"it has all the qualities of the base-40 notation with a
+  few advantages'', ou algo assim? Tb acho que a frase depois de Table
+  3 não precisa começar com ``in this table'', já está claro de que
+  table vcs estão falando. (e acho que o p de ``p, M, m, d, A'' era para
+  ter sido maiusculo, não? Pq não tem p na Table, só P)}.  Table
+\ref{tab:jama-notas} shows how notes are encoded. In this notation the
+intervals are invariant under most transformations, such as inversion,
+transposition, etc. Table \ref{tab:jama-intervalos} shows the coding
+for the intervals. In this table the first column indicates the
+interval name; p, M, m, d, A for perfect, major, minor, diminished,
+and augmented, respectively. The letters before d and A indicate the
+quantity of the interval. For instance, tA is triple-augmented.
 
 \begin{table}
   \centering
@@ -244,18 +275,23 @@ pitch-class system (modulo 12): in the base-96 notation G = 55, and
 the result of 55 mod 12 is 7, representing G in the pitch-class
 notation. 
 
-The problem with the base-40 notation is that it has problems with
-more than two accidentals. For example, the interval between
-C$\flat\flat$ and C$\sharp\sharp$ (a quadruple augmented unison) has
-the same value (6) as diminished second. On the other hand, in the
-base-96 notation this interval can be correctly computed.
+The problem with the base-40 notation is that it has problems
+\nota{iara: Parece que vcs estao dizendo, in short, que ``the problem
+  is that is has problems''. Não tem como substituir o segundo problems
+  por algo como ``não lida bem com'' em ingles, ou sei lá? (not the best
+  sugestion, huh? ) }with more than two accidentals. For example, the
+interval between C$\flat\flat$ and C$\sharp\sharp$ (a quadruple
+augmented unison) has the same value (6) as diminished second. On the
+other hand, in the base-96 notation this interval can be correctly
+computed.
 
 The main problem with the binomial notation is that operations that
 are (and should be) simple become complex. In both base-40 and base-96
-notations, transposition is as simple as adding an index to a note, while
-in the binomial system it has to use two different operations (mod and
-div) besides the addition. Its packaged representation is supposed to
-simplify things, but as an example, transposition become something
+notations, transposition is as simple as adding an index to a note,
+while in the binomial system it has to use \nota{iara: ``requires'' é
+  mais bonitinho que ``it has to use''} two different operations (mod
+and div) besides the addition. Its packaged representation is supposed
+to simplify things, but as an example, transposition becomes something
 like:
 
 \begin{eqnarray}
@@ -283,8 +319,8 @@ harmonic analysis we have designed and implemented a framework,
 Rameau, that should enable us to
 
 \begin{enumerate}
-\item compare results precisely and repeatably with human analysis of
-  a large corpus of music;
+\item compare results precisely and reproducibly with human analysis
+  of a large corpus of music;
 \item allow algorithms to access detailed information in the input score,
   such as enharmonic differences, meter, etc.; and
 \item easily develop new algorithms, test existing ones, and precisely
@@ -292,10 +328,11 @@ Rameau, that should enable us to
 \end{enumerate}
 
 Reimplementing existing algorithms in Rameau allows us to easily
-evaluate their accuracy, study their errors and compare them with our
+evaluate their accuracy, study their errors and compare them using our
 baseline techniques. We are unaware of research comparing different
-approaches for harmonic analysis, in the manner of reference
-\cite{gomez.ea:song}.
+approaches to harmonic analysis, in the manner of reference
+\cite{gomez.ea:song} \nota{iara: eu não entendi o ``in manner of
+  reference''. Vcs queriam dizer que não encontram bibliografia?}.
 
 Rameau is written in Common Lisp and runs on the Steel Bank Common
 Lisp \cite{team:sbcl} compiler on the GNU/Linux operating system.
@@ -323,10 +360,9 @@ function and a comparison function as parameters. The input to the
 analysis function is a list of sonorities. In Rameau, sonorities are
 lists of notes, each note specifying its onset time, duration, octave
 and pitch. The output is a list of either chords or non-chord tones,
-one for each input sonority. Chords are structures possibly having a
-root, a mode, a seventh, a bass, and other additions. The
-framework provides a few possible comparison functions for easy
-usage.
+one for each input sonority. Chords are structures that may have a
+root, a mode, a seventh, a bass, and other additions. The framework
+provides a few possible comparison functions for easy usage.
 
 Using this API we have currently implemented:
 
@@ -365,7 +401,7 @@ render the score.
 
 Figure \ref{fig:coral-12} shows the result of the analysis of the
 first phrase of chorale \#12. The first line shows the partition
-number, the last line the expected answer, and the lines in between
+number, the last line, the expected answer, and the lines in between,
 the analysis results for the chosen algorithms. The output score shows
 incorrect analysis in bold italic. Non-chord tones are notated as
 ``—''. \nota{o único exemplar neste exemplo está no primeiro acorde do
@@ -403,9 +439,14 @@ them consists simply of determining the sonorities.
   enough to train our algorithms and get precise error analysis.
 \item Their texture is simple and constant. It consists basically of
   four voices forming simple triads and tetrads.
-\item Although they have been used in many researches \cite{taube:automatic,
-    tsui:harmonic, illescas.ea:harmonic, winograd:linguistics}, none
-  of them have analyzed all of them.
+\item Although they have been used in many researches
+  \cite{taube:automatic, tsui:harmonic, illescas.ea:harmonic,
+    winograd:linguistics}, none of them have analyzed all of
+  them. \nota{iara: a troca de sujeito deixa a frase um pouco
+    estranha, fora que ``none of them have analyzed all of them'' ta a
+    bit ugly. Que tal ``Although they have been used in may
+    researches, they have not been all analyzed'' ou algum outro fim
+    de frase?}
 \end{enumerate}
 
 We have already analyzed 140 of them and plan on fully analyzing the
