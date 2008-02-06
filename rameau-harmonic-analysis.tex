@@ -6,7 +6,7 @@
 \usepackage[english]{babel}
 \usepackage{color}
 \usepackage[htt]{hyphenat}
-\usepackage{babelbib}
+%\usepackage{babelbib}
 
 \title{Rameau: A System for Automatic Harmonic Analysis}
 
@@ -37,15 +37,14 @@
 \section{Introduction}
 \label{sec:introduction}
 
-In music, harmonic analysis is the study of vertical sonorities and it
-connections and is paramount to the understanding of tonal
+In music, harmonic analysis is the study of vertical sonorities and
+their connections, and is paramount to the understanding of tonal
 compositions. The analyst may find the root of chords, label
 sonorities with proper chords names (such as ``A minor''), and
-identify the relationship between chords using roman
-numerals.
+identify their relationship using roman numerals.
 
 Harmonic analysis by computer is an important, challenging, and
-interesting computer music research topic. It is challenging because
+interesting music research topic. It is challenging because
 the musical material has a large variety of information such as
 timbre, notes, rhythm, dynamics, harmony, and by the fact that music
 is not a linear process, unlike image \cite{mouton.ea:numeric}. The
@@ -56,7 +55,7 @@ non-harmonic tones. These things contribute to increase considerably
 the complexity for analysis \cite{pardo.ea:automated}.
 
 There are many practical applications for automatic music analysis,
-among them arranging, detection of possible logical mistakes in
+among them, arranging, detection of possible logical mistakes in
 scores, database search, automatic accompaniment generation, and
 statistical analysis of musical styles for automated composition
 \cite{pardo.ea:algorithms,temperley.ea:modeling}. Computer-based
@@ -178,14 +177,15 @@ Portuguese, we will describe it here, comparing with the other
 two.
 
 The base-96 is also a single number notation. It has all the
-advantages of the base-40 notation with a few advantages. Table
-\ref{tab:jama-notas} shows how notes are encoded. In this notation the
-intervals are invariant under most transformations, such as inversion,
-transposition, etc. Table \ref{tab:jama-intervalos} shows the coding
-for the intervals. In this table the first column indicates the
-interval name; p, M, m, d, A for perfect, major, minor, diminished,
-and augmented, respectively. The letters before d and A indicate the
-quantity of the interval. For instance, tA is triple-augmented.
+advantages of the base-40 notation with some additional advantages.
+Table \ref{tab:jama-notas} shows how notes are encoded. In this
+notation the intervals are invariant under most transformations, such
+as inversion, transposition, etc. Table \ref{tab:jama-intervalos}
+shows the coding for the intervals. In this table the first column
+indicates the interval name; p, M, m, d, A for perfect, major, minor,
+diminished, and augmented, respectively. The letters before d and A
+indicate the quantity of the interval. For instance, tA is
+triple-augmented.
 
 \begin{table}
   \centering
@@ -269,9 +269,11 @@ work has to be done, increasing complexity.
 We believe the base-96 codification is a very nice form of describing
 tonal music numerically and it should be more known among researches
 and developers. For these reasons we have adopted it, although no
-algorithm at present makes direct use of it, since they are
-reimplementations designed by their original authors expecting pitch
-classes as input. 
+algorithm implemented in rameau at present makes direct use of it,
+since they are reimplementations designed by their original authors
+expecting pitch classes as input. \nota{jama: o que você quer dizer?
+  Talvez confundindo o PCN--que espera pitch classes--com o
+  Objnota--que espera qualquer "coisa"?}
 
 \section{The Rameau Framework}
 \label{sec:system}
@@ -326,7 +328,8 @@ root, a mode, a seventh, a bass, and other additions. The
 framework provides a few possible comparison functions for easy
 usage.
 
-We have currently implemented using this API 
+Using this API we have currently implemented:
+
 \begin{enumerate}
 \item a subset of the algorithm described in \cite{pardo.ea:algorithms}
   (ignoring, for now, segmentation), 
@@ -341,7 +344,7 @@ We have currently implemented using this API
 
 Rameau's source code is publicly available, under a GNU GPL
 \cite{fsf:gpl} license in a git \cite{baudis:git}
-repository at \url{genos.mus.br/repos/rameau.git} and for
+repository at \url{git://genos.mus.br/rameau.git} and for
 visualization at \url{git.genos.mus.br/?p=rameau.git}.
 
 \subsection{The interface}
@@ -365,8 +368,12 @@ first phrase of chorale \#12. The first line shows the partition
 number, the last line the expected answer, and the lines in between
 the analysis results for the chosen algorithms. The output score shows
 incorrect analysis in bold italic. Non-chord tones are notated as
-``—''. It is important to remember that while some algorithms identify
-chords, others identify only the root.
+``—''. \nota{o único exemplar neste exemplo está no primeiro acorde do
+  Context Tree e evidentemente incorreto. Como distinguir o correto do
+  incorreto no caso das non-chord tones?} It is important to remember
+that while some algorithms identify chords, others identify only the
+root. \nota{jama: porque no Temper.-Sle. todos os acordes estão
+  errados (bold italic) inclusive os três primeiros?}
 
 \begin{figure}
   \centering
