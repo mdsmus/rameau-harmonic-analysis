@@ -47,14 +47,14 @@
 
 In music, harmonic analysis is the study of vertical sonorities and
 their connections, and is paramount to the understanding of tonal
-compositions. The analyst may find the root of chords, label
+compositions. The analyst may find the chord roots, label
 sonorities with proper chords names (such as ``A minor''), and
 identify their relationship using roman numerals.
 
 Harmonic analysis by computer is an important, challenging, and
 interesting music research topic. It is challenging because the
 musical material has a large variety of information such as timbre,
-notes, rhythm, dynamics, harmony, and by the fact that music is not a
+notes, rhythm, dynamics, harmony, and because music is not a
 linear process, unlike image \cite{mouton.ea:numeric} \nota{iara:``and
   by the fact that music, unlike image, is not a linear process.''
   ficaria melhor que ``and by the fact that music is not a linear
@@ -78,7 +78,7 @@ problem solving has brought new insights in these areas
 \cite{temperley.ea:modeling}.
 
 Until now a single framework that allows comparison between different
-algorithms and analysis results has not been developed.  Barthèlemy
+algorithms and analysis results has not been developed. Barthèlemy
 \cite{barthelemy.ea:figured} provides a good summary of the state of
 the art of harmonic analysis up to 2001 \nota{iara: ``Barthelemy
   provides a good summary of the state of the art of harmonic analysis
@@ -88,7 +88,7 @@ the art of harmonic analysis up to 2001 \nota{iara: ``Barthelemy
 (\cite{pardo.ea:automated, barthelemy.ea:figured, tsui:harmonic,
   taube:automatic, illescas.ea:harmonic}) is based only on very few
 published examples (at most 18 chorales, in \cite{tsui:harmonic}), and
-so \nota{iara: eu colocaria um ``are'' nesse lugar }very difficult to
+so \nota{iara: eu colocaria um ``are'' nesse lugar }, thus very difficult to
 analyze statistically.
 
 The systems of Illescas et al. \cite{illescas.ea:harmonic} and Raphael
@@ -166,7 +166,7 @@ way to numerically represent pitch. The main problem with this
 notation is the loss of enharmonic spelling. In this section we will
 revise three notations created independently by Brinkman, Hewlett, and
 Oliveira \cite{brinkman:binomial, hewlett:base-40, oliveira:busca} to
-address this problem.  For simplicity we will refer to them as
+address this problem.  For the sake of simplicity we will refer to them as
 binomial, base-40, and base-96, respectively.
 
 Notes in the binomial notation are represented as tuples in the form
@@ -337,14 +337,14 @@ Rameau, that should enable us to
 
 Reimplementing existing algorithms in Rameau allows us to easily
 evaluate their accuracy, study their errors and compare them using our
-baseline techniques. We are unaware of research comparing different
+baseline techniques. We are unaware of any research comparing different
 approaches to harmonic analysis, in the manner of reference
 \cite{gomez.ea:song} \nota{iara: eu não entendi o ``in manner of
   reference''. Vcs queriam dizer que não encontram bibliografia?}.
 
 Rameau is written in Common Lisp and runs on the Steel Bank Common
 Lisp \cite{team:sbcl} compiler on the GNU/Linux operating system.
-Rameau also has been ported to windows (it might be ported to MacOS,
+Rameau also has been ported to Windows (it might be ported to MacOS,
 but that was not tested) and can also be compiled with CMUCL
 \cite{maclachlan:cmucl} and Clisp \cite{haible.ea:clisp}.
 
@@ -422,7 +422,7 @@ root. \nota{jama: porque no Temper.-Sle. todos os acordes estão
 \begin{figure}
   \centering
   \includegraphics[scale=4]{coral-012}
-  \caption{An analyzed excerpt from chorale 12, ``Puer natus in Bethlem''}
+  \caption{An analyzed excerpt from chorale 12, ``Puer natus in Bethlehem''}
   \label{fig:coral-12}
 \end{figure}
 
