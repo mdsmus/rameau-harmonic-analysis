@@ -86,21 +86,12 @@ in music theory, in the same way the use of computer in vision and
 problem solving has brought new insights in these areas
 \cite{temperley.ea:modeling}.
 
-Until now a single framework that allows comparison between different
-algorithms and analysis results has not been developed. Barthèlemy
-\cite{barthelemy.ea:figured} provides a good summary of the state of
-the art of harmonic analysis up to 2001. Every comparison we found in
-literature (\cite{pardo.ea:automated, barthelemy.ea:figured,
-  tsui:harmonic, taube:automatic, illescas.ea:harmonic}) is based only
-on very few published examples (at most 18 chorales, in
-\cite{tsui:harmonic}), and so, thus are very difficult to analyze
-statistically.\nota{reescrever}
-
-The systems of Illescas et al. \cite{illescas.ea:harmonic} and Raphael
-and Stoddard \cite{raphael.ea:harmonic} don't show chord inversions,
-don't differentiate major and minor chords (they print both in upper
-case), and don't provide objective results, such as error rates or
-accuracy degree.
+Although many harmonic analysis algorithms have been proposed, no
+single framework for comparing them has been developed. Every
+comparison we found in literature (\cite{pardo.ea:automated,
+  barthelemy.ea:figured, tsui:harmonic, taube:automatic,
+  illescas.ea:harmonic}) is based solely on published examples, which
+are not a very statistically representative sample.
 
 In this paper we present Rameau, a framework for automatic harmonic
 analysis of Western tonal music that allows easy comparison between
@@ -382,9 +373,7 @@ number, the last line, the expected answer, and the lines in between,
 the analysis results for the chosen algorithms. The output score shows
 incorrect analysis in bold italic. Non-chord tones are notated as
 ``—''. It is important to remember that while some algorithms identify
-chords, others identify only the root. \nota{jama: porque no
-  Temper.-Sle. todos os acordes estão errados (bold italic) inclusive
-  os três primeiros?}
+chords, others identify only the root.
 
 \begin{figure}
   \centering
@@ -482,24 +471,23 @@ The current accuracy is $66 \pm 9\%$.
 \subsection{Temperley and Sleator's algorithm}
 \label{sec:temperley}
 
-We have a reimplementation of the algorithm used in Temperley and
-Sleator's Melisma Music Analyzer and described in
-\cite{temperley.ea:modeling}. As the article does not discuss some
-fundamental implementation issues\ such as the weighting of the
-different preference rules, we resorted to porting the code available
-on their web page. Neither their program nor our reimplementation was
-able to match the performance claimed in the article. Tsui
-\cite{tsui:harmonic} also notes this problem. \nota{reescrever}
+We have reimplementatied the algorithm used in Temperley and Sleator's
+Melisma Music Analyzer and described in
+\cite{temperley.ea:modeling}. We also found online their
+implementation of their algorithm, but neither their program nor our
+reimplementation was able to match the performance claimed in the
+article. Tsui \cite{tsui:harmonic} was also unable to reproduce their
+results.
 
-The algorithm is brittle and depends on many parameters. Its
+The Melisma algorithm is brittle and depends on many parameters. Its
 performance is orders of magnitude slower than any other we have
-evaluated. Our reimplementation is still very fragile and occasionally
-fails to process a chorale. Its around $50 \pm 20\%$. The original
-implementation's accuracy couldn't be computed due to difficulties in
-parsing Melisma's output and matching it with our answer sheets.  On
-the scores we manually matched, however, the accuracy seems poor, as
-can be seen in figures \ref{fig:coral-12} and
-\ref{fig:coral-54}. \nota{revisar}
+evaluated. Our reimplementation is also very fragile and occasionally
+fails to process a chorale. Its accuracy is around $50 \pm 20\%$. The
+original implementation's accuracy couldn't be computed due to
+difficulties in parsing Melisma's output and matching it with our
+answer sheets.  On the scores we manually matched, however, the
+accuracy seems poor, as can be seen in figures \ref{fig:coral-12} and
+\ref{fig:coral-54}.
 
 \subsection{Neural networks}
 \label{sec:neural-nets}
