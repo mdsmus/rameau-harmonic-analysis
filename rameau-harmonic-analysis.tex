@@ -89,24 +89,24 @@ single framework for comparing them has been developed. Every
 comparison we found in literature (\cite{pardo.ea:automated,
   barthelemy.ea:figured, tsui:harmonic, taube:automatic,
   illescas.ea:harmonic}) is based solely on published examples, which
-are not a very statistically representative sample. Pardo and
-Birmingham \cite{pardo.ea:automated} state that ``no researchers have
-published statistical performance results on a system designed to
-analyze tonal music''. In this paper we will present Rameau, a
-framework for automatic harmonic analysis of Western tonal music
-developed as an attempt to solve this problem.
+are not a statistically representative sample. Pardo and Birmingham
+\cite{pardo.ea:automated} state that ``no researchers have published
+statistical performance results on a system designed to analyze tonal
+music''. In this paper we will present Rameau, a framework for
+automatic harmonic analysis of Western tonal music developed as an
+attempt to solve this problem.
 
 We have implemented ten algorithms for harmonic analysis in the
 framework and will present in this work a preliminary evaluation of
 them using a corpus of 140 Bach chorales from the 371 in the
 Riemenschneider edition \cite{bach:371}. Rameau automatically compares
 the answers returned by the algorithms with answer sheets prepared by
-musicians. Since we currently have answer sheets for only 140
-chorales, that will be the music corpus used in this paper, although
-rameau can analyze all 371. While some algorithms are heavily based on
-previous research, other approaches, like our usage of decision trees,
-are new. Another significant difference between our approach and the
-others found in the literature is the evaluation of performance using
+musicians. Since we have answer sheets for only 140 chorales, that
+will be the music corpus used in this paper, although rameau can
+analyze all 371. While some algorithms are heavily based on previous
+research, other approaches, like our usage of decision trees, are new.
+Another significant difference between our approach and the others
+found in the literature is the evaluation of performance using
 precision and recall.
 
 \section{The problem of automated harmonic analysis}
@@ -128,9 +128,9 @@ The second problem, the segmentation problem
 \cite{pardo.ea:automated}, is to determine what are the vertical
 sonorities in a piece of music and group these sonorities in
 harmonically significant segments, or chord-spans. The main reason for
-segmentation's complexity is that the number of possible segmentations
-of a piece is roughly an exponential function of its length,
-impossibilitating a thorough evaluation of all possibilities
+the complexity of segmentation is that the number of possible
+segmentations of a piece is roughly an exponential function of its
+length, making a thorough evaluation of all possibilities impossible
 \cite{pardo.ea:algorithms}.
 
 The third problem is labeling segments with chord names. Not every
@@ -196,8 +196,8 @@ two.
 The base-96 is also a single number notation. It has all the qualities
 of the base-40 notation with some additional advantages. Table
 \ref{tab:jama-notas} shows how notes are encoded. In this notation the
-intervals are invariant under most transformations, such as inversion,
-transposition, etc. Table \ref{tab:jama-intervalos} shows the coding
+intervals are invariant under most transformations, such as inversion
+and transposition. Table \ref{tab:jama-intervalos} shows the coding
 for the intervals. The first column indicates the interval name; P, M,
 m, d, A for perfect, major, minor, diminished, and augmented,
 respectively. The letters before d and A indicate the quantity of the
@@ -255,10 +255,10 @@ interval. For instance, tA is triple-augmented.
 \end{table}
 
 The base-96 notation works for up to seven flats and sharps, which is
-more than enough for tonal music. This system is compatible with the
-pitch-class system (modulo 12): in the base-96 notation G = 55, and
+more than enough for tonal music. This notation is compatible with the
+pitch-class system (modulo 12). In the base-96 notation G = 55, and
 the result of 55 mod 12 is 7, representing G in the pitch-class
-notation. 
+notation.
 
 The problem with the base-40 notation is that it does not work with
 more than two accidentals. For example, the interval between
@@ -282,15 +282,14 @@ like:
 To do anything non-trivial, like interval-class vectors, yet extra
 work has to be done, increasing complexity.
 
+\nota{nice -> Use a more exact word.}
+
 We believe the base-96 codification is a very nice form of describing
 tonal music numerically and it should be more known among researches
 and developers. For these reasons we have adopted it, although no
 algorithm implemented in rameau at present makes direct use of it,
-since they are reimplementations of algorithms designed by their
-original authors expecting pitch classes as input.
-% \nota{jama: o que você quer dizer?
-%  Talvez confundindo o PCN--que espera pitch classes--com o
-%  Objnota--que espera qualquer "coisa"?}
+since they are reimplementations of algorithms that expect pitch
+classes as input.
 
 \section{The Rameau Framework}
 \label{sec:system}
@@ -302,8 +301,8 @@ Rameau, that should enable us to
 \begin{enumerate}
 \item compare results precisely and reproducibly with manual analysis
   of a large corpus of music;
-\item allow algorithms to access detailed information in the input score,
-  such as enharmonic differences, meter, etc.; and
+\item allow algorithms to access detailed information in the input
+  score, such as enharmonic differences and meter; and
 \item easily develop new algorithms, test existing ones, and precisely
   compare the results.
 \end{enumerate}
@@ -314,11 +313,11 @@ and flaws. We are unaware of any systematic comparison of different
 approaches to harmonic analysis, similarly to what Gomez and Herrera
 \cite{gomez.ea:song} do for tonality recognition.
 
-Rameau is written in Common Lisp and currently runs on the Steel Bank
-Common Lisp \cite{team:sbcl} and CMUCL \cite{maclachlan:cmucl}
-compilers and the Clisp \cite{haible.ea:clisp} interpreter on the
-GNU/Linux and Microsoft Windows operating systems. Increased
-portability is one of our goals.
+Rameau is written in Common Lisp and runs on the Steel Bank Common
+Lisp \cite{team:sbcl} and CMUCL \cite{maclachlan:cmucl} compilers and
+the Clisp \cite{haible.ea:clisp} interpreter on the GNU/Linux and
+Microsoft Windows operating systems. Increased portability is one of
+our goals.
 
 \subsection{Architecture}
 \label{sec:architecture-and-api}
@@ -338,18 +337,17 @@ algorithm's name, an analysis function and a comparison function as
 parameters. The input to the analysis function is a list of
 sonorities. In Rameau, sonorities are lists of notes, each note
 specifying its onset time, duration, octave and pitch. The output is a
-list of either chords or non-chord tones, one for each input
-sonority. The comparison function is responsible for determining which
-parts of the chord are to be considered when assessing correctness of
-the analysis. This is necessary because, for example, Temperley and
+list of either chords or non-chord tones, one for each input sonority.
+The comparison function is responsible for determining which parts of
+the chord are to be considered when assessing correctness of the
+analysis. This is necessary because, for example, Temperley and
 Sleator's\cite{temperley.ea:modeling} algorithm does not identify a
-chord's mode. Rameau provides a few possible comparison functions for
-easy usage. Chords are represented internally as structures that may
+chord's mode. Chords are represented internally as structures that may
 have a root, a mode, a seventh, a bass, and other additions. The
 framework also provides a rich library to deal with common musical
-operations.
+operations and functions to compare chords names, modes, and roots.
 
-Using this API we have currently implemented:
+Using this API we have implemented:
 
 \begin{enumerate}
 \item a subset of the algorithm described in \cite{pardo.ea:algorithms}
@@ -423,7 +421,7 @@ them consists simply of determining the sonorities.
 \item Although they have been widely used as examples
   \cite{taube:automatic, tsui:harmonic, illescas.ea:harmonic,
     winograd:linguistics}, no single research has analyzed all Bach
-  chorales. We believe doing this will create a very useful corpus of
+  chorales. We believe doing this will create a useful corpus of
   harmonic information.
 \end{enumerate}
 
@@ -487,11 +485,11 @@ results.
 
 The Melisma algorithm is brittle and depends on many parameters. Its
 performance is orders of magnitude slower than any other we have
-evaluated. Our reimplementation is also very fragile and occasionally
-fails to process a chorale. Its accuracy is around $50 \pm 20\%$. The
+evaluated. Our reimplementation is also fragile and occasionally fails
+to process a chorale. Its accuracy is around $50 \pm 20\%$. The
 original implementation's accuracy couldn't be computed due to
 difficulties in parsing Melisma's output and matching it with our
-answer sheets.  On the scores we manually matched, however, the
+answer sheets. On the scores we manually matched, however, the
 accuracy seems poor, as can be seen in figures \ref{fig:coral-12} and
 \ref{fig:coral-54}.
 
@@ -511,7 +509,7 @@ standard model for pattern recognition \cite{russell.ea:artificial}.
   \label{fig:simple-net-diagram}
 \end{figure}
 
-We have currently implemented in Rameau four neural-network-based
+We have implemented in Rameau four neural-network-based
 algorithms for harmonic analysis, basing our approaches on
 \cite{tsui:harmonic}. The input of our simplest algorithm,
 \texttt{Simple-net}, is how many times each pitch class sounds in
@@ -606,7 +604,7 @@ while the neural networks tend to generalize more efficiently when
 more examples are available.
 
 As we implement more algorithms, performance analysis by rigorous
-metrics will enable us to draw better conclusions as to the merits and
+metrics will enable us to draw better conclusions about the merits and
 flaws of each technique.
 
 
@@ -675,6 +673,8 @@ CN: Chord net
 
 \subsection{Analysis example}
 \label{sec:analysis-example}
+
+\nota{reescreve sem interesting (2 vezes!)}
 
 An interesting example of our analysis is seen in figure
 \ref{fig:coral-54}. This chorale excerpt is a little tricky to analyze
