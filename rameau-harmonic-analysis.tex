@@ -544,15 +544,6 @@ determine a chord's mode and its seventh. \texttt{Chord-net}'s input
 is the same as \texttt{Simple-net}'s, while \texttt{Mode-net} also
 sees the results of \texttt{Context-net}'s analysis for each sonority.
 
-The performance of each neural network depends heavily on the number
-of hidden units it uses. Too few units and the network hasn't got
-memory to recall enough harmonic patterns. Too many, and the network
-faces the risk of overfitting. Overfitting happens when the neural
-network has too much memory, so it starts inferring nonexistent
-patterns from noise in the training data. According to
-\cite{white.ea:superstitious}, this is similar to a superstitious
-person's belief that some things bring ``good luck'' or ``bad luck''.
-
 Our current accuracies for these algorithms are $88\pm 8\%$ for
 \texttt{Simple-net}, $87 \pm 8\%$ for \texttt{Context-net}, $83 \pm
 8\%$ for \texttt{Chord-net} and $83 \pm 8\%$ for \texttt{Mode-net}.
@@ -581,7 +572,7 @@ Our current accuracies for the decision-tree based algorithms are $82
 
 \subsection{The effect of training set size}
 
-The effect training set size on the accuracy of the neural networks
+The effect of training set size on the accuracy of the neural networks
 and decision trees can be seen in figure
 \ref{fig:treinamento-corais}. One chorale is enough information for
 \texttt{Simple-net}. Most decision-tree algorithms need far more
@@ -610,7 +601,8 @@ recall measures how likely is a sonority's mode to be correctly
 recognized. While a combined measure of these characteristics (like
 average correctness over all sonorities) is a good assessment of the
 general performance of an algorithm, it disregards a lot of
-interesting information about its behavior.
+interesting information about its behavior, so it is interesting to
+consider them separately.
 
 Tables \ref{tab:precision} and \ref{tab:recall} show that with proper
 modifications to recognize more chord modes Pardo and Birmingham's
