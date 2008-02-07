@@ -63,7 +63,7 @@ In music, harmonic analysis is the study of vertical sonorities and
 their connections, and is paramount to the understanding of tonal
 compositions. The analyst may find the chord roots, label
 sonorities with proper chords names (such as ``A minor''), and
-identify their relationship using roman numerals.
+identify their relationships using roman numerals.
 
 Harmonic analysis by computer is an important, challenging, and
 interesting music research topic. It is challenging because the
@@ -73,11 +73,11 @@ linear process \cite{mouton.ea:numeric}. The harmonic changes in a choral
 texture, where usually all notes in all voices begin and finish at the
 same time, are obvious. However, chords are occasionally arppeggiated,
 incomplete, and intertwined with non-harmonic tones. These things
-contribute to increase considerably the complexity for analysis
+contribute to increase considerably the complexity of analysis
 \cite{pardo.ea:automated}.
 
 There are many practical applications for automatic music analysis,
-such as, arranging, detection of possible logical mistakes in scores,
+such as arranging, detection of possible logical mistakes in scores,
 database search, automatic accompaniment generation, and statistical
 analysis of musical styles for automated composition
 \cite{pardo.ea:algorithms,temperley.ea:modeling}. Computer-based
@@ -100,12 +100,12 @@ developed as an attempt to solve this problem.
 
 We have implemented ten algorithms for harmonic analysis in the
 framework and will present in this work a preliminary evaluation of
-nine algorithms using a corpus of 140 Bach chorales from the 371 in
-the Riemenschneider edition \cite{bach:371}. Rameau automatically
-compares the answer provided by an algorithm with an answer sheet
-prepared by musicians. Since we only have answer sheets for 140
-chorales, that will be the music corpus used in this paper, although
-rameau can analyze all 371.
+nine of them using a corpus of 140 Bach chorales from the 371 in the
+Riemenschneider edition \cite{bach:371}. Rameau automatically compares
+the answers returned by the algorithms with answer sheets prepared by
+musicians. Since we only have answer sheets for 140 chorales, that
+will be the music corpus used in this paper, although rameau can
+analyze all 371.
 
 \section{The problem of automated harmonic analysis}
 \label{sec:problem}
@@ -114,21 +114,22 @@ The problem of automated harmonic analysis may better be understood if
 we divide it into four sub-problems.
 
 The first problem is pitch spelling. If sharps and flats are not
-distinguished the program may have problems in places whenever
-enharmonic information is important. Most systems either ignore this
-problem or develop a pitch speller \cite{temperley.ea:modeling}. Most
-harmonic analysis software, with the notable exception of the system
-described in \cite{illescas.ea:harmonic} and MusEs
-\cite{pachet.ea:representing}, uses input formats that lose
-enharmonic information.
+distinguished the program may have problems whenever enharmonic
+information is relevant. Most systems either ignore this problem or
+develop a pitch speller \cite{temperley.ea:modeling}. Most harmonic
+analysis software, with the notable exception of MusEs
+\cite{pachet.ea:representing} and the system described in
+\cite{illescas.ea:harmonic}, uses input formats that lose enharmonic
+information.
 
 The second problem, the segmentation problem
-\cite{pardo.ea:automated}, is determining what are the vertical
-sonorities in a piece of music and grouping these sonorities into
-harmonically significant segments, or chord-spans. Most of the
-difficulty of segmenting is due to the number of possible
-segmentations of a piece being roughly an exponential function of its
-length \cite{pardo.ea:algorithms}.
+\cite{pardo.ea:automated}, is to determine what are the vertical
+sonorities in a piece of music and group these sonorities in
+harmonically significant segments, or chord-spans. The main reason for
+segmentation's complexity is that the number of possible segmentations
+of a piece is roughly an exponential function of its length
+\cite{pardo.ea:algorithms}, impossibilitating a thorough evaluation of
+all possibilities.
 
 The third problem is labeling segments with chord names. Not every
 segment forms a chord, though\,---\,some will consist solely of non-chord
