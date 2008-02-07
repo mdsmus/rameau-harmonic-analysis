@@ -473,24 +473,23 @@ The current accuracy is $66 \pm 9\%$.
 \subsection{Temperley and Sleator's algorithm}
 \label{sec:temperley}
 
-We have a reimplementation of the algorithm used in Temperley and
-Sleator's Melisma Music Analyzer and described in
-\cite{temperley.ea:modeling}. As the article does not discuss some
-fundamental implementation issues\ such as the weighting of the
-different preference rules, we resorted to porting the code available
-on their web page. Neither their program nor our reimplementation was
-able to match the performance claimed in the article. Tsui
-\cite{tsui:harmonic} also notes this problem. \nota{reescrever}
+We have reimplementatied the algorithm used in Temperley and Sleator's
+Melisma Music Analyzer and described in
+\cite{temperley.ea:modeling}. We also found online their
+implementation of their algorithm, but neither their program nor our
+reimplementation was able to match the performance claimed in the
+article. Tsui \cite{tsui:harmonic} was also unable to reproduce their
+results.
 
-The algorithm is brittle and depends on many parameters. Its
+The Melisma algorithm is brittle and depends on many parameters. Its
 performance is orders of magnitude slower than any other we have
-evaluated. Our reimplementation is still very fragile and occasionally
-fails to process a chorale. Its around $50 \pm 20\%$. The original
-implementation's accuracy couldn't be computed due to difficulties in
-parsing Melisma's output and matching it with our answer sheets.  On
-the scores we manually matched, however, the accuracy seems poor, as
-can be seen in figures \ref{fig:coral-12} and
-\ref{fig:coral-54}. \nota{revisar}
+evaluated. Our reimplementation is also very fragile and occasionally
+fails to process a chorale. Its accuracy is around $50 \pm 20\%$. The
+original implementation's accuracy couldn't be computed due to
+difficulties in parsing Melisma's output and matching it with our
+answer sheets.  On the scores we manually matched, however, the
+accuracy seems poor, as can be seen in figures \ref{fig:coral-12} and
+\ref{fig:coral-54}.
 
 \subsection{Neural networks}
 \label{sec:neural-nets}
