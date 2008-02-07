@@ -13,6 +13,14 @@ CLEAN_FILES+= $(OTHER_EPS3:.svg=.eps)
 
 -include /usr/share/latex-mk/latex.gmk
 
+diff:
+	git show HEAD^:rameau-harmonic-analysis.tex > 1.tex
+	git show HEAD:rameau-harmonic-analysis.tex > 2.tex
+	latexdiff-so 1.tex 2.tex > da.tex
+	latex da.tex
+	bibtex da
+	latex da.tex
+
 %.eps: %.plot %.dat
 	gnuplot $<
 
