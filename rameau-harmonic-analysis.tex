@@ -105,7 +105,11 @@ the Riemenschneider edition \cite{bach:371}. Rameau automatically
 compares the answer provided by an algorithm with an answer sheet
 prepared by musicians. Since we only have answer sheets for 140
 chorales, that will be the music corpus used in this paper, although
-rameau can analyze all 371.
+rameau can analyze all 371. While some algorithms are heavily based on
+algorithms found in the literature, other approaches are new, like the
+use of decision trees. Another significant difference between our
+approach and the others found in the literature is the evaluation of
+performance using precision and recall.
 
 \section{The problem of automated harmonic analysis}
 \label{sec:problem}
@@ -284,7 +288,7 @@ We believe the base-96 codification is a very nice form of describing
 tonal music numerically and it should be more known among researches
 and developers. For these reasons we have adopted it, although no
 algorithm implemented in rameau at present makes direct use of it,
-since they are re-implementations designed by their original authors
+since they are reimplementations designed by their original authors
 expecting pitch classes as input. 
 % \nota{jama: o que você quer dizer?
 %  Talvez confundindo o PCN--que espera pitch classes--com o
