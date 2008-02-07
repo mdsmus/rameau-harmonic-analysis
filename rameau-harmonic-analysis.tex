@@ -704,20 +704,35 @@ incorrectly assumes all chords but the last have G as root.
 \section{Conclusions and future work}
 \label{sec:concl-future-work}
 
-In this article we described Rameau, a framework for studying
-automatic harmonic analysis of tonal music.
+In this paper we described Rameau, a framework for automatic harmonic
+analysis of tonal music designed to allow an easy comparison between
+algorithms and results. We described the problem involved in analyzing
+harmony with a computer and presented a numeric codification for tonal
+music with interesting properties and easy conversion to and from
+standard pitch-class notation. We then analyzed and compared the
+results of nine algorithms implemented in Rameau using a corpus of 140
+Bach chorales.
 
-Right now our research can branch in many directions. A few important
-algorithms, like Maxwell's expert system \cite{maxwell:expert},
-Ulrich's algorithm \cite{ulrich:analysis}, a variant of Noland and
-Sandler's Hidden Markov Model-based key-finding algorithm
-\cite{noland.ea:key}, and many others are still unimplemented. We plan
-on implementing segmentation and functional analysis, which will allow
-us to extend our corpus, incorporating, for example, the KP corpus
+Although some algorithms in Rameau are heavily based on previous
+research, our usage of decision trees is new. Some of our algorithms
+using decision trees have a better accuracy than previous work
+\cite{pardo.ea:automated, temperley.ea:modeling}. Another significant
+difference on our approach is the evaluation of performance using
+precision and recall.
+
+A few important algorithms, like Maxwell's expert system
+\cite{maxwell:expert}, Ulrich's algorithm \cite{ulrich:analysis},
+Taube's MTW \cite{taube:automatic}, and many others are still
+unimplemented. We plan on implementing segmentation and functional
+analysis, which will allow us to extend our corpus of music and answer
+sheets, incorporating, for example, the Kostka-Payne corpus
 \cite{temperley:bayesian}. We are also looking for new metrics and
 evaluation techniques, and will extend and improve our existing
-algorithms accordingly. We believe all these tasks will be
-considerably easier now our basic platform is mostly finished.
+algorithms accordingly. We also will modify the existing algorithms to
+use the base-96 codification.
+
+We believe all these tasks will be considerably easier now our basic
+platform is mostly finished.
 
 
 \bibliographystyle{plain}
