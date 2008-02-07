@@ -36,13 +36,23 @@
 %The abstract should be placed at the top left column and should contain
 %about 150-200 words.
 
-  Automated harmonic analysis is an important and interesting computer
-  music research problem. Although many have proposed solutions and
-  algorithms, there is, in literature, no comprehesive comparison of
-  them. Here we present Rameau, a framework for automatic harmonic
-  analysis we are developing; a preliminary comparison of some
-  algorithms using this framework; and, also a numeric codification
-  for tonal music with interesting properties. \nota{show, don't tell}
+  Automated harmonic analysis is an important and interesting music
+  research topic. Although many researchers have studied solutions to
+  this problem, there is no comprehensive and systematic comparison of
+  the many techniques proposed.
+
+  In this paper we present Rameau, a framework for automatic harmonic
+  analysis we are developing. With Rameau we are able to reimplement
+  and analyze many previous techniques. We found Tsui's
+  \cite{tsui:harmonic} and Pardo and Birmingham's
+  \cite{pardo.ea:automated-report} algorithms promising, while
+  Temperley and Sleator's \cite{temperley.ea:modeling} is too brittle
+  and imprecise. 
+
+  We also present a numeric codification for tonal music with
+  interesting properties, such as easy transposition, preservation of
+  enharmonic information and easy conversion to and from standard
+  pitch-class notation.
 
 \end{abstract}
 
@@ -79,15 +89,12 @@ problem solving has brought new insights in these areas
 Until now a single framework that allows comparison between different
 algorithms and analysis results has not been developed. Barthèlemy
 \cite{barthelemy.ea:figured} provides a good summary of the state of
-the art of harmonic analysis up to 2001 \nota{iara: ``Barthelemy
-  provides a good summary of the state of the art of harmonic analysis
-  up to 2001'' ficou meio esquisito. Eu entendi o que vcs estavam
-  dizendo, claro, mas não é meio tradução não? Usaria-se ``state of
-  the art'' nesse sentido? }. Every comparison we found in literature
-(\cite{pardo.ea:automated, barthelemy.ea:figured, tsui:harmonic,
-  taube:automatic, illescas.ea:harmonic}) is based only on very few
-published examples (at most 18 chorales, in \cite{tsui:harmonic}), and
-so, thus are very difficult to analyze statistically.
+the art of harmonic analysis up to 2001. Every comparison we found in
+literature (\cite{pardo.ea:automated, barthelemy.ea:figured,
+  tsui:harmonic, taube:automatic, illescas.ea:harmonic}) is based only
+on very few published examples (at most 18 chorales, in
+\cite{tsui:harmonic}), and so, thus are very difficult to analyze
+statistically.\nota{reescrever}
 
 The systems of Illescas et al. \cite{illescas.ea:harmonic} and Raphael
 and Stoddard \cite{raphael.ea:harmonic} don't show chord inversions,
@@ -146,16 +153,17 @@ Hewlett, and Oliveira \cite{brinkman:binomial, hewlett:base-40,
 we will refer to them as binomial, base-40, and base-96, respectively.
 
 Notes in the binomial notation are represented as tuples in the form
-of \texttt{<pc,nc>} where \texttt{pc} stands for pitch-class and
-\texttt{nc} for note-class. Note-class 0 means the note is written as
-accidentals over C, 1 represents accidentals over D, and so on. For
-example, C$\sharp$ is represented as \texttt{<1,0>}, D$\flat$ as
-\texttt{<1,1>}, and C$\flat$ as \texttt{<11,0>}. In this last example
-11 represents the pitch-class of the note and 0 indicates how it will
-be spelled. The binomial notation also allows a packaged
-representation using only single numbers, where the pitch-class is
-multiplied by 10 and added to the note-class. For example, C$\sharp$
-becomes 10 and D$\flat$ 11. \nota{confuso}
+of \texttt{<pc,nc>} where \texttt{pc} stands for pitch-class (0 to 11)
+and \texttt{nc} for note-class (0 to 7). Note-class 0 means the note
+is written as accidentals over C, 1 represents accidentals over D, and
+so on. For example, C$\sharp$ is represented as \texttt{<1,0>},
+D$\flat$ as \texttt{<1,1>}, D$\sharp$ as \texttt{<3,1>}, and C$\flat$
+as \texttt{<11,0>}. In this last example 11 represents the pitch-class
+of the note and 0 indicates how it will be spelled. The binomial
+notation also allows a packaged representation using only single
+numbers, where the pitch-class is multiplied by 10 and added to the
+note-class. For example, C$\sharp$ becomes 10 and D$\flat$
+11.
 
 Unlike the binomial notation, the base-40 notation uses only single
 numbers. The octave is divided linearly in 40 notes from C$\flat\flat$
@@ -300,17 +308,15 @@ Rameau, that should enable us to
 \end{enumerate}
 
 Reimplementing existing algorithms in Rameau allows us to easily
-evaluate their accuracy, study their errors and compare them using our
-baseline techniques. We are unaware of any research comparing different
-approaches to harmonic analysis, in the manner of reference
-\cite{gomez.ea:song} \nota{iara: eu não entendi o ``in manner of
-  reference''. Vcs queriam dizer que não encontram bibliografia?}.
+evaluate their accuracy, study their errors and compare their merits
+and faws. We are unaware of any systematic comparison of different
+approaches to harmonic analysis, similarly to what Gomez and Herrera
+\cite{gomez.ea:song} do for tonality recognition.
 
-Rameau is written in Common Lisp and runs on the Steel Bank Common
-Lisp \cite{team:sbcl} compiler on the GNU/Linux operating system.
-Rameau also has been ported to Windows (it might be ported to MacOS,
-but that was not tested) and can also be compiled with CMUCL
-\cite{maclachlan:cmucl} and Clisp \cite{haible.ea:clisp}. \nota{reescrever}
+Rameau is written in Common Lisp and currently runs on the Steel Bank
+Common Lisp \cite{team:sbcl}, CMUCL \cite{maclachlan:cmucl} and Clisp
+\cite{haible.ea:clisp} compilers on the GNU/Linux and Microsoft
+Windows operating systems. Increased portability is one of our goals.
 
 \subsection{Architecture}
 \label{sec:architecture-and-api}
@@ -408,22 +414,29 @@ them consists simply of determining the sonorities.
   enough to train our algorithms and get precise error analysis.
 \item Their texture is simple and constant. It consists basically of
   four voices forming simple triads and tetrads.
-\item Although they have been used in many researches
+\item Although they have been widely used as examples
   \cite{taube:automatic, tsui:harmonic, illescas.ea:harmonic,
-    winograd:linguistics}, no research has analyzed them all.
+    winograd:linguistics}, no single research has analyzed all bach
+  chorales. We believe doing this will create a very useful corpus of
+  harmonic information.
 \end{enumerate}
 
-We have already analyzed 140 \nota{confuso} of them and plan on fully
-analyzing the Riemenschneider corpus soon. The chorales are stored in
-a subset of the GNU Lilypond format, from which we generate MIDI files
-and typeset scores, possibly annotated with analysis results (both by
-human and by computer). The lilypond format was chosen because it is
-easily parsed (if you are only using a subset of it), read, and
-written by humans; it is also compact (unlike MusicXML), has tools to
-convert from different formats (such as MIDI) to it, and lilypond
-itself can be used to render the scores. \nota{iara: esse período está
-  muito confuso. ``has tools to convert from different formats (such
-  as MIDI) to it'' eu nao entendi bem}
+We have answer sheets for 140 chorales and plan on fully incorporating
+every chorale in the Riemenschneider \cite{bach:371} edition soon. The
+corpus is stored in a subset of the GNU Lilypond format, from which we
+generate MIDI files and typeset scores, possibly annotated with
+analysis results (both our answer sheets and computer-made
+results). The lilypond format was chosen because it is
+
+\begin{enumerate}
+\item easy to parse,
+\item easy to read and write,
+\item compact (unlike MusicXML), and
+\item easy to convert from different formats (such as MIDI) to it.
+\end{enumerate}
+
+Also, lilypond itself can be used to typeset the scores and export
+them to MIDI.
 
 When the chorales are fully analyzed we plan on incorporating the
 Kostka-Payne \cite{kostka.ea:tonal} corpus, Beethoven sonatas, Bach
@@ -438,8 +451,7 @@ a simple, flexible text format, designed to
 \begin{enumerate}
 \item be as close as possible to usual popular notation,
 \item represent inherent ambiguities in chord, and
-\item single out sonorities that do not constitute chords, instead
-  having melodic functions on the piece. \nota{reescrever}
+\item represent non-chord tones.
 \end{enumerate}
 
 The first four sonorities of the answer sheet for Bach's chorale \#1
@@ -473,21 +485,21 @@ The current accuracy is $66 \pm 9\%$.
 We have a reimplementation of the algorithm used in Temperley and
 Sleator's Melisma Music Analyzer and described in
 \cite{temperley.ea:modeling}. As the article does not discuss some
-fundamental implementation issues\,---\,the weighting of the different
-preference rules, for example\,---\,we resorted to porting the code
-available on their web page. Neither their program nor our
-reimplementation was able to match the performance claimed in the
-article. Tsui \cite{tsui:harmonic} also experienced this. \nota{reescrever}
+fundamental implementation issues\ such as the weighting of the
+different preference rules, we resorted to porting the code available
+on their web page. Neither their program nor our reimplementation was
+able to match the performance claimed in the article. Tsui
+\cite{tsui:harmonic} also notes this problem. \nota{reescrever}
 
-The algorithm is heavily dependent on many parameters, and its
+The algorithm is brittle and depends on many parameters. Its
 performance is orders of magnitude slower than any other we have
-tried. Our reimplementation is still very fragile, occasionally not
-properly processing a chorale. The accuracy of our reimplementation on
-the properly processed chorales is around $50 \pm 20\%$. The original
+evaluated. Our reimplementation is still very fragile and occasionally
+fails to process a chorale. Its around $50 \pm 20\%$. The original
 implementation's accuracy couldn't be computed due to difficulties in
-parsing Melisma's output and matching it with our answer sheets, but on
-a glance the results seem very poor, as can be seen in figures
-\ref{fig:coral-12} and \ref{fig:coral-54}. \nota{revisar}
+parsing Melisma's output and matching it with our answer sheets.  On
+the scores we manually matched, however, the accuracy seems poor, as
+can be seen in figures \ref{fig:coral-12} and
+\ref{fig:coral-54}. \nota{revisar}
 
 \subsection{Neural networks}
 \label{sec:neural-nets}
@@ -579,23 +591,22 @@ due to their lower generalization performance.
 \subsection{Performance analysis}
 \label{sec:common-errors}
 
-We believe a more systematic study of the errors made by harmonic
-analysis methods is necessary to understand and improve them.
-\nota{confuso} Since harmonic analysis can be seen as an information
-retrieval problem, metrics developed to assess the performance of
-information retrieval systems should help understanding and evaluating
-the performance of harmonic analysis algorithms. For this reason we
-chose to analyze our results in terms of precision and recall.
-Precision measures how correct are the returned results, while recall
-measures how likely is a sonority's mode to be correctly recognized,
-as can be seen in chapter 23 of \cite{russell.ea:artificial}. While a
-combined measure of these characteristics (like average accuracy over
-all sonorities) is a good assessment of the general performance of an
-algorithm, it disregards a lot of interesting information on its
-behavior.
+Harmonic analysis can be seen as the process of retrieving chordal and
+functional information from a tonal piece. Information Retrieval is a
+fertile research area, and has developed many tried and true
+techniques and models. For this reason we chose to analyze our results
+in terms of the two most used metrics in the information retrieval
+community: precision and recall \cite{russell.ea:artificial}.
+
+Precision measures how correct are the returned results, whereas
+recall measures how likely is a sonority's mode to be correctly
+recognized. While a combined measure of these characteristics (like
+average correctness over all sonorities) is a good assessment of the
+general performance of an algorithm, it disregards a lot of
+interesting information about its behavior.
 
 Tables \ref{tab:precision} and \ref{tab:recall} show that with proper
-modifications to classify more chord modes Pardo and Birmingham's
+modifications to recognize more chord modes Pardo and Birmingham's
 algorithm can match or even exceed the accuracy of our current machine
 learning techniques. Table \ref{tab:recall} shows that our machine
 learning algorithms are missing many melodic notes. Tables

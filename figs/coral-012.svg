@@ -15,7 +15,7 @@
    inkscape:version="0.45.1"
    sodipodi:docname="coral-012.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape"
-   sodipodi:docbase="/home/givaldo/genos/repos/rameau-harmonic-analysis"
+   sodipodi:docbase="/home/givaldo/genos/repos/rameau-harmonic-analysis/figs"
    inkscape:export-filename="/home/kroger/doc/artigos/rameau-harmonic-analysis/coral-012.eps"
    inkscape:export-xdpi="400"
    inkscape:export-ydpi="400">
@@ -31,8 +31,8 @@
     </rdf:RDF>
   </metadata>
   <sodipodi:namedview
-     inkscape:window-height="741"
-     inkscape:window-width="827"
+     inkscape:window-height="781"
+     inkscape:window-width="1276"
      inkscape:pageshadow="2"
      inkscape:pageopacity="0.0"
      guidetolerance="10.0"
@@ -42,11 +42,11 @@
      bordercolor="#666666"
      pagecolor="#ffffff"
      id="base"
-     inkscape:zoom="8.6407474"
-     inkscape:cx="43.187829"
-     inkscape:cy="253.44846"
+     inkscape:zoom="4.5431554"
+     inkscape:cx="62.911882"
+     inkscape:cy="269.34913"
      inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:window-y="15"
      inkscape:current-layer="svg2" />
   <defs
      id="defs4">
@@ -2388,7 +2388,7 @@
     </text>
   </g>
   <g
-     id="g14454">
+     id="g12255">
     <g
        transform="translate(55.673557,4.06)"
        id="g817">
@@ -4849,16 +4849,6 @@
       </text>
     </g>
     <g
-       transform="translate(31.772815,58.946086)"
-       id="g4467">
-      <text
-         style="font-size:1.95946133px;font-style:italic;font-weight:bold;fill:currentColor;font-family:Schoolbook"
-         id="text4469">
-        <tspan
-           id="tspan4471">A</tspan>
-      </text>
-    </g>
-    <g
        transform="translate(52.514402,58.946086)"
        id="g4473">
       <text
@@ -4866,16 +4856,6 @@
          id="text4475">
         <tspan
            id="tspan4477">A</tspan>
-      </text>
-    </g>
-    <g
-       transform="translate(23.312308,58.946086)"
-       id="g4479">
-      <text
-         style="font-size:1.95946133px;font-style:italic;font-weight:bold;fill:currentColor;font-family:Schoolbook"
-         id="text4481">
-        <tspan
-           id="tspan4483">A</tspan>
       </text>
     </g>
     <g
@@ -4916,16 +4896,6 @@
          id="text4505">
         <tspan
            id="tspan4507">A</tspan>
-      </text>
-    </g>
-    <g
-       transform="translate(27.673324,58.946086)"
-       id="g4509">
-      <text
-         style="font-size:1.95946133px;font-style:italic;font-weight:bold;fill:currentColor;font-family:Schoolbook"
-         id="text4511">
-        <tspan
-           id="tspan4513">A</tspan>
       </text>
     </g>
     <g
@@ -5059,5 +5029,35 @@
        id="path5128"
        d="M 23.13397,35.938241 L 24.81065,35.938241"
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.28851658;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <g
+       id="g12237"
+       transform="translate(31.888546,58.96)">
+      <text
+         id="text12239"
+         style="font-size:1.95946133px;fill:currentColor;font-family:Schoolbook">
+        <tspan
+           id="tspan12241">A</tspan>
+      </text>
+    </g>
+    <g
+       id="g12243"
+       transform="translate(23.428039,58.96)">
+      <text
+         id="text12245"
+         style="font-size:1.95946133px;fill:currentColor;font-family:Schoolbook">
+        <tspan
+           id="tspan12247">A</tspan>
+      </text>
+    </g>
+    <g
+       id="g12249"
+       transform="translate(27.789055,58.96)">
+      <text
+         id="text12251"
+         style="font-size:1.95946133px;fill:currentColor;font-family:Schoolbook">
+        <tspan
+           id="tspan12253">A</tspan>
+      </text>
+    </g>
   </g>
 </svg>
