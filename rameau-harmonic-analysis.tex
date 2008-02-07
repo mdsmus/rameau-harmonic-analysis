@@ -345,10 +345,11 @@ sonority. The comparison function is responsible for determining which
 parts of the chord are to be considered when assessing correctness of
 the analysis. This is necessary because, for example, Temperley and
 Sleator's\cite{temperley.ea:modeling} algorithm does not identify a
-chord's mode. The framework provides a few possible comparison
-functions for easy usage. Chords are represented internally as
-structures that may have a root, a mode, a seventh, a bass, and other
-additions.
+chord's mode. Rameau provides a few possible comparison functions for
+easy usage. Chords are represented internally as structures that may
+have a root, a mode, a seventh, a bass, and other additions. The
+framework also provides a rich library to deal with common musical
+operations.
 
 Using this API we have currently implemented:
 
@@ -432,8 +433,8 @@ We have answer sheets for 140 chorales and plan on fully incorporating
 every chorale in the Riemenschneider \cite{bach:371} edition soon. The
 corpus is stored in a subset of the GNU Lilypond format, from which we
 generate MIDI files and typeset scores, possibly annotated with
-analysis results (both our answer sheets and computer-made
-results). The lilypond format was chosen because it is
+analysis results (both our answer sheets and computer-made results).
+The lilypond format was chosen because it is
 
 \begin{enumerate}
 \item easy to parse,
