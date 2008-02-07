@@ -94,10 +94,20 @@ comparison we found in literature (\cite{pardo.ea:automated,
 are not a very statistically representative sample.
 
 In this paper we present Rameau, a framework for automatic harmonic
-analysis of Western tonal music that allows easy comparison between
-algorithms and results. We also present a preliminary evaluation of
-nine algorithms for harmonic analysis using a corpus of 140 Bach
-Chorales from the Riemenschneider edition \cite{bach:371}.
+analysis of Western tonal music. One motivation is to have a system
+that allows an easy comparison between algorithms and results. Pardo
+and Birmingham \cite{pardo.ea:automated} state that ``no researchers
+have published statitical performance results on a system designed to
+analyze tonal music''. Rameau was developed to solve this problem.
+
+We have implemented ten algorithms for harmonic analysis in the
+framework and will present in this work a preliminary evaluation of
+nine algorithms using a corpus of 140 Bach chorales from the 371 in
+the Riemenschneider edition \cite{bach:371}. Rameau automatically
+compares the answer provided by an algorithm with an answer sheet
+prepared by musicians. Since we only have answer sheets for 140
+chorales, that will be the music corpus used in this paper, although
+rameau can analyze all 371.
 
 \section{The problem of automated harmonic analysis}
 \label{sec:problem}
