@@ -121,10 +121,10 @@ The first problem is pitch spelling. If sharps and flats are not
 distinguished the program may have problems in places whenever
 enharmonic information is important. Most systems either ignore this
 problem or develop a pitch speller \cite{temperley.ea:modeling}. Most
-harmonic analysis software, with the notable exception of the system
-described in \cite{illescas.ea:harmonic} and MusEs
-\cite{pachet.ea:representing}, uses input formats that lose
-enharmonic information.
+harmonic analysis software, with the notable exception of MusEs
+\cite{pachet.ea:representing} and the system described in
+\cite{illescas.ea:harmonic}, uses input formats that lose enharmonic
+information.
 
 The second problem, the segmentation problem
 \cite{pardo.ea:automated}, is determining what are the vertical
@@ -342,7 +342,8 @@ specifying its onset time, duration, octave and pitch. The output is a
 list of either chords or non-chord tones, one for each input sonority.
 Chords are structures that may have a root, a mode, a seventh, a bass,
 and other additions. The framework provides a few possible comparison
-functions for easy usage.
+functions for easy usage and a rich library to deal with musical
+operations.
 
 Using this API we have currently implemented:
 
@@ -426,8 +427,8 @@ We have answer sheets for 140 chorales and plan on fully incorporating
 every chorale in the Riemenschneider \cite{bach:371} edition soon. The
 corpus is stored in a subset of the GNU Lilypond format, from which we
 generate MIDI files and typeset scores, possibly annotated with
-analysis results (both our answer sheets and computer-made
-results). The lilypond format was chosen because it is
+analysis results (both our answer sheets and computer-made results).
+The lilypond format was chosen because it is
 
 \begin{enumerate}
 \item easy to parse,
