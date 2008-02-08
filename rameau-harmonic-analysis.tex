@@ -42,8 +42,8 @@
   analysis we are developing. With Rameau we are able to reimplement
   and analyze previous techniques, and develop new ones as well. We
   present a performance evaluation of ten algorithms on a corpus of
-  140 Bach chorales using precision and recall, and discuss
-  improvements.
+  140 Bach chorales. We also evaluate four of them using precision and
+  recall and discuss possible improvements.
 
   We also present a numeric codification for tonal music with
   interesting properties, such as easy transposition, preservation of
@@ -120,7 +120,7 @@ seventh chord. Most systems, such as the one found in
 \cite{temperley.ea:modeling}, either ignore this problem or develop a
 pitch speller to correct the output. Most harmonic analysis software,
 with the notable exception of MusEs \cite{pachet.ea:representing} and
-the system described in \cite{illescas.ea:harmonic}, uses input
+the system described in \cite{illescas.ea:harmonic}, use input
 formats that lose enharmonic information.
 
 The second problem, the segmentation problem
@@ -286,9 +286,9 @@ work has to be done, increasing complexity.
 We believe the base-96 codification is a good form of describing tonal
 music numerically and it should be more known among researches and
 developers. For these reasons we have adopted it, although no
-algorithm implemented in rameau at present makes direct use of it yet,
-since they are reimplementations of algorithms that expect pitch
-classes as input.
+algorithm implemented in rameau makes direct use of it yet, since they
+are reimplementations of algorithms that expect pitch classes as
+input.
 
 \section{The Rameau Framework}
 \label{sec:system}
@@ -396,10 +396,10 @@ chords, others identify only the root.
   \label{fig:coral-12}
 \end{figure}
 
-Rameau performs the analysis of one chorale, using all algorithms, in
-less than a half-second on a Pentium Celeron M at 1.4 GHz with 2 GB
-RAM linux box. All 140 chorales are analyzed and the results compared
-with the answer sheet under 40 seconds.
+Rameau performs the analysis of one chorale, using all stable
+algorithms, in less than a half-second on a Pentium Celeron M at 1.4
+GHz with 2 GB RAM linux box. All 140 chorales are analyzed and the
+results compared with the answer sheets under 40 seconds.
 
 \subsection{Test corpus}
 \label{sec:test-corpus}
@@ -443,8 +443,8 @@ Bach cello suites and other pieces.
 
 The results of manual analysis performed on the chorales are stored in
 a simple and flexible text format. It is designed to be as close as
-possible to usual popular notation, represent inherent ambiguities in
-analysis, and represent non-chord tones.
+possible to usual popular notation and represent inherent ambiguities
+in analysis and non-chord tones.
 
 The first four sonorities of the answer sheet for Bach's chorale \#1
 ``Aus meines Herzens Grunde'', for example, are stored as \texttt{G G
