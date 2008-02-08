@@ -117,12 +117,14 @@ we divide it into four sub-problems.
 
 The first problem is pitch spelling. If sharps and flats are not
 distinguished the program may have problems whenever enharmonic
-information is relevant. Most systems either ignore this problem or
-develop a pitch speller \cite{temperley.ea:modeling}. Most harmonic
-analysis software, with the notable exception of MusEs
-\cite{pachet.ea:representing} and the system described in
-\cite{illescas.ea:harmonic}, uses input formats that lose enharmonic
-information.
+information is relevant. For example, in \cite{pardo.ea:algorithms} a
+German augmented sixth chord is mistakenly identified as a dominant
+seventh chord. Most systems, such as the one found in
+\cite{temperley.ea:modeling}, either ignore this problem or develop a
+pitch speller to correct the output. Most harmonic analysis software,
+with the notable exception of MusEs \cite{pachet.ea:representing} and
+the system described in \cite{illescas.ea:harmonic}, uses input
+formats that lose enharmonic information.
 
 The second problem, the segmentation problem
 \cite{pardo.ea:automated}, is to determine what are the vertical
@@ -130,15 +132,15 @@ sonorities in a piece of music and group these sonorities in
 harmonically significant segments, or chord-spans. The main reason for
 the complexity of segmentation is that the number of possible
 segmentations of a piece is roughly an exponential function of its
-length, making a thorough evaluation of all possibilities impossible
+length, making a thorough evaluation of all possibilities impractical
 \cite{pardo.ea:algorithms}.
 
 The third problem is labeling segments with chord names. Not every
 segment forms a chord, some will consist solely of non-chord tones and
-other melodic information. Labeling a segment with a chord might
-require contextual information, which complicates the matter a bit,
-difficulting local decisions. Still, over 80\% of accuracy is possible
-ignoring context (see section \ref{sec:analysis-results}).
+other melodic information. Labeling might require contextual
+information, which complicates the matter a bit, difficulting local
+decisions. Still, over 80\% of accuracy is possible ignoring context
+(see section \ref{sec:analysis-results}).
 
 The last problem is finding the main key and the modulations of the
 piece and assigning a tonal function to each chord.
@@ -182,6 +184,8 @@ system.
     c$\sharp$ & 4 \\
     c$\sharp\sharp$ & 5 \\
     -- & 6 \\
+    d$\flat\flat$ & 7 \\
+    \ldots & \ldots \\
   \end{tabular}
   \caption{A few notes in the base-40 notation}
   \label{tab:base40}
@@ -269,7 +273,7 @@ base-96 notation this interval can be correctly computed.
 The main problem with the binomial notation is that operations that
 are (and should be) simple become complex. In both base-40 and base-96
 notations, transposition is as simple as adding an index to a note,
-while in the binomial system requires two different operations (mod
+while in the binomial system it requires two different operations (mod
 and div) besides the addition. Its packaged representation is supposed
 to simplify things, but as an example, transposition becomes something
 like:
@@ -285,7 +289,7 @@ work has to be done, increasing complexity.
 We believe the base-96 codification is a good form of describing tonal
 music numerically and it should be more known among researches and
 developers. For these reasons we have adopted it, although no
-algorithm implemented in rameau at present makes direct use of it,
+algorithm implemented in rameau at present makes direct use of it yet,
 since they are reimplementations of algorithms that expect pitch
 classes as input.
 
@@ -305,11 +309,11 @@ Rameau, that should enable us to
   compare the results.
 \end{enumerate}
 
-Reimplementing existing algorithms in Rameau allows us to easily
-evaluate their accuracy, study their errors and compare their merits
-and flaws. We are unaware of any systematic comparison of different
-approaches to harmonic analysis, similarly to what Gomez and Herrera
-\cite{gomez.ea:song} do for tonality recognition.
+Reimplementing existing algorithms in the literature allows us to
+easily evaluate their accuracy, study their errors and compare their
+merits and flaws. We are unaware of any systematic comparison of
+different approaches to harmonic analysis, similarly to what Gomez and
+Herrera \cite{gomez.ea:song} do for tonality recognition.
 
 Rameau is written in Common Lisp and runs on the Steel Bank Common
 Lisp \cite{team:sbcl} and CMUCL \cite{maclachlan:cmucl} compilers and
@@ -339,10 +343,11 @@ list of either chords or non-chord tones, one for each input sonority.
 The comparison function is responsible for determining which parts of
 the chord are to be considered when assessing correctness of the
 analysis. This is necessary because, for example, Temperley and
-Sleator's\cite{temperley.ea:modeling} algorithm does not identify a
+Sleator's \cite{temperley.ea:modeling} algorithm does not identify a
 chord's mode. Chords are represented internally as structures that may
 have a root, a mode, a seventh, a bass, and other additions. The
-framework also provides a rich library to deal with common musical.
+framework also provides a rich library to deal with common musical
+operations.
 
 Using this API we have implemented:
 
@@ -376,7 +381,7 @@ using regular unix tools such as grep, awk, and sed.
 
 To simplify reading the results, rameau can output a score with the
 chorale and the analysis from each algorithm chosen. The music
-notation program LilyPond \cite{nienhuys.ea:lilypond} is used to
+notation program LilyPond \cite{nienhuys.ea:LilyPond} is used to
 render the score.
 
 Figure \ref{fig:coral-12} shows the result of the analysis of the
@@ -394,10 +399,10 @@ chords, others identify only the root.
   \label{fig:coral-12}
 \end{figure}
 
-Rameau performs the analysis of one chorale, using all nine
-algorithms, in less than a half-second on a Pentium Celeron M at 1.4
-GHz with 2 GB RAM linux box. All 140 chorales are analyzed and the
-results compared with the answer sheet under 40 seconds.
+Rameau performs the analysis of one chorale, using all algorithms, in
+less than a half-second on a Pentium Celeron M at 1.4 GHz with 2 GB
+RAM linux box. All 140 chorales are analyzed and the results compared
+with the answer sheet under 40 seconds.
 
 \subsection{Test corpus}
 \label{sec:test-corpus}
@@ -424,25 +429,25 @@ them consists simply of determining the sonorities.
 
 We have answer sheets for 140 chorales and plan on fully incorporating
 every chorale in the Riemenschneider \cite{bach:371} edition soon. The
-corpus is stored in a subset of the GNU Lilypond format, from which we
+corpus is stored in a subset of the GNU LilyPond format, from which we
 generate MIDI files and typeset scores, possibly annotated with
 analysis results (both our answer sheets and computer-made results).
-The lilypond format was chosen because it is easy to parse, easy to
+The LilyPond format was chosen because it is easy to parse, easy to
 read and write, and compact (unlike MusicXML). Also, there are tools
-to convert from different formats (such as MIDI) to it and lilypond
+to convert from different formats (such as MIDI) to it and LilyPond
 itself can be used to typeset the scores and export them to MIDI.
 
-When the chorales are fully analyzed we plan on incorporating the
-Kostka-Payne \cite{kostka.ea:tonal} corpus, Beethoven sonatas, Bach
-cello suites and other pieces.
+When we have answer sheets for all chorales we plan on incorporating
+the Kostka-Payne \cite{kostka.ea:tonal} corpus, Beethoven sonatas,
+Bach cello suites and other pieces.
 
 \subsection{The answer sheet format}
 \label{sec:formato-dos-acordes}
 
 The results of manual analysis performed on the chorales are stored in
-a simple, flexible text format, designed to be as close as possible to
-usual popular notation, represent inherent ambiguities in chord, and
-represent non-chord tones.
+a simple and flexible text format. It is designed to be as close as
+possible to usual popular notation, represent inherent ambiguities in
+analysis, and represent non-chord tones.
 
 The first four sonorities of the answer sheet for Bach's chorale \#1
 ``Aus meines Herzens Grunde'', for example, are stored as \texttt{G G
@@ -473,12 +478,11 @@ The current accuracy is $66 \pm 9\%$.
 \label{sec:temperley}
 
 We have reimplemented the algorithm used in Temperley and Sleator's
-Melisma Music Analyzer and described in
-\cite{temperley.ea:modeling}. We also found online their
-implementation of their algorithm, but neither their program nor our
-reimplementation was able to match the performance claimed in the
-article. Tsui \cite{tsui:harmonic} was also unable to reproduce their
-results.
+Melisma Music Analyzer and described in \cite{temperley.ea:modeling}.
+We also found their implementation of their algorithm, but neither
+their program nor our reimplementation was able to match the
+performance claimed in the article. Tsui \cite{tsui:harmonic} was also
+unable to reproduce their results.
 
 The Melisma algorithm is brittle and depends on many parameters. Its
 performance is orders of magnitude slower than any other we have
@@ -572,7 +576,7 @@ due to their lower generalization performance.
 \label{sec:common-errors}
 
 Harmonic analysis can be seen as the process of retrieving chordal and
-functional information from a tonal piece. Information Retrieval is a
+functional information from a tonal piece. Information retrieval is a
 fertile research area, and has developed many tried and true
 techniques and models. For this reason we chose to analyze our results
 in terms of the two most used metrics in the information retrieval
@@ -591,7 +595,7 @@ modifications to recognize more chord modes Pardo and Birmingham's
 algorithm can match or even exceed the accuracy of our current machine
 learning techniques. Table \ref{tab:recall} shows that our machine
 learning algorithms are missing many melodic notes. Tables
-\ref{tab:precision} and \ref{tab:recall} indicate that the neural
+\ref{tab:precision} and \ref{tab:recall} also indicate that the neural
 network algorithms are failing to recognize fully diminished,
 incomplete, and augmented chords, probably because our training corpus
 lacks enough examples of these chords, as seen in table
@@ -671,12 +675,11 @@ CN: Chord net
 \subsection{Analysis example}
 \label{sec:analysis-example}
 
-An interesting example of our analysis is seen in figure
-\ref{fig:coral-54}. This chorale excerpt is a little tricky to analyze
-because all chords in partitions 36--39 have a non-chord tone. The A
-in partition 36 is a retardation, the C in p. 37 a passage, the G in
-p. 38 another retardation, and the E in p. 39 a cambiata. The neural
-network algorithms correctly identify the non-chords tones, the
+The chorale excerpt in fig. \ref{fig:coral-54} is a little tricky to
+analyze because all chords in partitions 36--39 have a non-chord tone.
+The A in partition 36 is a retardation, the C in p. 37 a passage, the
+G in p. 38 another retardation, and the E in p. 39 a cambiata. The
+neural network algorithms correctly identify the non-chords tones, the
 decision tree algorithms fail in partitions 36 and 37 but give a
 correct answer in p. 38--39, and pardo-birmingham is able to identify
 the basic harmonic framework (without non-chord tones, however), while
@@ -692,7 +695,7 @@ algorithms and results. We described the problem involved in analyzing
 harmony with a computer and presented a numeric codification for tonal
 music with interesting properties and easy conversion to and from
 standard pitch-class notation. We then analyzed and compared the
-results of nine algorithms implemented in Rameau using a corpus of 140
+results of ten algorithms implemented in Rameau using a corpus of 140
 Bach chorales.
 
 Although some algorithms in Rameau are heavily based on previous
@@ -705,13 +708,14 @@ precision and recall.
 A few important algorithms, like Maxwell's expert system
 \cite{maxwell:expert}, Ulrich's algorithm \cite{ulrich:analysis},
 Taube's MTW \cite{taube:automatic}, and many others are still
-unimplemented in Rameau. We plan on implementing segmentation and
-functional analysis, which will allow us to extend our corpus of music
-and answer sheets, incorporating, for example, the Kostka-Payne corpus
-\cite{temperley:bayesian}. We are also looking for new metrics and
+unimplemented in Rameau. We plan on implementing segmentation, which
+will allow us to extend our corpus of music and answer sheets,
+incorporating, for example, the Kostka-Payne corpus
+\cite{temperley:bayesian}. We are looking for new metrics and
 evaluation techniques, and will extend and improve our existing
-algorithms accordingly. We also will modify the existing algorithms to
-use the base-96 codification.
+algorithms accordingly. We also intend to implement functional and
+non-chord tone analysis, and modify the existing algorithms to use the
+base-96 codification.
 
 We believe all these tasks will be considerably easier now our basic
 platform is mostly finished.
