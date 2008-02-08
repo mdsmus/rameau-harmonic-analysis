@@ -23,6 +23,9 @@ diff:
 	latex da.tex
 	latex da.tex
 
+%.txt: %.tex
+	detex $< > $@
+
 %.eps: %.plot %.dat
 	gnuplot $<
 
