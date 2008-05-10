@@ -1,0 +1,63 @@
+1
+
+The paper presents an original and potentially very beneficial
+contribution to the research domain of automatic harmonic analysis.
+The authors suggest a computational framework together with
+established performance measures that greatly facilitate the
+comparison of algorithms for harmonic analysis. By making the source
+code of this framework available the authors effectively promote the
+scientific exchange and evaluation of different approaches to the
+problem. Further, results of several experimental implementations
+based on machine learning methods are presented and put into the
+context of well-known algorithms from the literature although some
+more recent examples are missing (e.g., [1] and [2]). It is nice to
+see also the results of an experiment on the impact of training set
+size reported here. [1] Raphael and Stoddard, Functional Harmonic
+Analysis Using Probabilistic Models, Computer Music Journal,
+28(3):45-52, 2004. [2] Burgoyne and Saul, Learning Harmonic
+Relationships in Digital Audio with Dirichlet-based Hidden Markov
+Models, Proceedings of ISMIR, London, UK, 2005.
+
+2 	
+
+It is indeed useful to bring the different approaches to automatic
+harmonic analysis under one roof and compare them with one another. It
+would be good to mention some perspectives of the automatic chord
+labeling for the working theorist. How can the automatisation help to
+criticize the present state of harmonic theory? Among the four
+problems you say: "The last problem is finding the main key and the
+modulations of the piece and assigning a tonal function to each
+chord." Although you do not report in detail on that part of the story
+it is worth to mention related work. Finally I really wouldn't blindly
+rely on your expert annotation. Especially the "tricky example"
+contains a wrong analysis. The suspended a over the G-chord is by no
+means an obstacle to accept that chord as a harmony.
+
+3 	
+
+This paper presents the first systematic comparitive evaluation of
+harmonic-analysis algorithms. One discovers half way through the paper
+that this research is in its early days, but it nevertheless presents
+results worth hearing at this stage. Hopefully further results can be
+presented in a revision of the paper for the proceedings and at the
+conference itself. The paper would be strengthened technically if the
+authors could demonstrate that their implementations of others'
+analysis algorithms were correct, e.g., by showing that their
+implementations produce the same results as the original. Section 3 on
+the base-96 representation of pitch is interesting but not relevant
+for this paper, since the system is not used in this software, and
+should be omitted. If this section is retained (e.g., because the
+promised development of the software to use this pitch representation
+has been completed) one detail requires adding to strengthen the
+argument. Hewlett's base-40 system has a flaw because the same number
+can represent more than one interval. (The number 6 here (top of page
+3) is incorrect--it should be 4.) The same is true of the base-96
+system, though the flaw involves a much higher number of accidentals.
+The difference between the systems is therefore in how likely the flaw
+is to be problematic, and so some discussion of this is required. Are
+there any real musical situations in which the flaw in the base-40
+system will actually matter? The English is generally good, but a
+couple of small matters require attention. 'Difficulting' (p.2) is not
+an English word. The text here should say 'making local decisions more
+difficult'. The proper English musical terms on p.5 (section 5.7) are
+'suspension' (for 'retardation') and 'passing note' (for 'passage').
