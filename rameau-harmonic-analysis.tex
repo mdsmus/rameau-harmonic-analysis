@@ -64,30 +64,30 @@ Harmonic analysis by computer is an important, challenging, and
 interesting music research topic. It is challenging because the
 musical material has a large variety of information such as timbre,
 notes, rhythm, dynamics, harmony, and because music unlike image is not a
-linear process \cite{mouton.ea:numeric}. The harmonic changes in a choral
+linear process \cite{mouton.ea95:numeric}. The harmonic changes in a choral
 texture, where usually all notes in all voices begin and finish at the
 same time, are obvious. However, chords are occasionally arppeggiated,
 incomplete, and intertwined with non-harmonic tones. These things
 contribute to increase considerably the complexity of analysis
-\cite{pardo.ea:automated}.
+\cite{pardo.ea99:automated}.
 
 There are many practical applications for automatic music analysis,
 such as arranging, detection of possible logical mistakes in scores,
 database search, automatic accompaniment generation, and statistical
 analysis of musical styles for automated composition
-\cite{pardo.ea:algorithms,temperley.ea:modeling}. Computer-based
+\cite{pardo.ea02:algorithms,temperley.ea99:modeling}. Computer-based
 harmonic analysis is also important because it can bring new insights
 in music theory, in the same way the use of computer in vision and
 problem solving has brought new insights in these areas
-\cite{temperley.ea:modeling}.
+\cite{temperley.ea99:modeling}.
 
 Although many harmonic analysis algorithms have been proposed, no
 single framework for comparing them has been developed. Every
-comparison we found in literature (\cite{pardo.ea:automated,
-  barthelemy.ea:figured, tsui:harmonic, taube:automatic,
-  illescas.ea:harmonic}) is based solely on published examples, which
+comparison we found in literature (\cite{pardo.ea99:automated,
+  barthelemy.ea01:figured, tsui02:harmonic, taube99:automatic,
+  illescas.ea07:harmonic}) is based solely on published examples, which
 are not a statistically representative sample. Pardo and Birmingham
-\cite{pardo.ea:automated} state that ``no researchers have published
+\cite{pardo.ea99:automated} state that ``no researchers have published
 statistical performance results on a system designed to analyze tonal
 music''. In this paper we will present Rameau, a framework for
 automatic harmonic analysis of Western tonal music developed as an
@@ -96,7 +96,7 @@ attempt to solve this problem.
 We have implemented ten algorithms for harmonic analysis in the
 framework and will present in this work a preliminary evaluation of
 them using a corpus of 140 Bach chorales from the 371 in the
-Riemenschneider edition \cite{bach:371}. Rameau automatically compares
+Riemenschneider edition \cite{bach41:371}. Rameau automatically compares
 the answers returned by the algorithms with answer sheets prepared by
 musicians. Since we have answer sheets for only 140 chorales, that
 will be the music corpus used in this paper, although rameau can
@@ -114,23 +114,23 @@ we divide it into four sub-problems.
 
 The first problem is pitch spelling. If sharps and flats are not
 distinguished the program may have problems whenever enharmonic
-information is relevant. For example, in \cite{pardo.ea:algorithms} a
+information is relevant. For example, in \cite{pardo.ea02:algorithms} a
 German augmented sixth chord is mistakenly identified as a dominant
 seventh chord. Most systems, such as the one found in
-\cite{temperley.ea:modeling}, either ignore this problem or develop a
+\cite{temperley.ea99:modeling}, either ignore this problem or develop a
 pitch speller to correct the output. Most harmonic analysis software,
-with the notable exception of MusEs \cite{pachet.ea:representing} and
-the system described in \cite{illescas.ea:harmonic}, use input
+with the notable exception of MusEs \cite{pachet.ea96:representing} and
+the system described in \cite{illescas.ea07:harmonic}, use input
 formats that lose enharmonic information.
 
 The second problem, the segmentation problem
-\cite{pardo.ea:automated}, is to determine what are the vertical
+\cite{pardo.ea99:automated}, is to determine what are the vertical
 sonorities in a piece of music and group these sonorities in
 harmonically significant segments, or chord-spans. The main reason for
 the complexity of segmentation is that the number of possible
 segmentations of a piece is roughly an exponential function of its
 length, making a thorough evaluation of all possibilities impractical
-\cite{pardo.ea:algorithms}.
+\cite{pardo.ea02:algorithms}.
 
 The third problem is labeling segments with chord names. Not every
 segment forms a chord, some will consist solely of non-chord tones and
@@ -149,8 +149,8 @@ The pitch-class notation, or some variation such as MIDI, is probably
 the most used way to numerically represent pitch. The main problem
 with this notation is the loss of enharmonic spelling. In this section
 we will revise three notations created independently by Brinkman,
-Hewlett, and Oliveira \cite{brinkman:binomial, hewlett:base-40,
-  oliveira:busca} to address this problem. For the sake of simplicity
+Hewlett, and Oliveira \cite{brinkman86:binomial, hewlett92:base-40,
+  oliveira01:busca} to address this problem. For the sake of simplicity
 we will refer to them as binomial, base-40, and base-96, respectively.
 
 In the binomial notation notes are represented as tuples in the form
@@ -310,11 +310,11 @@ Reimplementing existing algorithms in the literature allows us to
 easily evaluate their accuracy, study their errors and compare their
 merits and flaws. We are unaware of any systematic comparison of
 different approaches to harmonic analysis, similarly to what Gomez and
-Herrera \cite{gomez.ea:estimating} do for tonality recognition.
+Herrera \cite{gomez.ea04:estimating} do for tonality recognition.
 
 Rameau is written in Common Lisp and runs on the Steel Bank Common
-Lisp \cite{team:sbcl} and CMUCL \cite{maclachlan:cmucl} compilers and
-the Clisp \cite{haible.ea:clisp} interpreter on the GNU/Linux and
+Lisp \cite{team07:sbcl} and CMUCL \cite{maclachlan06:cmucl} compilers and
+the Clisp \cite{haible.ea07:clisp} interpreter on the GNU/Linux and
 Microsoft Windows operating systems. Increased portability is one of
 our goals.
 
@@ -340,7 +340,7 @@ list of either chords or non-chord tones, one for each input sonority.
 The comparison function is responsible for determining which parts of
 the chord are to be considered when assessing correctness of the
 analysis. This is necessary because, for example, Temperley and
-Sleator's \cite{temperley.ea:modeling} algorithm does not identify a
+Sleator's \cite{temperley.ea99:modeling} algorithm does not identify a
 chord's mode. Chords are represented internally as structures that may
 have a root, a mode, a seventh, a bass, and other additions. The
 framework also provides a rich library to deal with common musical
@@ -349,19 +349,19 @@ operations.
 Using this API we have implemented:
 
 \begin{enumerate}
-\item a subset of the algorithm described in \cite{pardo.ea:algorithms}
+\item a subset of the algorithm described in \cite{pardo.ea02:algorithms}
   (ignoring, for now, segmentation), 
 \item a work-in-progress port of the algorithm described in
-  \cite{temperley.ea:modeling}, 
+  \cite{temperley.ea99:modeling}, 
 \item four neural networks (using the Fann \cite{nissen:fann}
   library) roughly similar to some described in
-  \cite{tsui:harmonic}, and
+  \cite{tsui02:harmonic}, and
 \item four decision trees modeled after the neural networks (using code
-  from \cite{mitchell:machine}).
+  from \cite{mitchell97:machine}).
 \end{enumerate}
 
 Rameau's source code is publicly available, under a GNU GPL
-\cite{fsf:gpl} license, in a git \cite{baudis:git} repository at
+\cite{foundation07:gnu} license, in a git \cite{baudis} repository at
 \url{git://genos.mus.br/rameau.git} and for visualization at
 \url{http://git.genos.mus.br/?p=rameau.git}.
 
@@ -378,7 +378,7 @@ using regular unix tools such as grep, awk, and sed.
 
 To simplify reading the results, rameau can output a score with the
 chorale and the analysis from each algorithm chosen. The music
-notation program LilyPond \cite{nienhuys.ea:LilyPond} is used to
+notation program LilyPond \cite{nienhuys.ea08:LilyPond} is used to
 render the score.
 
 Figure \ref{fig:coral-12} shows the result of the analysis of the
@@ -418,14 +418,14 @@ them consists simply of determining the sonorities.
 \item Their texture is simple and constant. It consists basically of
   four voices forming simple triads and tetrads.
 \item Although they have been widely used as examples
-  \cite{taube:automatic, tsui:harmonic, illescas.ea:harmonic,
-    winograd:linguistics}, no single research has analyzed all Bach
+  \cite{taube99:automatic, tsui02:harmonic, illescas.ea07:harmonic,
+    winograd68:linguistics}, no single research has analyzed all Bach
   chorales. We believe doing this will create a useful corpus of
   harmonic information.
 \end{enumerate}
 
 We have answer sheets for 140 chorales and plan on fully incorporating
-every chorale in the Riemenschneider \cite{bach:371} edition soon. The
+every chorale in the Riemenschneider \cite{bach41:371} edition soon. The
 corpus is stored in a subset of the GNU LilyPond format, from which we
 generate MIDI files and typeset scores, possibly annotated with
 analysis results (both our answer sheets and computer-made results).
@@ -435,7 +435,7 @@ to convert from different formats (such as MIDI) to it and LilyPond
 itself can be used to typeset the scores and export them to MIDI.
 
 When we have answer sheets for all chorales we plan on incorporating
-the Kostka-Payne \cite{kostka.ea:tonal} corpus, Beethoven sonatas,
+the Kostka-Payne \cite{kostka.ea03:tonal} corpus, Beethoven sonatas,
 Bach cello suites and other pieces.
 
 \subsection{The answer sheet format}
@@ -462,7 +462,7 @@ many algorithms implemented in our system.
 \subsection{Pardo and Birmingham's algorithm}
 \label{sec:pardo-birmingham}
 
-The algorithm described in \cite{pardo.ea:automated} has some
+The algorithm described in \cite{pardo.ea99:automated} has some
 interesting properties. It handles most simple examples of tonal
 harmony really well, but has no clear notion, by design, of non-chord
 tones, augmented chords and other possible analysis. We
@@ -475,10 +475,10 @@ The current accuracy is $66 \pm 9\%$.
 \label{sec:temperley}
 
 We have reimplemented the algorithm used in Temperley and Sleator's
-Melisma Music Analyzer and described in \cite{temperley.ea:modeling}.
+Melisma Music Analyzer and described in \cite{temperley.ea99:modeling}.
 We also found their implementation of their algorithm, but neither
 their program nor our reimplementation was able to match the
-performance claimed in the article. Tsui \cite{tsui:harmonic} was also
+performance claimed in the article. Tsui \cite{tsui02:harmonic} was also
 unable to reproduce their results.
 
 The Melisma algorithm is brittle and depends on many parameters. Its
@@ -499,7 +499,7 @@ modeling that work by having artificial neurons exchange
 information. There are many varieties of neural networks, each being
 useful for a certain type of problem. Our networks are all multilayer
 feed-forward neural networks, with one hidden layer each. This is the
-standard model for pattern recognition \cite{russell.ea:artificial}.
+standard model for pattern recognition \cite{russell.ea02:artificial}.
 
 \begin{figure}
   \includegraphics[]{neural-networks}
@@ -509,7 +509,7 @@ standard model for pattern recognition \cite{russell.ea:artificial}.
 
 We have implemented in Rameau four neural-network-based
 algorithms for harmonic analysis, basing our approaches on
-\cite{tsui:harmonic}. The input of our simplest algorithm,
+\cite{tsui02:harmonic}. The input of our simplest algorithm,
 \texttt{Simple-net}, is how many times each pitch class sounds in
 a sonority (its pitch count). As output, the network activates the
 neuron representing the root for that sonority (or does nothing, if
@@ -535,8 +535,8 @@ Our current accuracies for these algorithms are $88\pm 8\%$ for
 \label{sec:decision-trees}
 
 Decision trees are useful data modeling tools, with many uses in the
-machine learning community \cite{mitchell:machine,
-  russell.ea:artificial}. They are most useful when trying to extract
+machine learning community \cite{mitchell97:machine,
+  russell.ea02:artificial}. They are most useful when trying to extract
 meaningful patterns from data in a human-readable way. We have built
 four decision trees that perform harmonic analysis, each mirroring one
 of the neural networks. \texttt{Simple-tree} looks at the pitches in a
@@ -577,7 +577,7 @@ functional information from a tonal piece. Information retrieval is a
 fertile research area, and has developed many tried and true
 techniques and models. For this reason we chose to analyze our results
 in terms of the two most used metrics in the information retrieval
-community: precision and recall \cite{russell.ea:artificial}.
+community: precision and recall \cite{russell.ea02:artificial}.
 
 Precision measures how correct are the returned results, whereas
 recall measures how likely is a sonority's mode to be correctly
@@ -698,17 +698,17 @@ Bach chorales.
 Although some algorithms in Rameau are heavily based on previous
 research, our usage of decision trees is new. Some of our algorithms
 using decision trees have a better accuracy than previous work
-\cite{pardo.ea:automated, temperley.ea:modeling}. Another significant
+\cite{pardo.ea99:automated, temperley.ea99:modeling}. Another significant
 difference on our approach is the evaluation of performance using
 precision and recall.
 
 A few important algorithms, like Maxwell's expert system
-\cite{maxwell:expert}, Ulrich's algorithm \cite{ulrich:analysis},
-Taube's MTW \cite{taube:automatic}, and many others are still
+\cite{maxwell92:expert}, Ulrich's algorithm \cite{ulrich77:analysis},
+Taube's MTW \cite{taube99:automatic}, and many others are still
 unimplemented in Rameau. We plan on implementing segmentation, which
 will allow us to extend our corpus of music and answer sheets,
 incorporating, for example, the Kostka-Payne corpus
-\cite{temperley:bayesian}. We are looking for new metrics and
+\cite{temperley04:bayesian}. We are looking for new metrics and
 evaluation techniques, and will extend and improve our existing
 algorithms accordingly. We also intend to implement functional and
 non-chord tone analysis, and modify the existing algorithms to use the
