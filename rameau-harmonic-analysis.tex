@@ -22,7 +22,7 @@
 
 \newcounter{notacounter}
 
-\newcommand{\nota}[1]{
+\newcommand{\note}[1]{
   \addtocounter{notacounter}{1}
   \textcolor{red}{[nota \arabic{notacounter}: #1]}
 }
@@ -261,11 +261,15 @@ pitch-class system (modulo 12). In the base-96 notation G = 55, and
 the result of 55 mod 12 is 7, representing G in the pitch-class
 notation.
 
-The problem with the base-40 notation is that it does not work with
-more than two accidentals. For example, the interval between
-C$\flat\flat$ and C$\sharp\sharp$ (a quadruple augmented unison) has
-the same value (6) as diminished second. On the other hand, in the
-base-96 notation this interval can be correctly computed.
+The problem with the base-40 notation is that it does not work well
+when there are more than two accidentals. For example, the interval
+between C$\flat\flat$ and C$\sharp\sharp$ (a quadruple augmented
+unison) has the same value (6) as diminished second. On the other
+hand, in the base-96 notation this interval can be correctly
+computed. In our corpus this would not have direct consequences, but
+many algorithms, such as Pardo et al's, rely on transposing the
+melodies, and this could create some issues \note{colocando comentário
+parecerista 3}.
 
 The main problem with the binomial notation is that operations that
 are (and should be) simple become complex. In both base-40 and base-96
