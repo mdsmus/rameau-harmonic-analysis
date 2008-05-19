@@ -140,7 +140,11 @@ decisions difficult. Still, over 80\% of accuracy is possible ignoring
 context (see section \ref{sec:analysis-results}).
 
 The last problem is finding the main key and the modulations of the
-piece and assigning a tonal function to each chord.
+piece and assigning a tonal function to each chord. This has been
+explored by
+\cite{raphael.ea03:harmonic,maxwell92:expert,tsui02:harmonic,ulrich77:analysis}
+and others, with varying degrees of success. Currently, as our
+research is still in its infancy, we do not approach this problem.
 
 \section{Numeric codification for tonal music}
 \label{sec:codificacao-jamary}
@@ -206,7 +210,7 @@ interval. For instance, tA is triple-augmented.
 
 \begin{table}
   \centering
-  \begin{tabular}{l|lllllll}
+  \begin{tabular}{r|lllllll}
                & c & d& e& f& g& a& b \\
     \hline
     7$\flat$   &   & 7&21&  &  &62&76 \\
@@ -225,9 +229,10 @@ interval. For instance, tA is triple-augmented.
     6$\sharp$  &  6&20&34&47&61&75&89 \\
     7$\sharp$  &   &  &  &48&  &  &   \\
   \end{tabular}
-  \caption{Notes in the base-96 notation}
+  \caption{Notes in the base-96 notation.}
   \label{tab:jama-notas}
 \end{table}
+
 
 \begin{table}
   \centering
@@ -721,6 +726,12 @@ base-96 codification.
 We believe all these tasks will be considerably easier now our basic
 platform is mostly finished.
 
+\section{Acknowledgements}
+\label{sec:ack}
+
+This project is sponsored by FAPESB (Fundo de Amparo à Pesquisa do
+Estado da Bahia). We's like to thank Iara Malbouisson, Jamary Oliveira
+and Christina von Flach for helpful advice in preparing this text.
 
 \bibliographystyle{plain}
 \bibliography{strings-short,ismir,programs,coding,harmonic-analysis,dont-have,artifical-inteligence,music-harmony-and-theory,licenses,icmc,music-scores}
