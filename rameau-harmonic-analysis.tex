@@ -295,8 +295,10 @@ work has to be done, increasing complexity.
 We believe the base-96 codification is a good form of describing tonal
 music numerically and it should be more known among researches and
 developers. For these reasons we have adopted it, although no
-algorithm implemented in rameau makes direct use of it yet, since they
-are reimplementations of algorithms that expect pitch classes as
+algorithm implemented in rameau makes direct use of it as of the
+writing of this paper\footnote{Since then, every algorithm has been
+  extended or reimplemented to incorporate this codification.}, since
+they are reimplementations of algorithms that expect pitch classes as
 input.
 
 \section{The Rameau Framework}
@@ -711,17 +713,21 @@ using decision trees have a better accuracy than previous work
 difference on our approach is the evaluation of performance using
 precision and recall.
 
-A few important algorithms, like Maxwell's expert system
-\cite{maxwell92:expert}, Ulrich's algorithm \cite{ulrich77:analysis},
-Taube's MTW \cite{taube99:automatic}, and many others are still
-unimplemented in Rameau. We plan on implementing segmentation, which
-will allow us to extend our corpus of music and answer sheets,
-incorporating, for example, the Kostka-Payne corpus
-\cite{temperley04:bayesian}. We are looking for new metrics and
-evaluation techniques, and will extend and improve our existing
-algorithms accordingly. We also intend to implement functional and
-non-chord tone analysis, and modify the existing algorithms to use the
-base-96 codification.
+Currently (as of the publication of this paper) we have almost
+finished reimplementing Maxwell's algorithm, we have implemented a
+k-nearest-neighbor classifier and all algorithms described here have
+been extended to incorporate the base-96 codification.
+
+A few important algorithms, like Ulrich's algorithm
+\cite{ulrich77:analysis}, Taube's MTW \cite{taube99:automatic},
+Raphael and Stoddard's hidden Markov model
+\cite{raphael.ea03:harmonic}, and many others are still unimplemented
+in Rameau. We plan on implementing segmentation, which will allow us
+to extend our corpus of music and answer sheets, incorporating, for
+example, the Kostka-Payne corpus \cite{temperley04:bayesian}. We are
+looking for new metrics and evaluation techniques, and will extend and
+improve our existing algorithms accordingly. We also intend to
+implement functional and non-chord tone analysis.
 
 We believe all these tasks will be considerably easier now our basic
 platform is mostly finished.
